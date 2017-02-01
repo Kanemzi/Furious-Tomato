@@ -13,5 +13,6 @@ void keyPressed()
 
 void keyReleased()
 {
-	touches[keyCode] = false;   
+	touches[keyCode] = false;
+	menu.k = false;
 }

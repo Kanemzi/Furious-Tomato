@@ -24,6 +24,10 @@ final String IMAGE_INTERFACE = "interface.png";
 final String IMAGE_SALIERE_MINI = "saliere_mini.png";
 final String IMAGE_CHIFFRES = "chiffres.png";
 
+final String IMAGE_BOUTON_JOUER = "jouer.png";
+final String IMAGE_BOUTON_CREDITS = "credits.png";
+final String IMAGE_BOUTON_QUITTER = "quitter.png";
+
 
 final int[] ANIMATION_NON = {0};
 

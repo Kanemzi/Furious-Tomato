@@ -32,19 +32,16 @@ void settings()
 	noSmooth();
 }
 
-Joueur j;
 
 void setup()
 {
 	frameRate(IMAGES_PAR_SECONDE);
 
 	temps_global = 0;
-	scene = SCENES[CREDITS];
+	scene = SCENES[MENU];
 	
 	initialiser_ecran();
 	initialiser_police();
-	
-	j = new Joueur(new Vecteur(64, 64));
 }
 
 
@@ -69,10 +66,13 @@ void draw()
 	} 
 	else if (scene == SCENES[MENU])
 	{
-    	fill(#FFFF00);
-        rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
-    	j.mettre_a_jour();
-    	j.afficher();
+    	if(!menu_init)
+        {
+            menu_init = true;
+            initialiser_menu();
+        }
+        mettre_a_jour_menu();
+        dessiner_menu();
 	}
 	else if(scene == SCENES[CREDITS])
 	{
