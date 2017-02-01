@@ -17,7 +17,6 @@ void initialiser_menu()
 void mettre_a_jour_menu()
 {
 	menu.update();
-
 }
 
 
@@ -32,7 +31,8 @@ void dessiner_menu()
 
 void terminer_menu()
 {
-
+	menu_init = false;
+	menu = null;
 }
 
 
@@ -64,7 +64,8 @@ class MenuPrincipal {
                     bcredits.select = false;
                     bquitter.select = true;
                 } else if (touches[ENTER] == true) {
-                    println("Changer d'écran -> CREDITS");
+                    scene = SCENES[CREDITS];
+                    terminer_menu();
                 }
             } else if (bquitter.select == true && k == false) {            // Bouton QUITTER sélectionné
                 if (touches[UP] == true) {
@@ -74,7 +75,7 @@ class MenuPrincipal {
                     bquitter.select = false;
                     bjouer.select = true;
                 } else if (touches[ENTER] == true) {
-                    println("Quitter le jeu");
+                    exit();
                 }
             }
             k = true;

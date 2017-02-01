@@ -5,17 +5,24 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 boolean credits_init = false;
+boolean retour_active;
 
 Image img;
 
 void initialiser_credits()
 {
+    retour_active = false;
 }
 
 
 void mettre_a_jour_credits()
 {
-    if(touches[ENTER])
+    if(!touches[ENTER])
+    {
+    	retour_active = true;   
+    }
+    
+    if(touches[ENTER] && retour_active)
     { 
     	terminer_credits();
 	}
@@ -33,4 +40,5 @@ void dessiner_credits()
 void terminer_credits()
 {
     scene = SCENES[MENU];
+    credits_init = false;
 }
