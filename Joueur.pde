@@ -31,9 +31,9 @@ class Joueur extends Entite
           
        }
        
-       if(angle < PI/8 && angle > -PI/8) {
+       if(angle == 0) {
          image.changerAnimation(ANIMATION_TOMATE_FACE, 0.2, false);
-       } else {
+       } else if(angle == -PI/2 || angle == -PI/4) {
          image.changerAnimation(ANIMATION_TOMATE_PROFIL, 0.2, false);
        }
       

@@ -26,15 +26,16 @@ final String IMAGE_CHIFFRES = "chiffres.png";
 
 
 final int[] ANIMATION_NON = {0};
+
 final int[] ANIMATION_CUISINIER_NORMAL = {0, 1, 0, 2};
 final int[] ANIMATION_CUISINIER_ENERVE = {3, 4};
 
 final int[] ANIMATION_TOMATE_PROFIL = {0, 1, 2, 1, 0, 3, 4, 3};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
 
-//temp
-final int[] ANIM_CHIFFRES = {/*0, 1, 2, 3, 4, 5, 6, 7, 8, 9, */10, 11, 12, 13, 14, 15, 16, 17, 18, 19/*, 20, 21*/};
 
+final String POLICE = "fonts/slkscrb.ttf";
+final float TAILLE_POLICE = 8;
 
 /* CONSTANTES */
 final int INTRO = 0;
@@ -43,4 +44,4 @@ final int CREDITS = 2;
 final int JEU = 3;
 final int FIN = 4;
 final int QUITTER = 5;
-final String[] ECRANS = {"intro", "menu", "credits", "jeu", "fin", "quitter"};
+final String[] SCENES = {"intro", "menu", "credits", "jeu", "fin", "quitter"};

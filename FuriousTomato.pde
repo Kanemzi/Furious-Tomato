@@ -4,8 +4,9 @@
  *                             ~ Fichier principal ~                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-String ecran;
+String scene;
 int temps_global;
+PGraphics ecran;
 
 void settings()
 {
@@ -38,7 +39,10 @@ void setup()
 	frameRate(IMAGES_PAR_SECONDE);
 
 	temps_global = 0;
-	ecran = ECRANS[MENU];
+	scene = SCENES[CREDITS];
+	
+	initialiser_ecran();
+	initialiser_police();
 	
 	j = new Joueur(new Vecteur(64, 64));
 }
@@ -51,10 +55,9 @@ void draw()
 
 	surface.setTitle(""+(int) frameRate);
 	
-	pushMatrix();
-    scale(ECHELLE, ECHELLE);
+	ecran.beginDraw();
 
-	if(ecran == ECRANS[INTRO])
+	if(scene == SCENES[INTRO])
 	{
     	if(!intro_init)
     	{
@@ -64,15 +67,14 @@ void draw()
     	mettre_a_jour_intro();
 		dessiner_intro();
 	} 
-	else if (ecran == ECRANS[MENU])
+	else if (scene == SCENES[MENU])
 	{
     	fill(#FFFF00);
         rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
     	j.mettre_a_jour();
     	j.afficher();
-		
 	}
-	else if(ecran == ECRANS[CREDITS])
+	else if(scene == SCENES[CREDITS])
 	{
     	if(!credits_init)
         {
@@ -82,6 +84,11 @@ void draw()
         mettre_a_jour_credits();
         dessiner_credits();
 	}
+  	
+  	ecran.endDraw();	
   
+  	pushMatrix();
+    scale(ECHELLE, ECHELLE);
+  	image(ecran, 0, 0);
 	popMatrix();
 }

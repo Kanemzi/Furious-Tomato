@@ -4,7 +4,6 @@
  *                       ~ Fichier de gestion des images ~                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 /*
     Cette classe correspond à une image destinée à être affichée dans le jeu. Cette image peut être animée
 */
@@ -103,20 +102,19 @@ class Image
     	}
 	}
 
-
 	
 	void afficher(float x, float y)
     {    
-      pushMatrix();
+      ecran.pushMatrix();
       
-      translate(x,y);
+      ecran.translate(x,y);
       if(miroir_x) {
-        scale(-1, 1); 
-        translate(-24, 0);
+        ecran.scale(-1, 1); 
+        ecran.translate(-24, 0);
       }
-      	tint(255, opacite);
-        image(actuelle(), 0, 0);
-      popMatrix();
+      	ecran.tint(255, opacite);
+        ecran.image(actuelle(), 0, 0);
+      ecran.popMatrix();
 	}	
 
 
@@ -159,4 +157,9 @@ class Image
     	longueur_animation = animation.length;
     	index_image = 0;
 	}
+
+	void changerVitesseAnimation(float vitesse_animation)
+	{
+    	this.vitesse_animation = vitesse_animation;
+    }
 }

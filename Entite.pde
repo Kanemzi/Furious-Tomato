@@ -34,7 +34,7 @@ class Entite
 		this.position.ajouter(vitesse);
 		this.vitesse.ajouter(acceleration);
     
-    image.mettre_a_jour();
+    	image.mettre_a_jour();
     
 		if(morte)
 		{

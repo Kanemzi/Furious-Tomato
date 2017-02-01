@@ -1,3 +1,9 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *   Furious Tomato - Par Benjamin Strabach, Valentin Galerne et Simon Rozec   *
+ *                                                                             *
+ *                     ~ Gestion de l'écran d'introduction ~                   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 boolean intro_init = false;
 
 float opacite_intro = -100;
@@ -30,8 +36,8 @@ void mettre_a_jour_intro()
 
 void dessiner_intro()
 {
-    fill(0);
-    rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
+    ecran.fill(0);
+    ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
     
     logo.opacite = opacite_intro;
     logo.afficher(LARGEUR_ECRAN  / 2 - logo.largeur / 2, HAUTEUR_ECRAN / 2 - logo.hauteur / 2); 
@@ -40,5 +46,5 @@ void dessiner_intro()
 
 void terminer_intro()
 {
-	ecran = ECRANS[MENU];
+	scene = SCENES[MENU];
 }
