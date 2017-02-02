@@ -44,6 +44,13 @@ final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
 final String POLICE = "fonts/slkscrb.ttf";
 final float TAILLE_POLICE = 8;
 
+
+/* Menu */
+final float DUREE_ANIMATION_COUPERET = 0.6;
+final float AMPLITUDE_CHOC_COUPERET = 32;
+final float REDUCTION_CHOC_COUPERET = 1.2;
+
+
 /* CONSTANTES */
 final int INTRO = 0;
 final int MENU = 1;
