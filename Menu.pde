@@ -29,6 +29,11 @@ void mettre_a_jour_menu()
         selection_active = true;   
     }
     
+    if(touche_relachee)
+	{
+    	menu.k = false;
+	}
+    
 	menu.update();
 }
 

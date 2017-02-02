@@ -91,4 +91,6 @@ void draw()
     scale(ECHELLE, ECHELLE);
   	image(ecran, 0, 0);
 	popMatrix();
+
+	mettre_a_jour_entrees();
 }

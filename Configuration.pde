@@ -24,6 +24,7 @@ final String IMAGE_INTERFACE = "interface.png";
 final String IMAGE_SALIERE_MINI = "saliere_mini.png";
 final String IMAGE_CHIFFRES = "chiffres.png";
 
+final String IMAGE_COUPERET = "couperet.png";
 final String IMAGE_BOUTON_JOUER = "jouer.png";
 final String IMAGE_BOUTON_CREDITS = "credits.png";
 final String IMAGE_BOUTON_QUITTER = "quitter.png";
@@ -35,9 +36,10 @@ final int[] ANIMATION_NON = {0};
 final int[] ANIMATION_CUISINIER_NORMAL = {0, 1, 0, 2};
 final int[] ANIMATION_CUISINIER_ENERVE = {3, 4};
 
-final int[] ANIMATION_TOMATE_PROFIL = {0, 1, 2, 1, 0, 3, 4, 3};
+final int[] ANIMATION_TOMATE_PROFIL_FACE = {0, 1, 2, 1, 0, 3, 4, 3};
+final int[] ANIMATION_TOMATE_PROFIL_DOS = {5, 6, 7, 6, 5, 8, 9, 8};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
-
+final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
 
 final String POLICE = "fonts/slkscrb.ttf";
 final float TAILLE_POLICE = 8;

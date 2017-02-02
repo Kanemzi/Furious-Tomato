@@ -7,7 +7,7 @@ class Joueur extends Entite
 
     Joueur(Vecteur pos)
     {
-        super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL));
+        super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE));
     }
    
     void mettre_a_jour()
@@ -34,7 +34,7 @@ class Joueur extends Entite
        if(angle == 0) {
          image.changerAnimation(ANIMATION_TOMATE_FACE, 0.2, false);
        } else if(angle == -PI/2 || angle == -PI/4) {
-         image.changerAnimation(ANIMATION_TOMATE_PROFIL, 0.2, false);
+         image.changerAnimation(ANIMATION_TOMATE_PROFIL_FACE, 0.2, false);
        }
       
         vitesse.modifierAL(angle + PI/2 , v);
