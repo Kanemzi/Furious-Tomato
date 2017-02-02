@@ -27,7 +27,8 @@ final String IMAGE_CHIFFRES = "chiffres.png";
 final String IMAGE_BOUTON_JOUER = "jouer.png";
 final String IMAGE_BOUTON_CREDITS = "credits.png";
 final String IMAGE_BOUTON_QUITTER = "quitter.png";
-
+final String IMAGE_CURSEUR = "curseur.png";
+final String IMAGE_MENU = "menu.png";
 
 final int[] ANIMATION_NON = {0};
 
