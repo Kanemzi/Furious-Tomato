@@ -32,7 +32,6 @@ void dessiner_menu()
 void terminer_menu()
 {
 	menu_init = false;
-	menu = null;
 }
 
 
