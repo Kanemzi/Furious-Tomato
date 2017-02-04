@@ -9,6 +9,7 @@ boolean retour_active;
 
 Image img;
 
+
 void initialiser_credits()
 {
     retour_active = false;

@@ -32,28 +32,30 @@ void settings()
 	noSmooth();
 }
 
+Image imge;
+
+
 
 void setup()
 {
 	frameRate(IMAGES_PAR_SECONDE);
 
 	temps_global = 0;
-	scene = SCENES[MENU];
+	scene = SCENES[INTRO];
 	
 	initialiser_ecran();
 	initialiser_police();
 }
 
 
-
 void draw()
 {
 	temps_global ++;
-
+	
 	surface.setTitle(""+(int) frameRate);
 	
 	ecran.beginDraw();
-
+	
 	if(scene == SCENES[INTRO])
 	{
     	if(!intro_init)
@@ -84,13 +86,23 @@ void draw()
         mettre_a_jour_credits();
         dessiner_credits();
 	}
+	else if(scene == SCENES[JEU])
+	{
+    	if(!jeu_init)
+        {
+            jeu_init = true;
+            initialiser_jeu();
+        }
+        mettre_a_jour_jeu();
+        dessiner_jeu();
+	}
   	
-  	ecran.endDraw();	
+  	ecran.endDraw();
   
   	pushMatrix();
     scale(ECHELLE, ECHELLE);
   	image(ecran, 0, 0);
-	popMatrix();
+  	popMatrix();
 
 	mettre_a_jour_entrees();
 }

@@ -5,7 +5,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /* Informations globales */
-
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int ECHELLE = 3;
@@ -13,7 +12,6 @@ final int IMAGES_PAR_SECONDE = 60;
 
 
 /* Images */
-
 final String IMAGE_LOGO_INTRO = "logo_isn2017.png";
 final String IMAGE_CUISINIER = "animation_cuisinier.png";
 final String IMAGE_TOMATE = "animation_tomate.png";
@@ -47,7 +45,7 @@ final float TAILLE_POLICE = 8;
 
 /* Menu */
 final float DUREE_ANIMATION_COUPERET = 0.6;
-final float AMPLITUDE_CHOC_COUPERET = 32;
+final float AMPLITUDE_CHOC_COUPERET = 16;
 final float REDUCTION_CHOC_COUPERET = 1.2;
 
 
@@ -59,3 +57,6 @@ final int JEU = 3;
 final int FIN = 4;
 final int QUITTER = 5;
 final String[] SCENES = {"intro", "menu", "credits", "jeu", "fin", "quitter"};
+
+final int LCD_TYPE_SCORE = 0;
+final int LCD_TYPE_MEILLEUR_SCORE = 1;

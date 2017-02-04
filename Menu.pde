@@ -20,7 +20,7 @@ final float couperet_y_debut = -200,
 			couperet_y_fin = 23;
 
 final float couperet_angle_debut = - PI / 2,
-            couperet_angle_fin = 0;//- PI / 30;
+            couperet_angle_fin = 0;
 
 float couperet_x, couperet_y;
 float couperet_angle;
@@ -69,6 +69,8 @@ void dessiner_menu()
 {
     ecran.background(#EFEFEF);
     
+    if(amplitude_choc_couperet < AMPLITUDE_CHOC_COUPERET) ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
+    
     imageMenu.afficher(0, 0);
     menu.bjouer.afficher();
     menu.bcredits.afficher();
@@ -95,7 +97,7 @@ void dessiner_couperet()
 	}
 	else
 	{
-    	ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
+    	//ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
     	amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
     	
     	if(amplitude_choc_couperet < 0.1)
@@ -130,7 +132,8 @@ class MenuPrincipal {
                     bjouer.select = false;
                     bcredits.select = true;
                 } else if (touches[ENTER] == true) {
-                    println("Changer d'écran -> JOUER");
+                    scene = SCENES[JEU];
+                    terminer_menu();
                 }
             } else if (bcredits.select == true && k == false) {            // Bouton CREDITS sélectionné
                 if (touches[UP] == true) {
