@@ -7,7 +7,7 @@
 /* Informations globales */
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
-final int ECHELLE = 4;
+final int ECHELLE = 3;
 final int IMAGES_PAR_SECONDE = 60;
 
 
@@ -32,7 +32,7 @@ final String IMAGE_MENU = "menu.png";
 
 final int[] ANIMATION_NON = {0};
 
-final int[] ANIMATION_EXPLOSION_TOMATE = {0, 1, 2, 2, 3};
+final int[] ANIMATION_EXPLOSION_TOMATE = {0, 1, 2, 3};
 
 final int[] ANIMATION_CUISINIER_NORMAL = {0, 1, 0, 2};
 final int[] ANIMATION_CUISINIER_ENERVE = {3, 4};
@@ -47,6 +47,8 @@ final float TAILLE_POLICE = 8;
 
 
 /* Menu */
+final float DUREE_ANIMATION_TOMATE = 0.6;
+
 final float DUREE_ANIMATION_COUPERET = 0.6;
 final float AMPLITUDE_CHOC_COUPERET = 16;
 final float REDUCTION_CHOC_COUPERET = 1.2;

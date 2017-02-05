@@ -4,21 +4,42 @@
  *                     ~ Gestion de l'écran du menu du jeu ~                   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+/*
+	Idées:
+		- Bouts de tomate qui sont éjectés lors du choc
+		- Couverts aussi éjectés lors du choc
+*/
+
 // Boutons du menu
 boolean menu_init = false;
-MenuPrincipal menu;
-
 boolean selection_active;
 
-Image imageMenu;
+MenuPrincipal menu;
 Image imageCurseur;
 
 
-// Animation du menu
+// Image de fond du menu
+Image image_menu;
+
+
 int temps_menu;
 
-final float couperet_y_debut = -200,
-			couperet_y_fin = 24;
+// Animation de la tomate
+Image tomate;
+
+boolean tomate_morte = false;
+
+float tomate_x;
+
+final float TOMATE_X_DEBUT = -28,
+			TOMATE_X_FIN = 80;
+
+
+// Animation du couperet
+Image couperet;
+
+final float COUPERET_Y_DEBUT = -200,
+			COUPERET_Y_FIN = 24;
 
 final float couperet_angle_debut = - PI / 2,
             couperet_angle_fin = 0;
@@ -27,22 +48,28 @@ float couperet_x, couperet_y;
 float couperet_angle;
 float amplitude_choc_couperet;
 
-Image couperet;
+
+// Animation de l'explosion de la tomate
 Image explosion_tomate;
 
 
 void initialiser_menu()
 {
     menu =  new MenuPrincipal();
+    selection_active = false;
+    
     imageCurseur = new Image(IMAGE_CURSEUR);
-    imageMenu = new Image(IMAGE_MENU);
+    image_menu = new Image(IMAGE_MENU);
+    
+    tomate = new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true);
     couperet = new Image(IMAGE_COUPERET);
     explosion_tomate = new Image(IMAGE_EXPLOSION_TOMATE, 4, 1, ANIMATION_EXPLOSION_TOMATE, false);
     
-    selection_active = false;
+    tomate_morte = false;
+    tomate_x = TOMATE_X_DEBUT;
     
     couperet_x = 42;
-    couperet_y = couperet_y_debut;
+    couperet_y = COUPERET_Y_DEBUT;
     couperet_angle = couperet_angle_debut;
     amplitude_choc_couperet = AMPLITUDE_CHOC_COUPERET;
     
@@ -70,22 +97,16 @@ void mettre_a_jour_menu()
 
 void dessiner_menu()
 {
-    ecran.background(#EFEFEF);
-    
     if(amplitude_choc_couperet < AMPLITUDE_CHOC_COUPERET) ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
     
-    imageMenu.afficher(0, 0);
+    image_menu.afficher(0, 0);
+    
     menu.bjouer.afficher();
     menu.bcredits.afficher();
     menu.bquitter.afficher();
     
+    dessiner_tomate();
     dessiner_couperet();
-}
-
-
-void terminer_menu()
-{
-	menu_init = false;
 }
 
 
@@ -93,30 +114,49 @@ void dessiner_couperet()
 {
     ecran.pushMatrix();
     
-	if(couperet_y < couperet_y_fin)
-	{
-    	couperet_y = couperet_y_debut + temps_menu * (couperet_y_fin - couperet_y_debut) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
-		couperet_angle = couperet_angle_debut + temps_menu * (couperet_angle_fin - couperet_angle_debut) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
-	}
-	else
-	{
-    	//ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
-    	amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
-    	
-    	if(amplitude_choc_couperet < 0.1)
-    	{
-        	amplitude_choc_couperet = 0;
-    	}
+    if(couperet_y < COUPERET_Y_FIN)
+    {
+        couperet_y = COUPERET_Y_DEBUT + temps_menu * (COUPERET_Y_FIN - COUPERET_Y_DEBUT) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
+        couperet_angle = couperet_angle_debut + temps_menu * (couperet_angle_fin - couperet_angle_debut) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
+    }
+    else
+    {
+        tomate_morte = true;
+        
+        amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
+        
+        if(amplitude_choc_couperet < 0.1)
+        {
+            amplitude_choc_couperet = 0;
+        }
     
-    	explosion_tomate.afficher(0, 47);
-    	explosion_tomate.mettre_a_jour();
-	}
-	
-	ecran.translate(couperet_x, couperet_y);
-	ecran.rotate(couperet_angle);
-	couperet.afficher(-40, -20);
-	
-	ecran.popMatrix();
+        explosion_tomate.afficher(0, 47);
+        explosion_tomate.mettre_a_jour();
+    }
+    
+    ecran.translate(couperet_x, couperet_y);
+    ecran.rotate(couperet_angle);
+    couperet.afficher(-40, -20);
+    
+    ecran.popMatrix();
+}
+
+
+void dessiner_tomate()
+{
+    if(!tomate_morte)
+    {
+        tomate_x = TOMATE_X_DEBUT + temps_menu * (TOMATE_X_FIN - TOMATE_X_DEBUT) / (IMAGES_PAR_SECONDE  * DUREE_ANIMATION_TOMATE);
+        
+        tomate.afficher(tomate_x, 74);
+        tomate.mettre_a_jour();
+    }
+}
+
+
+void terminer_menu()
+{
+	menu_init = false;
 }
 
 
