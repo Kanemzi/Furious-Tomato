@@ -7,7 +7,7 @@ class Joueur extends Entite
 
     Joueur(Vecteur pos)
     {
-        super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE));
+        super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
     }
    
     void mettre_a_jour()

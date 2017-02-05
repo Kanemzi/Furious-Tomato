@@ -14,7 +14,7 @@ Image logo;
 
 void initialiser_intro()
 {
-	logo = new Image(IMAGE_LOGO_INTRO, 1, 0, ANIMATION_NON);
+	logo = new Image(IMAGE_LOGO_INTRO);
 }
 
 

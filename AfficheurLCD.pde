@@ -14,7 +14,7 @@ class AfficheurLCD
     {
         this.position = position;
         this.type = type;
-        image = new Image(IMAGE_CHIFFRES, 22, 0, ANIMATION_NON);
+        image = new Image(IMAGE_CHIFFRES, 22, 0, ANIMATION_NON, false);
     }
     
     void mettre_a_jour()
@@ -37,7 +37,6 @@ class AfficheurLCD
     	dessiner_chiffre_dans_image(img_score, image.index((sin( (float)(temps_global * 2 * TWO_PI / IMAGES_PAR_SECONDE)) < 0) ? 20 : 21 ), 2);
     	dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(secondes, 1)+ 10), 3);
     	dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(secondes, 0)+ 10), 4);
-    	
     	
     	return new Image(img_score);
     }

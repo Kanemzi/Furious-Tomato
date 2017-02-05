@@ -20,7 +20,7 @@ void initialiser_jeu()
     temps_partie = 0;
 	gui = new Image(IMAGE_INTERFACE);
 	planche = new Image(IMAGE_PLANCHE);
-	cuisinier = new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL);
+	cuisinier = new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true);
 	
 	j = new Joueur(new Vecteur(64, 64));
 	lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
@@ -29,6 +29,7 @@ void initialiser_jeu()
 
 void mettre_a_jour_jeu()
 {
+    println(cuisinier.animation_finie());
 	if(temps_global % IMAGES_PAR_SECONDE == 0)
 	{
     	temps_partie ++;

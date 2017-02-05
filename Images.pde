@@ -16,6 +16,7 @@ class Image
 	int index_image;
 	float vitesse_animation;
 	int longueur_animation;
+	boolean boucler_animation = true;
 	
 	int largeur, hauteur;
 
@@ -27,7 +28,7 @@ class Image
 	/*
     	Crée une image animée à partir d'une seule image contenant toutes les étapes de l'animation placées les unes à la suite des autres
 	*/
-	Image(String fichier, int nb_images, float vitesse_animation, int[] animation)
+	Image(String fichier, int nb_images, float vitesse_animation, int[] animation, boolean boucler_animation)
 	{
     	PImage image = loadImage("images/" + fichier);
        
@@ -57,6 +58,7 @@ class Image
     	this.animee = (nb_images > 1) && vitesse_animation > 0;
     	this.animation = animation;
     	this.vitesse_animation = vitesse_animation;
+    	this.boucler_animation = boucler_animation;
     	
     	index_image = 0;
     	longueur_animation = animation.length;
@@ -116,8 +118,15 @@ class Image
 
 			if(index_image == longueur_animation)
 			{
-    			index_image = 0;
-    		}
+    			if(boucler_animation) 
+    			{
+        			index_image = 0;
+    			}
+    			else
+    			{
+        			index_image -= 1;
+        		}
+			}
     	}
 	}
 
@@ -162,6 +171,11 @@ class Image
     	}
 	}
 
+	boolean animation_finie()
+	{
+    	return (!boucler_animation) && (index_image == longueur_animation - 1);
+	}
+
 	
 	/*
         Change l'animation attribuée à l'image
@@ -183,5 +197,10 @@ class Image
 	void changerVitesseAnimation(float vitesse_animation)
 	{
     	this.vitesse_animation = vitesse_animation;
+    }
+    
+    void faireBouclerAnimation(boolean boucler_animation)
+    {
+    	this.boucler_animation = boucler_animation;
     }
 }
