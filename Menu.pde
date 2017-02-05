@@ -13,11 +13,12 @@ boolean selection_active;
 Image imageMenu;
 Image imageCurseur;
 
+
 // Animation du menu
 int temps_menu;
 
 final float couperet_y_debut = -200,
-			couperet_y_fin = 23;
+			couperet_y_fin = 24;
 
 final float couperet_angle_debut = - PI / 2,
             couperet_angle_fin = 0;
@@ -27,6 +28,7 @@ float couperet_angle;
 float amplitude_choc_couperet;
 
 Image couperet;
+Image explosion_tomate;
 
 
 void initialiser_menu()
@@ -35,10 +37,11 @@ void initialiser_menu()
     imageCurseur = new Image(IMAGE_CURSEUR);
     imageMenu = new Image(IMAGE_MENU);
     couperet = new Image(IMAGE_COUPERET);
+    explosion_tomate = new Image(IMAGE_EXPLOSION_TOMATE, 4, 1, ANIMATION_EXPLOSION_TOMATE, false);
     
     selection_active = false;
     
-    couperet_x = 43;
+    couperet_x = 42;
     couperet_y = couperet_y_debut;
     couperet_angle = couperet_angle_debut;
     amplitude_choc_couperet = AMPLITUDE_CHOC_COUPERET;
@@ -104,6 +107,9 @@ void dessiner_couperet()
     	{
         	amplitude_choc_couperet = 0;
     	}
+    
+    	explosion_tomate.afficher(0, 47);
+    	explosion_tomate.mettre_a_jour();
 	}
 	
 	ecran.translate(couperet_x, couperet_y);
