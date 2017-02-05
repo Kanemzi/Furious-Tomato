@@ -141,7 +141,7 @@ class Image
             ecran.translate(-largeur, 0);
         }
         
-        if(opacite < 255) ecran.tint(255, opacite);
+        ecran.tint(255, opacite);
         
         ecran.image(actuelle(), 0, 0);
         

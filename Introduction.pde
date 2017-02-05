@@ -25,7 +25,7 @@ void mettre_a_jour_intro()
         degrade_speed_intro = - 255 / (IMAGES_PAR_SECONDE * 1.5);
     }
     
-    if(opacite_intro < -200)
+    if(opacite_intro < -100 || touches[ENTER])
     {
         terminer_intro();
 	}
@@ -47,4 +47,5 @@ void dessiner_intro()
 void terminer_intro()
 {
 	scene = SCENES[MENU];
+	intro_init = false;
 }

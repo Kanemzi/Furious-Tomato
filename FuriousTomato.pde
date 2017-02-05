@@ -41,7 +41,7 @@ void setup()
 	frameRate(IMAGES_PAR_SECONDE);
 
 	temps_global = 0;
-	scene = SCENES[CREDITS];
+	scene = SCENES[INTRO];
 	
 	initialiser_ecran();
 	initialiser_police();
