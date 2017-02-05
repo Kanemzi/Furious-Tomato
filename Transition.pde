@@ -21,6 +21,8 @@ class Transition
 	void lancer()
 	{
     	visible = true;
+    	demi_transition = false;
+    	fin_transition = false;
     	rembobiner();
 	}
 
@@ -28,20 +30,20 @@ class Transition
 	{
     	float pourcentage_transition = ( (float) temps_transition / duree_transition);
     
-    	demi_transition = temps_transition > duree_transition / 2;
-		fin_transition = temps_transition > duree_transition;
-		
+    	demi_transition = temps_transition >= duree_transition / 2;
+		fin_transition = temps_transition >= duree_transition;
+
 		if(visible && !fin_transition)
 		{
-    		println("% : " + l);
-    
+    		println(demi_transition);
+    	
     		if(!demi_transition)
     		{
-				l = (pourcentage_transition) * LARGEUR_ECRAN;		
+				l = f(pourcentage_transition) * LARGEUR_ECRAN;		
     		}
     		else
     		{
-        		l = ( 1 - pourcentage_transition) * LARGEUR_ECRAN;
+        		l = f( 1 - pourcentage_transition) * LARGEUR_ECRAN;
         	}
         
         	temps_transition ++;
@@ -51,12 +53,17 @@ class Transition
     		fin();
 		}
 	}
+	
+	float f(float x)
+	{
+    	return x * 2;
+	}
 
 	void afficher()
 	{
     	if(visible)
     	{
-        	fill(0);
+        	ecran.fill(0);
         
         	ecran.beginShape(QUADS);
             ecran.vertex(0, 0);
@@ -82,7 +89,7 @@ class Transition
     	temps_transition = 0;
 	}
 	
-	boolean transition_finie()
+	boolean finie()
 	{
     	return fin_transition;
 	}

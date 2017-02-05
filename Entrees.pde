@@ -27,8 +27,8 @@ void mettre_a_jour_entrees()
     touche_relachee = false;
 }
 
-
+/*
 void mousePressed()
 {
  transition.lancer();   
-}
+}*/

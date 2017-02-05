@@ -17,6 +17,9 @@ boolean selection_active;
 MenuPrincipal menu;
 Image imageCurseur;
 
+boolean demande_quitter;
+boolean demande_credits;
+boolean demande_jeu;
 
 // Image de fond du menu
 Image image_menu;
@@ -60,6 +63,10 @@ void initialiser_menu()
     
     imageCurseur = new Image(IMAGE_CURSEUR);
     image_menu = new Image(IMAGE_MENU);
+    
+    demande_quitter = false;
+    demande_credits = false;
+    demande_jeu = false;
     
     tomate = new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true);
     couperet = new Image(IMAGE_COUPERET);
@@ -167,8 +174,8 @@ class MenuPrincipal {
     Bouton bcredits = new Bouton(224,119,"Crédits",false, IMAGE_BOUTON_CREDITS);
     Bouton bquitter = new Bouton(224,147,"Quitter",false, IMAGE_BOUTON_QUITTER);
 
-    void update() {
-        
+    void update()
+    {
         if (keyPressed == true && selection_active) {
             if (bjouer.select == true && k == false) {                    // Bouton JOUER sélectionné
                 if (touches[UP] == true) {
@@ -178,8 +185,8 @@ class MenuPrincipal {
                     bjouer.select = false;
                     bcredits.select = true;
                 } else if (touches[ENTER] == true) {
-                    scene = SCENES[JEU];
-                    terminer_menu();
+                    demande_jeu = true;
+                    transition.lancer();
                 }
             } else if (bcredits.select == true && k == false) {            // Bouton CREDITS sélectionné
                 if (touches[UP] == true) {
@@ -189,8 +196,8 @@ class MenuPrincipal {
                     bcredits.select = false;
                     bquitter.select = true;
                 } else if (touches[ENTER] == true) {
-                    scene = SCENES[CREDITS];
-                    terminer_menu();
+                    demande_credits = true;
+                    transition.lancer();
                 }
             } else if (bquitter.select == true && k == false) {            // Bouton QUITTER sélectionné
                 if (touches[UP] == true) {
@@ -200,11 +207,31 @@ class MenuPrincipal {
                     bquitter.select = false;
                     bjouer.select = true;
                 } else if (touches[ENTER] == true) {
-                    exit();
+                    demande_quitter = true;
+                    transition.lancer();
                 }
             }
             k = true;
         }
+        
+        if(transition.demi_transition_passee())
+        {
+            if(demande_quitter) 
+            {
+                demande_quitter = false;
+                exit();
+        	}
+        	else if(demande_credits)
+        	{
+            	demande_credits = false;
+            	scene = SCENES[CREDITS];
+        	}
+        	else if(demande_jeu)
+        	{
+            	demande_jeu = false;
+            	scene = SCENES[JEU];
+        	}
+    	}
     }
 }
 
