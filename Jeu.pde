@@ -29,8 +29,7 @@ void initialiser_jeu()
 
 void mettre_a_jour_jeu()
 {
-    println(cuisinier.animation_finie());
-	if(temps_global % IMAGES_PAR_SECONDE == 0)
+    if(temps_global % IMAGES_PAR_SECONDE == 0)
 	{
     	temps_partie ++;
 	}

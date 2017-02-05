@@ -29,6 +29,8 @@ final String IMAGE_BOUTON_CREDITS = "credits.png";
 final String IMAGE_BOUTON_QUITTER = "quitter.png";
 final String IMAGE_CURSEUR = "curseur.png";
 final String IMAGE_MENU = "menu.png";
+final String IMAGE_FOND_CREDITS = "credits_fond.png";
+final String IMAGE_BOUTON_ENTRER = "bouton_entrer.png";
 
 final int[] ANIMATION_NON = {0};
 
@@ -42,8 +44,8 @@ final int[] ANIMATION_TOMATE_PROFIL_DOS = {5, 6, 7, 6, 5, 8, 9, 8};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
 final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
 
-final String POLICE = "fonts/slkscrb.ttf";
-final float TAILLE_POLICE = 8;
+final String POLICE = "fonts/Gibberesque.ttf";
+final float TAILLE_POLICE = 16;
 
 
 /* Menu */
