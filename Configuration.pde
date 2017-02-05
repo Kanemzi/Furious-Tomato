@@ -44,6 +44,8 @@ final int[] ANIMATION_TOMATE_PROFIL_DOS = {5, 6, 7, 6, 5, 8, 9, 8};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
 final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
 
+final float DUREE_TRANSITION = 0.25;
+
 final String POLICE = "fonts/Gibberesque.ttf";
 final float TAILLE_POLICE = 16;
 
@@ -52,7 +54,7 @@ final float TAILLE_POLICE = 16;
 final float DUREE_ANIMATION_TOMATE = 0.6;
 
 final float DUREE_ANIMATION_COUPERET = 0.6;
-final float AMPLITUDE_CHOC_COUPERET = 16;
+final float AMPLITUDE_CHOC_COUPERET = 32;
 final float REDUCTION_CHOC_COUPERET = 1.2;
 
 

@@ -7,6 +7,7 @@
 String scene;
 int temps_global;
 PGraphics ecran;
+Transition transition;
 
 void settings()
 {
@@ -45,11 +46,15 @@ void setup()
 	
 	initialiser_ecran();
 	initialiser_police();
+
+	transition = new Transition();
 }
 
 
 void draw()
 {
+    //surface.setLocation((int)(64 + sin((float)temps_global /( (float)IMAGES_PAR_SECONDE / 5))* 64) , (int) (64 + cos((float)temps_global / ((float)IMAGES_PAR_SECONDE / 5))* 64) );
+    
 	temps_global ++;
 	
 	surface.setTitle(""+(int) frameRate);
@@ -97,6 +102,9 @@ void draw()
         dessiner_jeu();
 	}
   	
+  	transition.mettre_a_jour();
+  	transition.afficher();
+  
   	ecran.endDraw();
   
   	pushMatrix();
