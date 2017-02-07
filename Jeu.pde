@@ -5,6 +5,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 boolean jeu_init = false;
+
+
 int temps_partie;
 
 Image gui;
@@ -17,6 +19,7 @@ AfficheurLCD lcd;
 void initialiser_jeu()
 {
     retour_active = false;
+    
     temps_partie = 0;
 	gui = new Image(IMAGE_INTERFACE);
 	planche = new Image(IMAGE_PLANCHE);
@@ -54,6 +57,6 @@ void dessiner_jeu()
 
 void terminer_jeu()
 {
-    scene = SCENES[MENU];
+    scene = SCENES[FIN];
     jeu_init = false;
 }

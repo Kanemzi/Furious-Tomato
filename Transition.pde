@@ -40,8 +40,6 @@ class Transition
 
 		if(visible && !fin_transition)
 		{
-    		println(demi_transition);
-    	
     		if(!demi_transition)
     		{
 				l = f(pourcentage_transition) * LARGEUR_ECRAN;		

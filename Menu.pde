@@ -225,11 +225,13 @@ class MenuPrincipal {
         	else if(demande_credits)
         	{
             	demande_credits = false;
+            	terminer_menu();
             	scene = SCENES[CREDITS];
         	}
         	else if(demande_jeu)
         	{
             	demande_jeu = false;
+            	terminer_menu();
             	scene = SCENES[JEU];
         	}
     	}

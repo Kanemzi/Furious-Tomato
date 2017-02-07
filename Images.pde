@@ -13,6 +13,8 @@ class Image
     PImage[] images;
     int[] animation;
 
+	boolean animation_finie;
+
     int index_image;
     float vitesse_animation;
     int longueur_animation;
@@ -24,6 +26,7 @@ class Image
     boolean miroir_y = false;
 
     float opacite = 255;
+    float angle = 0;
 
     /*
     	Crée une image animée à partir d'une seule image contenant toutes les étapes de l'animation placées les unes à la suite des autres
@@ -124,7 +127,8 @@ class Image
                 } 
                 else
                 {
-                    index_image -= 1;
+                    index_image = longueur_animation - 1;
+                    animation_finie = true;
                 }
             }
         }
@@ -136,8 +140,12 @@ class Image
         ecran.pushMatrix();
 
         ecran.translate(x, y);
-        if (miroir_x) {
-            ecran.scale(-1, 1); 
+        
+        //ecran.rotate(angle);
+        
+        if (miroir_x)
+        {
+            ecran.scale(-1, 1);
             ecran.translate(-largeur, 0);
         }
         
@@ -146,7 +154,7 @@ class Image
         ecran.image(actuelle(), 0, 0);
         
         ecran.popMatrix();
-    }	
+    }
 
 
 
@@ -200,6 +208,7 @@ class Image
     void changerVitesseAnimation(float vitesse_animation)
     {
         this.vitesse_animation = vitesse_animation;
+        animation_finie = false;
     }
 
     void faireBouclerAnimation(boolean boucler_animation)
