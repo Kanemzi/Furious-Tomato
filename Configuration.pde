@@ -8,8 +8,8 @@
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int ECHELLE = 3;
-final int IMAGES_PAR_SECONDE = 50;
-
+final int IMAGES_PAR_SECONDE = 60;
+;
 
 /* Images */
 final String IMAGE_LOGO_INTRO = "logo_isn2017.png";
