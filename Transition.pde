@@ -14,15 +14,20 @@ class Transition
 	boolean demi_transition;
 	boolean fin_transition;
 	
+	boolean peut_recommencer;
 	
 	float l;
 
 
 	void lancer()
 	{
+    	if(!peut_recommencer)
+    		return;
+    	
     	visible = true;
     	demi_transition = false;
     	fin_transition = false;
+    	peut_recommencer = false;
     	rembobiner();
 	}
 
@@ -82,6 +87,7 @@ class Transition
 	void fin()
 	{
     	visible = false;
+    	peut_recommencer = true;
 	}
 	
 	void rembobiner()

@@ -1,5 +1,8 @@
 class Joueur extends Entite
 {
+    
+    boolean morte = false;
+    
     float angle;	  
 
 	    float v = 2;
@@ -13,6 +16,8 @@ class Joueur extends Entite
     void mettre_a_jour()
     {
     	  super.mettre_a_jour();
+        
+        if(morte) return;
         
         float axeX = 0;
         float axeY = 0;
@@ -55,6 +60,15 @@ class Joueur extends Entite
     	if(position.x > 218 - image.largeur / 2) position.x = 218 - image.largeur / 2;
     	if(position.y > HAUTEUR_ECRAN - image.hauteur - 7) position.y = HAUTEUR_ECRAN - image.hauteur - 7;
     	if(position.y < 40) position.y = 40;
+    
+    	if(touches[DELETE])
+    	{
+        println("mort");
+        	morte = true;
+        	vitesse = new Vecteur(0, 0);
+        	int[] animation = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11};
+    		image = new Image("tomate_mort.png", 12, 0.5, animation, false);
+		}
 	}
     
     void afficher()

@@ -19,6 +19,8 @@ void initialiser_credits()
     bouton_entrer = new Image(IMAGE_BOUTON_ENTRER);
     retour_active = false;
     entrer_presse = false;
+    
+    demande_menu = false;
 }
 
 
@@ -28,9 +30,10 @@ void mettre_a_jour_credits()
     {
     	retour_active = true;   
     	
-    	if(entrer_presse)
+    	if(entrer_presse && !demande_menu)
     	{
-        	terminer_credits();
+        	demande_menu = true;
+            transition.lancer();
     	}
 	}
     
@@ -38,6 +41,15 @@ void mettre_a_jour_credits()
     {
         entrer_presse = true;
     }
+    
+    if(transition.demi_transition_passee())
+    {
+    	if(demande_menu) 
+		{
+        	demande_menu = false;
+        	terminer_credits();
+        }
+	}
 }
 
 

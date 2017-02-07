@@ -17,6 +17,7 @@ boolean selection_active;
 MenuPrincipal menu;
 Image imageCurseur;
 
+boolean demande_menu;
 boolean demande_quitter;
 boolean demande_credits;
 boolean demande_jeu;
