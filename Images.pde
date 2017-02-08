@@ -9,32 +9,34 @@
  */
 class Image
 {
-    boolean animee;
     PImage[] images;
     int[] animation;
 
-	boolean animation_finie;
-
-    int index_image;
-    float vitesse_animation;
-    int longueur_animation;
-    boolean boucler_animation = true;
-
-    int largeur, hauteur;
-
-    boolean miroir_x = false;
+	
+	boolean animee;
+	boolean boucler_animation;
+	boolean miroir_x = false;
     boolean miroir_y = false;
-
-    float opacite = 255;
     
+	int index_image;
+    
+    float vitesse_animation;
+    float opacite = 255;
     float origine_x = 0;
     float origine_y = 0;
+    float angle = 0;    
     
-    float angle = 0;
+    
+    int largeur;
+    int hauteur;
+    int longueur_animation;
+    
+	boolean animation_finie;
+
 
     /*
     	Crée une image animée à partir d'une seule image contenant toutes les étapes de l'animation placées les unes à la suite des autres
-     	*/
+    */
     Image(String fichier, int nb_images, float vitesse_animation, int[] animation, boolean boucler_animation)
     {
         PImage image = loadImage("images/" + fichier);
@@ -61,8 +63,7 @@ class Image
             images[i] = sous_image;
         }
 
-
-        this.animee = (nb_images > 1) && vitesse_animation > 0;
+		this.animee = (nb_images > 1) && vitesse_animation > 0;
         this.animation = animation;
         this.vitesse_animation = vitesse_animation;
         this.boucler_animation = boucler_animation;
@@ -76,8 +77,8 @@ class Image
 
 
     /* 
-     		Crée une image fixe
-     	*/
+    	Crée une image fixe
+    */
     Image(String fichier)
     {
         PImage image = loadImage("images/" + fichier);
@@ -97,8 +98,8 @@ class Image
 
 
     /* 
-     Crée une image fixe à partir d'une PImage
-     */
+    	Crée une image fixe à partir d'une PImage
+    */
     Image(PImage img)
     {
         images = new PImage[1];
@@ -117,7 +118,7 @@ class Image
 
     /*
     	Fait avancer l'animation de l'image. L'animation recommence une fois finie
-     */
+    */
     void mettre_a_jour()
     {
         if (animee && vitesse_animation <= 1 && temps_global % round( 1 / vitesse_animation ) == 0 )
@@ -139,13 +140,14 @@ class Image
         }
     }
 
-
+	/*
+		Affiche l'image aux coordonnées x et y indiquées
+	*/
     void afficher(float x, float y)
     {    
         ecran.pushMatrix();
 
         ecran.translate(x, y);
-        
         ecran.rotate(angle);
         
         if (miroir_x)
@@ -161,12 +163,10 @@ class Image
         }
         
         ecran.tint(255, opacite);
-        
         ecran.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
         
         ecran.popMatrix();
     }
-
 
 
     /*
@@ -193,6 +193,10 @@ class Image
         }
     }
 
+
+	/*
+		Retourne true si l'animation ne boucle pas et qu'elle est finie
+	*/
     boolean animation_finie()
     {
         return (!boucler_animation) && (index_image == longueur_animation - 1);
@@ -202,28 +206,68 @@ class Image
     /*
         Change l'animation attribuée à l'image
      */
-    void changerAnimation(int[] animation, float vitesse_animation, boolean restart, boolean retour_debut)
+    void changerAnimation(int[] animation, float vitesse_animation, boolean restart, boolean retour_debut, boolean boucler_animation)
     {
         if (!restart && animation == this.animation)
+        {
             return;
+		}
 
         this.animation = animation;
+        this.boucler_animation = boucler_animation;
         this.vitesse_animation = vitesse_animation;
-        longueur_animation = animation.length;
+        this.longueur_animation = animation.length;
+        
         if (retour_debut)
         {
             index_image = 0;
         }
     }
+	
 
+	/*
+		Change la vitesse à laquelle se déroule l'animation
+	*/
     void changerVitesseAnimation(float vitesse_animation)
     {
         this.vitesse_animation = vitesse_animation;
         animation_finie = false;
     }
 
+
+	/*
+		Fait boucler ou non l'animation
+	*/
     void faireBouclerAnimation(boolean boucler_animation)
     {
         this.boucler_animation = boucler_animation;
+    }
+    
+    
+    /*
+    	Modifie l'opacité de l'image
+    */
+    void opacite(float o)
+    {
+    	opacite = o;   
+    }
+    
+    
+    /*
+    	Modifie l'angle de l'image
+    */
+    void angle(float a)
+    {
+    	angle = a;   
+    }
+
+
+	/*
+		Modifie le point d'origine de l'image
+	*/
+   	void origine(float x, float y)
+    {
+        origine_x = x;
+        origine_y = y;
     }
 }

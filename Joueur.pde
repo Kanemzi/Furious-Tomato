@@ -41,13 +41,13 @@ class Joueur extends Entite
            image.miroir_x = angle > 0 && angle < PI;
            
            if(angle == 0) {
-             image.changerAnimation(ANIMATION_TOMATE_FACE, 0.2, false, false);
+             image.changerAnimation(ANIMATION_TOMATE_FACE, 0.2, false, false, true);
            } else if(angle == -PI/2 || angle == -PI/4 || angle == PI/2 || angle == PI/4) {
-             image.changerAnimation(ANIMATION_TOMATE_PROFIL_FACE, 0.2, false, false);
+             image.changerAnimation(ANIMATION_TOMATE_PROFIL_FACE, 0.2, false, false, true);
            } else if(angle == PI) {
-               image.changerAnimation(ANIMATION_TOMATE_DOS, 0.2, false, false);
+               image.changerAnimation(ANIMATION_TOMATE_DOS, 0.2, false, false, true);
            }  else if(angle == -3*PI/4 || angle == 3*PI/4) {
-             image.changerAnimation(ANIMATION_TOMATE_PROFIL_DOS, 0.2, false, false);
+             image.changerAnimation(ANIMATION_TOMATE_PROFIL_DOS, 0.2, false, false, true);
            } 
           
             vitesse.modifierAL(angle + PI/2 , v);
@@ -72,7 +72,7 @@ class Joueur extends Entite
             }
 */
 		}
-
+/*
 
 		if(image.animation_finie())
 		{
@@ -80,8 +80,8 @@ class Joueur extends Entite
 			y_mort = position.y;
     		morte = false;
 			terminer_jeu();
-		}
-*/
+		}*/
+
 	}
     
     void afficher()
