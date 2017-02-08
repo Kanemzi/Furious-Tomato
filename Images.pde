@@ -26,6 +26,10 @@ class Image
     boolean miroir_y = false;
 
     float opacite = 255;
+    
+    float origine_x = 0;
+    float origine_y = 0;
+    
     float angle = 0;
 
     /*
@@ -67,6 +71,7 @@ class Image
         longueur_animation = animation.length;
         largeur = images[0].width;
         hauteur = images[0].height;
+        
     }
 
 
@@ -141,17 +146,23 @@ class Image
 
         ecran.translate(x, y);
         
-        //ecran.rotate(angle);
+        ecran.rotate(angle);
         
         if (miroir_x)
         {
             ecran.scale(-1, 1);
-            ecran.translate(-largeur, 0);
+            ecran.translate(- largeur, 0);
+        }
+        
+        if (miroir_y)
+        {
+            ecran.scale(1, -1);
+            ecran.translate(0, - hauteur);
         }
         
         ecran.tint(255, opacite);
         
-        ecran.image(actuelle(), 0, 0);
+        ecran.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
         
         ecran.popMatrix();
     }

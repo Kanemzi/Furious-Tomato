@@ -5,12 +5,14 @@ class Joueur extends Entite
     
     float angle;	  
 
-	    float v = 2;
+	float v = 2;
     float angle_target;
 
     Joueur(Vecteur pos)
     {
         super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
+        image.origine_x = image.largeur / 2;
+        image.origine_y = image.hauteur / 2;
     }
    
     void mettre_a_jour()
@@ -71,11 +73,7 @@ class Joueur extends Entite
 */
 		}
 
-		if(touches[SHIFT]) {
-    		image.angle+=0.2;
-		}
 
-/*
 		if(image.animation_finie())
 		{
 	        x_mort = position.x;
