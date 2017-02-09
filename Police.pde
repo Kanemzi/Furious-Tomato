@@ -6,6 +6,7 @@
 
 PFont police;
 
+
 void initialiser_police()
 {
     police = createFont(POLICE, TAILLE_POLICE);

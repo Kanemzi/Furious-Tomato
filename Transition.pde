@@ -3,7 +3,7 @@
  *                                                                             *
  *                        ~ Transition entre les écrans ~                      *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+
 class Transition
 {
 	final float duree_transition = (DUREE_TRANSITION * IMAGES_PAR_SECONDE);
@@ -31,6 +31,7 @@ class Transition
     	rembobiner();
 	}
 
+
 	void mettre_a_jour()
 	{
     	float pourcentage_transition = ( (float) temps_transition / duree_transition);
@@ -56,11 +57,13 @@ class Transition
     		fin();
 		}
 	}
-	
+
+
 	float f(float x)
 	{
     	return x * 2;
 	}
+
 
 	void afficher()
 	{
@@ -82,21 +85,25 @@ class Transition
     	}
 	}
 	
+
 	void fin()
 	{
     	visible = false;
     	peut_recommencer = true;
 	}
 	
+
 	void rembobiner()
 	{
     	temps_transition = 0;
 	}
 	
+
 	boolean finie()
 	{
     	return fin_transition;
 	}
+
 
 	boolean demi_transition_passee()
 	{

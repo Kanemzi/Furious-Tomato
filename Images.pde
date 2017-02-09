@@ -12,7 +12,6 @@ class Image
     PImage[] images;
     int[] animation;
 
-	
 	boolean animee;
 	boolean boucler_animation;
 	boolean miroir_x = false;
@@ -25,7 +24,6 @@ class Image
     float origine_x = 0;
     float origine_y = 0;
     float angle = 0;    
-    
     
     int largeur;
     int hauteur;
@@ -72,7 +70,6 @@ class Image
         longueur_animation = animation.length;
         largeur = images[0].width;
         hauteur = images[0].height;
-        
     }
 
 
@@ -139,6 +136,7 @@ class Image
             }
         }
     }
+
 
 	/*
 		Affiche l'image aux coordonnées x et y indiquées

@@ -9,11 +9,13 @@ boolean[] touches = new boolean[256];
 boolean touche_pressee = false;
 boolean touche_relachee = false;
 
+
 void keyPressed()
 {
 	touches[keyCode] = true;
     touche_pressee = true;
 }
+
 
 void keyReleased()
 {
@@ -21,14 +23,9 @@ void keyReleased()
     touche_relachee = true;
 }
 
+
 void mettre_a_jour_entrees()
 {
     touche_pressee = false;
     touche_relachee = false;
 }
-
-/*
-void mousePressed()
-{
- transition.lancer();   
-}*/

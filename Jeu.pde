@@ -6,15 +6,16 @@
 
 boolean jeu_init = false;
 
-
 int temps_partie;
 
 Image gui;
 Image planche;
 Image cuisinier;
+Image imge;
 
 Joueur j;
 AfficheurLCD lcd;
+
 
 void initialiser_jeu()
 {
@@ -37,16 +38,17 @@ void mettre_a_jour_jeu()
     	temps_partie ++;
 	}
 	
+	//CODE TEMPORAIRE : 
+
 	cuisinier.mettre_a_jour();
 	j.mettre_a_jour();
   
-  
-  if(j.morte && j.image.animation_finie())
-  {
-    x_mort = j.position.x;
-    y_mort = j.position.y;
-    terminer_jeu(); 
-  }
+	if(j.morte && j.image.animation_finie())
+	{
+		x_mort = j.position.x;
+        y_mort = j.position.y;
+		terminer_jeu(); 
+	}
 }
 
 
@@ -57,7 +59,7 @@ void dessiner_jeu()
     j.afficher();
     cuisinier.afficher(242, 58);
     
-    imge = lcd.generer_image((int )(millis() / 1000));
+    imge = lcd.generer_image( (int) (millis() / 1000) );
     ecran.image(imge.actuelle(), 71, 10);
 }
 

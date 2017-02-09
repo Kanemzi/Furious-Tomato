@@ -22,11 +22,12 @@ boolean demande_quitter;
 boolean demande_credits;
 boolean demande_jeu;
 
+
 // Image de fond du menu
 Image image_menu;
 
-
 int temps_menu;
+
 
 // Animation de la tomate
 Image tomate;
@@ -168,7 +169,8 @@ void terminer_menu()
 }
 
 
-class MenuPrincipal { 
+class MenuPrincipal
+{ 
     boolean k = false;
     
     Bouton bjouer = new Bouton(224,91,"Jouer",true, IMAGE_BOUTON_JOUER);
@@ -177,41 +179,63 @@ class MenuPrincipal {
 
     void update()
     {
-        if (keyPressed == true && selection_active) {
-            if (bjouer.select == true && k == false) {                    // Bouton JOUER sélectionné
-                if (touches[UP] == true) {
+        if (keyPressed == true && selection_active) 
+        {
+            if (bjouer.select == true && k == false) // Bouton JOUER sélectionné
+            {
+                if (touches[UP] == true)
+                {
                     bjouer.select = false;
                     bquitter.select = true;
-                } else if (touches[DOWN] == true) {
+                }
+                else if (touches[DOWN] == true)
+                {
                     bjouer.select = false;
                     bcredits.select = true;
-                } else if (touches[ENTER] == true) {
+                }
+                else if (touches[ENTER] == true)
+                {
                     demande_jeu = true;
                     transition.lancer();
                 }
-            } else if (bcredits.select == true && k == false) {            // Bouton CREDITS sélectionné
-                if (touches[UP] == true) {
+            }
+            else if (bcredits.select == true && k == false) // Bouton CREDITS sélectionné
+            {
+                if (touches[UP] == true)
+                {
                     bcredits.select = false;
                     bjouer.select = true;
-                } else if (touches[DOWN] == true) {
+                }
+                else if (touches[DOWN] == true)
+                {
                     bcredits.select = false;
                     bquitter.select = true;
-                } else if (touches[ENTER] == true) {
+                }
+                else if (touches[ENTER] == true)
+                {
                     demande_credits = true;
                     transition.lancer();
                 }
-            } else if (bquitter.select == true && k == false) {            // Bouton QUITTER sélectionné
-                if (touches[UP] == true) {
+            } 
+            else if (bquitter.select == true && k == false) // Bouton QUITTER sélectionné
+            {
+                if (touches[UP] == true)
+                {
                     bquitter.select = false;
                     bcredits.select = true;
-                } else if (touches[DOWN] == true) {
+                }
+                else if (touches[DOWN] == true)
+                {
                     bquitter.select = false;
                     bjouer.select = true;
-                } else if (touches[ENTER] == true) {
+                }
+                else if (touches[ENTER] == true)
+                {
                     demande_quitter = true;
                     transition.lancer();
                 }
             }
+            
             k = true;
         }
         
@@ -239,27 +263,35 @@ class MenuPrincipal {
 }
 
 
-class Bouton {
+class Bouton
+{
     float posx, posy;
     int hauteur;
     String type;
     boolean select;
     Image imageBouton;
 
-    Bouton(int posx,int posy, String type, boolean select,String imageBouton) {
-      this.posx = posx;
-      this.posy = posy;
-      this.type = type;
-      this.select = select;
-      this.imageBouton = new Image(imageBouton);
-      hauteur = this.imageBouton.hauteur;
+
+    Bouton(int posx,int posy, String type, boolean select,String imageBouton)
+    {
+    	this.posx = posx;
+    	this.posy = posy;
+    	this.type = type;
+    	this.select = select;
+    	this.imageBouton = new Image(imageBouton);
+    	hauteur = this.imageBouton.hauteur;
     }
     
-    void afficher() {
-        if (select == true) {
+    
+    void afficher()
+    {
+        if (select == true)
+        {
             imageCurseur.afficher(posx + 3, posy);        //Dessiner curseur
             imageBouton.afficher(posx + 20, posy);      //Dessiner bouton décalé
-        } else {
+        }
+        else
+        {
             imageBouton.afficher(posx, posy);    //Dessiner bouton
         }
     }

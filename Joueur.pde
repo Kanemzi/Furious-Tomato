@@ -1,3 +1,5 @@
+// CODE TEMPORAIRE : 
+
 class Joueur extends Entite
 {
     

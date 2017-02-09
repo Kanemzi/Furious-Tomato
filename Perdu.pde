@@ -19,6 +19,7 @@ float x_mort = 0, y_mort = 0;
 Image img_tomate_morte;
 Image derniere_image;
 
+
 void initialiser_fin()
 {
     derniere_image = new Image(ecran.get());

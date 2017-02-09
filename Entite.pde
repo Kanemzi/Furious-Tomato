@@ -17,6 +17,7 @@ class Entite
 	boolean morte;
 	boolean visible;
 
+
 	Entite(Vecteur position, Image image)
 	{
 		this.position = position;
@@ -28,6 +29,7 @@ class Entite
 		morte = false;
 		visible = true;
 	}
+
 
 	void mettre_a_jour()
 	{
@@ -41,6 +43,7 @@ class Entite
     		entites.remove(this);
 		}
 	}
+
 
 	void afficher()
 	{

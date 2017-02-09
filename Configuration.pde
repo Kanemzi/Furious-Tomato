@@ -9,10 +9,22 @@ final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int ECHELLE = 3;
 final float IMAGES_PAR_SECONDE = 60;
-;
+
 
 /* Images */
 final String IMAGE_LOGO_INTRO = "logo_isn2017.png";
+
+final String IMAGE_COUPERET = "couperet.png";
+final String IMAGE_EXPLOSION_TOMATE = "explosion_tomate.png";
+final String IMAGE_BOUTON_JOUER = "jouer.png";
+final String IMAGE_BOUTON_CREDITS = "credits.png";
+final String IMAGE_BOUTON_QUITTER = "quitter.png";
+final String IMAGE_CURSEUR = "curseur.png";
+final String IMAGE_MENU = "menu.png";
+
+final String IMAGE_FOND_CREDITS = "credits_fond.png";
+final String IMAGE_BOUTON_ENTRER = "bouton_entrer.png";
+
 final String IMAGE_CUISINIER = "animation_cuisinier.png";
 final String IMAGE_TOMATE = "animation_tomate.png";
 final String IMAGE_TOMATE_MORT = "tomate_mort.png";
@@ -23,15 +35,6 @@ final String IMAGE_INTERFACE = "interface.png";
 final String IMAGE_SALIERE_MINI = "saliere_mini.png";
 final String IMAGE_CHIFFRES = "chiffres.png";
 
-final String IMAGE_COUPERET = "couperet.png";
-final String IMAGE_EXPLOSION_TOMATE = "explosion_tomate.png";
-final String IMAGE_BOUTON_JOUER = "jouer.png";
-final String IMAGE_BOUTON_CREDITS = "credits.png";
-final String IMAGE_BOUTON_QUITTER = "quitter.png";
-final String IMAGE_CURSEUR = "curseur.png";
-final String IMAGE_MENU = "menu.png";
-final String IMAGE_FOND_CREDITS = "credits_fond.png";
-final String IMAGE_BOUTON_ENTRER = "bouton_entrer.png";
 
 final int[] ANIMATION_NON = {0};
 
@@ -46,18 +49,19 @@ final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
 final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
 final int[] ANIMATION_TOMATE_MORT = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11};
 
+
+/* Menu */
+final float DUREE_ANIMATION_TOMATE = 0.6;
+final float DUREE_ANIMATION_COUPERET = 0.6;
+final float AMPLITUDE_CHOC_COUPERET = 32;
+final float REDUCTION_CHOC_COUPERET = 1.2;
+
+
+/* Autres */
 final float DUREE_TRANSITION = 0.5;
 
 final String POLICE = "fonts/Gibberesque.ttf";
 final float TAILLE_POLICE = 16;
-
-
-/* Menu */
-final float DUREE_ANIMATION_TOMATE = 0.6;
-
-final float DUREE_ANIMATION_COUPERET = 0.6;
-final float AMPLITUDE_CHOC_COUPERET = 32;
-final float REDUCTION_CHOC_COUPERET = 1.2;
 
 
 /* CONSTANTES */

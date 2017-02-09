@@ -4,11 +4,16 @@
  *                   ~ Fichier de gestion de l'afficheur LCD ~                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+/*
+ TODO : LCD orange du meilleur score
+*/
+
 class AfficheurLCD
 {
 	Image image;
 	Vecteur position;
 	int type;
+
 
 	AfficheurLCD(Vecteur position, int type)
     {
@@ -16,6 +21,7 @@ class AfficheurLCD
         this.type = type;
         image = new Image(IMAGE_CHIFFRES, 22, 0, ANIMATION_NON, false);
     }
+    
     
     void mettre_a_jour()
     {
@@ -25,12 +31,13 @@ class AfficheurLCD
     	}
     }
     
+    
     Image generer_image(int n)
     {
         int minutes = n / 60;
         int secondes = n % 60;
     	
-    	PImage img_score = createImage(25, 7, ARGB);	
+    	PImage img_score = createImage(25, 7, ARGB);
     	
     	dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(minutes, 1) + 10), 0);
     	dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(minutes, 0)+ 10), 1);
@@ -40,6 +47,7 @@ class AfficheurLCD
     	
     	return new Image(img_score);
     }
+    
     
     void dessiner_chiffre_dans_image(PImage affichage, PImage chiffre, int position)
     {
@@ -57,6 +65,6 @@ class AfficheurLCD
     
     int chiffre_a_la_position(int n, int p)
     {
-        return ((int)(n / pow(10, p)- (int)(n / pow(10,p+1))*10));
+        return ( (int) ( n / pow(10, p) - (int) (n / pow(10, p + 1 ) ) * 10) );
     }
 }
