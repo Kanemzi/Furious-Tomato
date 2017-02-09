@@ -212,7 +212,7 @@ class Image
         {
             return;
 		}
-
+ 
         this.animation = animation;
         this.boucler_animation = boucler_animation;
         this.vitesse_animation = vitesse_animation;
@@ -223,7 +223,7 @@ class Image
             index_image = 0;
         }
     }
-	
+
 
 	/*
 		Change la vitesse à laquelle se déroule l'animation

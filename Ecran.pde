@@ -6,5 +6,5 @@
 
 void initialiser_ecran()
 {
-	ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);   
+	ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);
 }

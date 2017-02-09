@@ -5,14 +5,12 @@ class Joueur extends Entite
     
     float angle;	  
 
-	float v = 2;
+	  float v = 2;
     float angle_target;
 
     Joueur(Vecteur pos)
     {
         super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
-        image.origine_x = image.largeur / 2;
-        image.origine_y = image.hauteur / 2;
     }
    
     void mettre_a_jour()
@@ -63,25 +61,15 @@ class Joueur extends Entite
         	if(position.x > 218 - image.largeur / 2) position.x = 218 - image.largeur / 2;
         	if(position.y > HAUTEUR_ECRAN - image.hauteur - 7) position.y = HAUTEUR_ECRAN - image.hauteur - 7;
         	if(position.y < 40) position.y = 40;
-/*
+
         	if(touches[DELETE])
         	{
             	morte = true;
             	vitesse = new Vecteur(0, 0);
             	image = new Image(IMAGE_TOMATE_MORT, 12, 0.5, ANIMATION_TOMATE_MORT, false);
             }
-*/
+
 		}
-/*
-
-		if(image.animation_finie())
-		{
-	        x_mort = position.x;
-			y_mort = position.y;
-    		morte = false;
-			terminer_jeu();
-		}*/
-
 	}
     
     void afficher()

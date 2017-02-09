@@ -39,7 +39,14 @@ void mettre_a_jour_jeu()
 	
 	cuisinier.mettre_a_jour();
 	j.mettre_a_jour();
-        
+  
+  
+  if(j.morte && j.image.animation_finie())
+  {
+    x_mort = j.position.x;
+    y_mort = j.position.y;
+    terminer_jeu(); 
+  }
 }
 
 

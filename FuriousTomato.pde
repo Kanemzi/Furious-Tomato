@@ -101,8 +101,7 @@ void draw()
         mettre_a_jour_jeu();
         dessiner_jeu();
 	}
-/*	
-	else if(scene == SCENES[FIN])
+  	else if(scene == SCENES[FIN])
     {
         if(!fin_init)
         {
@@ -112,7 +111,7 @@ void draw()
         mettre_a_jour_fin();
         dessiner_fin();
     }
-*/
+
   	transition.mettre_a_jour();
   	transition.afficher();
 

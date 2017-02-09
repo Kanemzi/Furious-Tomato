@@ -8,7 +8,7 @@
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int ECHELLE = 3;
-final int IMAGES_PAR_SECONDE = 60;
+final float IMAGES_PAR_SECONDE = 60;
 ;
 
 /* Images */
