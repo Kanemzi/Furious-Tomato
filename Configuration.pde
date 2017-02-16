@@ -7,7 +7,7 @@
 /* Informations globales */
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
-final int ECHELLE = 3;
+final int ECHELLE = 2;
 final float IMAGES_PAR_SECONDE = 60;
 
 
@@ -47,7 +47,7 @@ final int[] ANIMATION_TOMATE_PROFIL_FACE = {0, 1, 2, 1, 0, 3, 4, 3};
 final int[] ANIMATION_TOMATE_PROFIL_DOS = {5, 6, 7, 6, 5, 8, 9, 8};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
 final int[] ANIMATION_TOMATE_DOS = {15, 16, 17, 16, 15, 18, 19, 18};
-final int[] ANIMATION_TOMATE_MORT = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11};
+final int[] ANIMATION_TOMATE_MORT = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
 
 /* Menu */
@@ -62,6 +62,16 @@ final float DUREE_TRANSITION = 0.5;
 
 final String POLICE = "fonts/Gibberesque.ttf";
 final float TAILLE_POLICE = 16;
+
+
+/* Touches */
+final int TOUCHE_HAUT = UP;
+final int TOUCHE_BAS = DOWN;
+final int TOUCHE_DROITE = RIGHT;
+final int TOUCHE_GAUCHE = LEFT;
+final int TOUCHE_IMPULSION = 32;
+final int TOUCHE_VALIDER = ENTER;
+final int TOUCHE_RETOUR = RETURN;
 
 
 /* CONSTANTES */

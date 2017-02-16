@@ -13,59 +13,68 @@ Image planche;
 Image cuisinier;
 Image imge;
 
-Joueur j;
 AfficheurLCD lcd;
 
 
 void initialiser_jeu()
 {
-    retour_active = false;
-    
-    temps_partie = 0;
-	gui = new Image(IMAGE_INTERFACE);
-	planche = new Image(IMAGE_PLANCHE);
-	cuisinier = new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true);
-	
-	j = new Joueur(new Vecteur(64, 64));
-	lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
+  retour_active = false;
+
+  temps_partie = 0;
+  gui = new Image(IMAGE_INTERFACE);
+  planche = new Image(IMAGE_PLANCHE);
+  cuisinier = new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true);
+  
+  entites.clear();
+  
+  entites.add(new Joueur(new Vecteur(64, 64)));
+  
+  lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
 }
 
 
 void mettre_a_jour_jeu()
 {
-    if(temps_global % IMAGES_PAR_SECONDE == 0)
-	{
-    	temps_partie ++;
-	}
-	
-	//CODE TEMPORAIRE : 
+  if (temps_global % IMAGES_PAR_SECONDE == 0)
+  {
+    temps_partie ++;
+  }
 
-	cuisinier.mettre_a_jour();
-	j.mettre_a_jour();
-  
-	if(j.morte && j.image.animation_finie())
-	{
-		x_mort = j.position.x;
-        y_mort = j.position.y;
-		terminer_jeu(); 
-	}
+  for (int i = 0; i < entites.size(); i++)
+  {
+    Entite e = entites.get(i);
+    e.mettre_a_jour();
+    if (e.morte)
+    {
+      e.detruire();
+    }
+  }
+
+  //CODE TEMPORAIRE : 
+
+  cuisinier.mettre_a_jour();
 }
 
 
 void dessiner_jeu()
 {
-    gui.afficher(0, 0);
-    planche.afficher(0, 50);
-    j.afficher();
-    cuisinier.afficher(242, 58);
-    
-    imge = lcd.generer_image( (int) (millis() / 1000) );
-    ecran.image(imge.actuelle(), 71, 10);
+  gui.afficher(0, 0);
+  planche.afficher(0, 50);
+  cuisinier.afficher(242, 58);
+
+  imge = lcd.generer_image( (int) (millis() / 1000) );
+  ecran.image(imge.actuelle(), 71, 10);
+  
+  for (int i = 0; i < entites.size(); i++)
+  {
+    Entite e = entites.get(i);
+    e.afficher();
+  }
 }
 
 
 void terminer_jeu()
 {
-    scene = SCENES[FIN];
-    jeu_init = false;
+  scene = SCENES[FIN];
+  jeu_init = false;
 }

@@ -9,9 +9,9 @@ PFont police;
 
 void initialiser_police()
 {
-    police = createFont(POLICE, TAILLE_POLICE);
-    
-    ecran.beginDraw();
-    ecran.textFont(police, TAILLE_POLICE);
-    ecran.endDraw();
+  police = createFont(POLICE, TAILLE_POLICE);
+
+  ecran.beginDraw();
+  ecran.textFont(police, TAILLE_POLICE);
+  ecran.endDraw();
 }
