@@ -10,8 +10,9 @@ int temps_partie;
 
 Image gui;
 Image planche;
-Image cuisinier;
 Image imge;
+
+Cuisinier cuisinier;
 
 AfficheurLCD lcd;
 
@@ -23,10 +24,10 @@ void initialiser_jeu()
   temps_partie = 0;
   gui = new Image(IMAGE_INTERFACE);
   planche = new Image(IMAGE_PLANCHE);
-  cuisinier = new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true);
+  
+  cuisinier = new Cuisinier();
   
   entites.clear();
-  
   entites.add(new Joueur(new Vecteur(64, 64)));
   
   lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
@@ -37,7 +38,7 @@ void mettre_a_jour_jeu()
 {
   if (temps_global % IMAGES_PAR_SECONDE == 0)
   {
-    temps_partie ++;
+  	temps_partie ++;
   }
 
   for (int i = 0; i < entites.size(); i++)
@@ -60,7 +61,7 @@ void dessiner_jeu()
 {
   gui.afficher(0, 0);
   planche.afficher(0, 50);
-  cuisinier.afficher(242, 58);
+  cuisinier.afficher();
 
   imge = lcd.generer_image( (int) (millis() / 1000) );
   ecran.image(imge.actuelle(), 71, 10);
