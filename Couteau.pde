@@ -97,8 +97,17 @@ class GenerateurCouteau
     Vecteur genererCible()
     {
         Vecteur v = new Vecteur(0, 0);
-        v.x = random(LARGEUR_PLANCHE);
-        v.y = random(HAUTEUR_ECRAN-HAUTEUR_PLANCHE, HAUTEUR_ECRAN);
+        if( (int) random(4) == 0)
+        {
+            v.x = joueur.position.x + joueur.decalage_collision.x;
+            v.y = joueur.position.y + joueur.decalage_collision.y;
+        }
+        else
+        {
+        	v.x = random(LARGEUR_PLANCHE);
+        	v.y = random(HAUTEUR_ECRAN-HAUTEUR_PLANCHE, HAUTEUR_ECRAN);
+        }
+        
         return v;
     }
 }

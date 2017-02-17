@@ -48,11 +48,11 @@ void mettre_a_jour_jeu()
   {
     Entite e = entites.get(i);
     e.mettre_a_jour();
-    /*
+    
     if(e instanceof Couteau)
     {
         ((Couteau) e).collision(joueur);
-    }*/
+    }
     
     if (e.morte)
     {
