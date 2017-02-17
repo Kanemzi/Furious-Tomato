@@ -10,10 +10,12 @@ class Couteau extends Entite
     Couteau(Vecteur position, Vecteur positionCible)
     {
         super(position, new Image(IMAGE_COUTEAU));
+        parametrer_collision(image.hauteur, new Vecteur(0, 0), false);
+        
         image.origine(image.largeur/2, image.hauteur/2);
         image.angle(random(0, TWO_PI));
         float a = angle_entre(position.x, position.y, positionCible.x, positionCible.y);
-        vitesse.modifierAL(a, 3);
+        vitesse.modifierAL(a, 2);
         vieCouteau = 5 * IMAGES_PAR_SECONDE;
     }
 
@@ -21,11 +23,23 @@ class Couteau extends Entite
     {
         super.mettre_a_jour();
         image.angle(image.angle + PI/10);
+        decalage_collision.x = -cos(image.angle) * (image.largeur / 3);
+		decalage_collision.y = -sin(image.angle) * (image.largeur / 3);
+
         vieCouteau --;
         if ( vieCouteau <= 0 )
         {
             morte = true;
         }
+    }
+    
+    
+    void collision(Joueur j)
+    {
+    	if(!super.collision(j)) 
+    		return;
+    
+    	if(!j.impulsion && !j.perdu) j.perdu();
     }
 }
 

@@ -55,7 +55,7 @@ final int[] ANIMATION_TOMATE_MORT = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 /* Menu */
 final float DUREE_ANIMATION_TOMATE = 0.6;
 final float DUREE_ANIMATION_COUPERET = 0.6;
-final float AMPLITUDE_CHOC_COUPERET = 32;
+final float AMPLITUDE_CHOC_COUPERET = 64;
 final float REDUCTION_CHOC_COUPERET = 1.2;
 
 

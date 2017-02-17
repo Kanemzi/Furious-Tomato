@@ -6,10 +6,11 @@
 
 class Cuisinier extends Entite
 {
+    final float DUREE_ENERVE = 2;
+    
     GenerateurCouteau c;
     
     float intervalleCuisinier;
-    float dureeEnerve = 2;
     float temps;
     
     Cuisinier()
@@ -28,9 +29,14 @@ class Cuisinier extends Entite
         temps--;
         if ( temps <= 0)
         {
+            if(temps == 0)
+            {
+            	trembler(2, DUREE_ENERVE, false);   
+            }
+            
             image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             
-            if ( temps == (- dureeEnerve / 5 ) * IMAGES_PAR_SECONDE)
+            if ( temps == (- DUREE_ENERVE / 5 ) * IMAGES_PAR_SECONDE)
             {
                 for ( int i = 0 ; i < 10 ; i++ )
                 {
@@ -38,7 +44,7 @@ class Cuisinier extends Entite
                 }
             }
             
-            if ( temps <= - dureeEnerve * IMAGES_PAR_SECONDE )
+            if ( temps <= - DUREE_ENERVE * IMAGES_PAR_SECONDE )
             {
                 temps = intervalleCuisinier;
                 image.changerAnimation(ANIMATION_CUISINIER_NORMAL, 0.01, false, true, true);

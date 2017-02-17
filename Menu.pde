@@ -51,7 +51,8 @@ final float couperet_angle_debut = - PI / 2,
 
 float couperet_x, couperet_y;
 float couperet_angle;
-float amplitude_choc_couperet;
+//float amplitude_choc_couperet;
+boolean couperet_tombe;
 
 
 // Animation de l'explosion de la tomate
@@ -80,8 +81,10 @@ void initialiser_menu()
   couperet_x = 42;
   couperet_y = COUPERET_Y_DEBUT;
   couperet_angle = couperet_angle_debut;
-  amplitude_choc_couperet = AMPLITUDE_CHOC_COUPERET;
-
+  
+  //amplitude_choc_couperet = AMPLITUDE_CHOC_COUPERET;
+	couperet_tombe = false;
+  
   temps_menu = 0;
 }
 
@@ -106,7 +109,7 @@ void mettre_a_jour_menu()
 
 void dessiner_menu()
 {
-  if (amplitude_choc_couperet < AMPLITUDE_CHOC_COUPERET) ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
+  //if (amplitude_choc_couperet < AMPLITUDE_CHOC_COUPERET) ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
 
   image_menu.afficher(0, 0);
 
@@ -127,17 +130,24 @@ void dessiner_couperet()
   {
     couperet_y = COUPERET_Y_DEBUT + temps_menu * (COUPERET_Y_FIN - COUPERET_Y_DEBUT) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
     couperet_angle = couperet_angle_debut + temps_menu * (couperet_angle_fin - couperet_angle_debut) / (IMAGES_PAR_SECONDE * DUREE_ANIMATION_COUPERET);
-  } else
+  }
+  else
   {
     tomate_morte = true;
+	
+	if(!couperet_tombe)
+	{
+    	couperet_tombe = true;
+    	trembler(AMPLITUDE_CHOC_COUPERET, 2, true);
+	}
 
-    amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
-
+    //amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
+/*
     if (amplitude_choc_couperet < 0.1)
     {
       amplitude_choc_couperet = 0;
     }
-
+*/
     explosion_tomate.afficher(0, 47);
     explosion_tomate.mettre_a_jour();
   }

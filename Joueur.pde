@@ -42,6 +42,7 @@ class Joueur extends Entite
     Joueur(Vecteur pos)
     {
         super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
+        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, image.hauteur / 2), false);
         perdu = false;
         
         endurence = ENDURENCE_MAX / 4 * 3;
@@ -168,14 +169,6 @@ class Joueur extends Entite
             {
                 image.changerVitesseAnimation(0.2);
             }
-			
-			// TEMPORAIRE
-            if (touches[DELETE])
-            {
-                perdu = true;
-                vitesse = new Vecteur(0, 0);
-                image = new Image(IMAGE_TOMATE_MORT, 12, 0.5, ANIMATION_TOMATE_MORT, false);
-            }
             
             /*
             if (touches[ENTER] && touche_pressee)
@@ -232,9 +225,17 @@ class Joueur extends Entite
 
     void afficher()
     {
+        int ombre_decalage = 0;
+        if(image.animation == ANIMATION_TOMATE_MORT && image.index_image > 6)
+        {
+        	   ombre_decalage = 1;
+        }
+        
         ecran.fill(color(0, 0, 0, 30));
         ecran.noStroke();
-        ecran.ellipse(position.x + image.largeur / 2, position.y + image.hauteur , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
+        ecran.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
+        
+        
         
         if(endurence_visible)
         {
@@ -254,6 +255,14 @@ class Joueur extends Entite
         
         
         super.afficher();
+    }
+    
+    void perdu()
+    {
+        trembler(80, 0.2, true);
+        perdu = true;
+        vitesse = new Vecteur(0, 0);
+        image = new Image(IMAGE_TOMATE_MORT, 12, 1, ANIMATION_TOMATE_MORT, false);
     }
 }
 

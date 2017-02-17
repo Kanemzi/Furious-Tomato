@@ -16,6 +16,7 @@ Cuisinier cuisinier;
 
 AfficheurLCD lcd;
 
+Joueur joueur; // une référence vers le joueur
 
 void initialiser_jeu()
 {
@@ -27,8 +28,10 @@ void initialiser_jeu()
   
   cuisinier = new Cuisinier();
   
+  joueur = new Joueur(new Vecteur(64, 64));
+  
   entites.clear();
-  entites.add(new Joueur(new Vecteur(64, 64)));
+  entites.add(joueur);
   
   lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
 }
@@ -45,6 +48,12 @@ void mettre_a_jour_jeu()
   {
     Entite e = entites.get(i);
     e.mettre_a_jour();
+    
+    if(e instanceof Couteau)
+    {
+        ((Couteau) e).collision(joueur);
+    }
+    
     if (e.morte)
     {
       e.detruire();
