@@ -6,7 +6,7 @@
 
 class Cuisinier extends Entite
 {
-    final float DUREE_ENERVE = 2;
+    final float DUREE_ENERVE = 3;
     
     GenerateurCouteau c;
     
@@ -36,9 +36,11 @@ class Cuisinier extends Entite
             
             image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             
+            
+            
             if ( temps == (- DUREE_ENERVE / 5 ) * IMAGES_PAR_SECONDE)
             {
-                for ( int i = 0 ; i < 10 ; i++ )
+                for ( int i = 0 ; i < 5 ; i++ )
                 {
                     entites.add(new Couteau(c.genererPosition(), c.genererCible()));
                 }
@@ -49,6 +51,18 @@ class Cuisinier extends Entite
                 temps = intervalleCuisinier;
                 image.changerAnimation(ANIMATION_CUISINIER_NORMAL, 0.01, false, true, true);
             }
+        }
+    }
+    
+    void afficher()
+    {
+    	super.afficher();
+    	
+    	if ( temps <= 0)
+        {
+			ecran.fill(color(255, 0, 0, 16 * sin((temps * TWO_PI) / (DUREE_ENERVE * 20)) + 16));
+			ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
+			//ecran.rect(0, HAUTEUR_ECRAN - HAUTEUR_PLANCHE, LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
         }
     }
 }

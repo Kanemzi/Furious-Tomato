@@ -48,11 +48,11 @@ void mettre_a_jour_jeu()
   {
     Entite e = entites.get(i);
     e.mettre_a_jour();
-    
+    /*
     if(e instanceof Couteau)
     {
         ((Couteau) e).collision(joueur);
-    }
+    }*/
     
     if (e.morte)
     {
@@ -70,9 +70,9 @@ void dessiner_jeu()
 {
   gui.afficher(0, 0);
   planche.afficher(0, 50);
-  cuisinier.afficher();
+  
 
-  imge = lcd.generer_image( (int) (millis() / 1000) );
+  imge = lcd.generer_image( (int) (millis() / 1000));
   ecran.image(imge.actuelle(), 71, 10);
   
   for (int i = 0; i < entites.size(); i++)
@@ -80,6 +80,8 @@ void dessiner_jeu()
     Entite e = entites.get(i);
     e.afficher();
   }
+  
+  cuisinier.afficher();
 }
 
 
