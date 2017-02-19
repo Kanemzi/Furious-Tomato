@@ -42,7 +42,7 @@ class Joueur extends Entite
     Joueur(Vecteur pos)
     {
         super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
-        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, image.hauteur / 2), false);
+        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, image.hauteur / 2), AFFICHER_COLLISIONS);
         perdu = false;
         
         endurence = ENDURENCE_MAX / 4 * 3;
@@ -196,8 +196,6 @@ class Joueur extends Entite
             {
             	endurence_visible = true;
             	
-                
-            	println("visible " + opacite_endurence);
             }
             else if(temps_endurence == -1 && endurence_visible)
             {
@@ -263,7 +261,19 @@ class Joueur extends Entite
         perdu = true;
         vitesse = new Vecteur(0, 0);
         image = new Image(IMAGE_TOMATE_MORT, 12, 1, ANIMATION_TOMATE_MORT, false);
-    }
+    
+		for(int i = 0; i < 50; i++)
+		{
+    		boolean pepin = (int) random(7) == 0;
+    		
+    		entites.add(new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y),
+    								  new Vecteur(random(-20, 20), random(-10, 10)),
+    								  new Vecteur(random(0.2, 0.8), random(0.2, 0.8)),
+    								  (pepin) ? #E28F41 : #C64617,
+    								  random(1, 2), (pepin) ? 1 : (int) random(2, 4)
+    								));
+		}
+	}
 }
 
 class FantomeJoueur extends Entite

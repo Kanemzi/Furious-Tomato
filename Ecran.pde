@@ -39,8 +39,6 @@ class Tremblement
     	if(decrementer) amplitude *= multiplieur;
     	temps++;
 		
-		println(multiplieur);
-
 		if(temps < duree * IMAGES_PAR_SECONDE)
 		{
     		float moitie_amp = amplitude / 2;
@@ -53,6 +51,12 @@ class Tremblement
 void trembler(float amp, float duree, boolean decrementation)
 {
     tremblement = new Tremblement(amp, duree, decrementation); 
+}
+
+
+void supprimer_tremblement()
+{
+    tremblement = initialiser_tremblement();
 }
 
 

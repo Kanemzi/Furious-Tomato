@@ -47,6 +47,18 @@ void setup()
 
     transition = new Transition();
     tremblement = initialiser_tremblement();
+    
+    String bla = "lol";
+    char[] lel = bla.toCharArray();
+    lel[0] += 5;
+    String lol = "";
+    for(char c : lel)
+    {
+    	lol += c;   
+    }
+    
+    println(lol);
+    
 }
 
 

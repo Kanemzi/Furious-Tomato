@@ -77,11 +77,13 @@ void dessiner_fin()
     ecran.textSize(24);
     ecran.fill(255, 255, 255);
     ecran.textAlign(CENTER);
-    ecran.text("Vous avez perdu", LARGEUR_ECRAN / 2, HAUTEUR_ECRAN / 2);
+    ecran.text("Vous avez perdu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 - 10);
+    ecran.textSize(TAILLE_POLICE-1);
+    ecran.text("Temps survécu : " + temps_partie + " secondes" , LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 10);
 
     ecran.textSize(TAILLE_POLICE-1);
     ecran.fill(120, 120, 120, opacite_texte);
-    ecran.text("Presser [Entrer] pour retourner au menu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 20);
+    ecran.text("Presser [Entrer] pour retourner au menu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 80);
   }
 }
 

@@ -60,6 +60,7 @@ final float REDUCTION_CHOC_COUPERET = 1.2;
 
 
 /* Autres */
+final boolean AFFICHER_COLLISIONS = false;
 final float DUREE_TRANSITION = 0.5;
 
 final String POLICE = "fonts/Gibberesque.ttf";

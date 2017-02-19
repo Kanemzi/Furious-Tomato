@@ -72,7 +72,7 @@ void dessiner_jeu()
   planche.afficher(0, 50);
   
 
-  imge = lcd.generer_image( (int) (millis() / 1000));
+  imge = lcd.generer_image( (int) temps_partie);
   ecran.image(imge.actuelle(), 71, 10);
   
   for (int i = 0; i < entites.size(); i++)
@@ -87,6 +87,7 @@ void dessiner_jeu()
 
 void terminer_jeu()
 {
+   supprimer_tremblement();
   scene = SCENES[FIN];
   jeu_init = false;
 }
