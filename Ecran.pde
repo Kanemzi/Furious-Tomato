@@ -4,9 +4,14 @@
  *                          ~ Initialisation de l'écran ~                      *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+PGraphics ecran;
+PGraphics masque_couteaux;
+
 void initialiser_ecran()
 {
   ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);
+  masque_couteaux = createGraphics(LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
+  
 }
 
 

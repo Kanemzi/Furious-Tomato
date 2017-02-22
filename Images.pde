@@ -140,29 +140,31 @@ class Image
   /*
 		Affiche l'image aux coordonnées x et y indiquées
    	*/
-  void afficher(float x, float y)
+  void afficher(float x, float y, PGraphics g)
   {    
-    ecran.pushMatrix();
+    g.pushMatrix();
+	
+	if(g == masque_couteaux) g.translate(0, - (HAUTEUR_ECRAN - HAUTEUR_PLANCHE));
 
-    ecran.translate(x, y);
-    ecran.rotate(angle);
+    g.translate(x, y);
+    g.rotate(angle);
 
     if (miroir_x)
     {
-      ecran.scale(-1, 1);
-      ecran.translate(- largeur, 0);
+      g.scale(-1, 1);
+      g.translate(- largeur, 0);
     }
 
     if (miroir_y)
     {
-      ecran.scale(1, -1);
-      ecran.translate(0, - hauteur);
+      g.scale(1, -1);
+      g.translate(0, - hauteur);
     }
 
-    ecran.tint(255, opacite);
-    ecran.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
+    g.tint(255, opacite);
+    g.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
 
-    ecran.popMatrix();
+    g.popMatrix();
   }
 
 

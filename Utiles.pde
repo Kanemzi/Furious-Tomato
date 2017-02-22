@@ -70,7 +70,7 @@ class Vecteur
 	*/
 	float direction()
 	{
-    	return atan2(x, y);
+    	return atan2(y, x);
 	}
 
 

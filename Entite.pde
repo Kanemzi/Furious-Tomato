@@ -68,16 +68,19 @@ class Entite
     }
 
 
-    void afficher()
+    void afficher(PGraphics g)
     {
         if (visible)
         {
-            image.afficher(position.x, position.y);
+            image.afficher(position.x, position.y, g);
 			
 			if(afficher_collision)
             {
-    			ecran.fill(color(255, 100, 100, 160));
-    			ecran.ellipse(position.x + decalage_collision.x , position.y + decalage_collision.y, rayon_collision, rayon_collision);
+                int decalageCouteau = 0;
+                if(this instanceof Couteau) decalageCouteau = - (HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
+                g.noStroke();
+    			g.fill(color(255, 100, 100, 160));
+    			g.ellipse(position.x + decalage_collision.x , position.y + decalage_collision.y + decalageCouteau, rayon_collision, rayon_collision);
 			}
     	}
     }

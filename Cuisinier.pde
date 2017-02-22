@@ -56,7 +56,7 @@ class Cuisinier extends Entite
     
     void afficher()
     {
-    	super.afficher();
+    	super.afficher(ecran);
     	
     	if ( temps <= 0)
         {

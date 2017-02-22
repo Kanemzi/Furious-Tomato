@@ -7,31 +7,67 @@
 class Sel extends Particule
 {
     float y_cible;
+    boolean au_sol;
+    
+    boolean sorti;
+    float y_sortie;
     
 	Sel(Vecteur position, Vecteur vitesse, Vecteur acceleration, float y_cible, float temps_vie)
 	{
     	super(position, vitesse, acceleration, #FFFFFF, temps_vie, 2);
     	parametrer_collision(4, new Vecteur(0, 0), AFFICHER_COLLISIONS);
     	this.y_cible = y_cible;
+    	au_sol = false;
+    	sorti = false;
 	}
 	
 	void mettre_a_jour()
 	{
     	super.mettre_a_jour();
     
-    	if(position.y >= y_cible)
+    	if(position.y >= y_cible && !au_sol)
     	{
         	vitesse.x = 0;
         	vitesse.y = 0;
-        
+        	
         	position.y = y_cible;
-    	}
+    	
+			au_sol = true;
+		}
+		
+		// si le joueur sort de la planche
+		if((position.x <= 4 || position.x >= LARGEUR_PLANCHE - 4 || position.y >= HAUTEUR_ECRAN - 10) && !sorti) 
+		{
+    		sorti = true;
+    		y_sortie = position.y;
+		}
+	
+		// destruction si en dehors de l'écran
+		if(position.x < 0 || position.x > LARGEUR_PLANCHE || position.y < (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) + 2 || position.y > HAUTEUR_ECRAN ) 
+        {
+            detruire();
+        }            
+        
+        if(sorti)
+        {
+            temps_vie --; // la vie diminue deux fois plus vite
+            if(position.y == y_sortie && position.y > (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) + 2 )
+            {
+                position.y += 6;
+			}
+		}
 	}
 
 	boolean collision(Joueur j)
     {
+        if(!au_sol)
+        	return false;
+        
         if(!super.collision(j)) 
             return false;
+    	
+    	vitesse.modifierAL(j.vitesse.direction(), 3 * j.vit_dep);
+        acceleration.modifierXY(random(0.5, 0.9), random(0.5, 0.9));
     
         j.ralenti = true;
         return true;
@@ -41,6 +77,10 @@ class Sel extends Particule
 
 class Saliere extends Entite
 {
+    final float BORDURE_PLANCHE = 10;
+    final float AIRE = 32 * 48;
+                
+    
 	final float DUREE_SALIERE_ACTIVE = IMAGES_PAR_SECONDE * 5;
 
     final float DUREE_DISPARITION_MINIATURE = DUREE_SALIERE_ACTIVE * (1.0/10.0);
@@ -57,7 +97,7 @@ class Saliere extends Entite
     final float TEMPS_MONTEE_SALIERE = TEMPS_SEL_TOMBE + DUREE_SEL_TOMBE;
     final float TEMPS_DESCENTE_MINIATURE = TEMPS_MONTEE_SALIERE + DUREE_MONTEE_SALIERE;
     
-    final float MINIATURE_Y_MAX = 29;
+    final float MINIATURE_Y_MAX = 26;
     final float SALIERE_ACTIVE_Y = (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) / 2;
     
     Image miniature;
@@ -78,12 +118,13 @@ class Saliere extends Entite
     	temps_activation = -1;
     	
     	miniature = new Image(IMAGE_SALIERE_MINI);
-    	position_miniature = new Vecteur(103, 29);
+    	position_miniature = new Vecteur(130, MINIATURE_Y_MAX);
     	
     	position_zone = new Vecteur(0, 0);
     	taille_zone = new Vecteur(0, 0);
     
-    	desactiver();
+    	//desactiver();
+		delais_activation = (int)IMAGES_PAR_SECONDE * 1;
 	}
     
     void activer(Vecteur position_zone, Vecteur taille_zone)
@@ -165,10 +206,8 @@ class Saliere extends Entite
     	{
         	if(--delais_activation == 0) 
         	{
-            	final float BORDURE_PLANCHE = 10;
-            	final float AREA = 48 * 48;
-        		float largeur = random(32, 96);
-        		Vecteur taille = new Vecteur(largeur, AREA / largeur);
+            	float largeur = random(32, 96);
+        		Vecteur taille = new Vecteur(largeur, AIRE / largeur);
         		Vecteur position = new Vecteur(random(BORDURE_PLANCHE, LARGEUR_PLANCHE - taille.x - BORDURE_PLANCHE) , random(HAUTEUR_ECRAN - HAUTEUR_PLANCHE + BORDURE_PLANCHE, HAUTEUR_ECRAN - taille.y - BORDURE_PLANCHE));    
         		activer(position, taille); 
     		}
@@ -177,10 +216,10 @@ class Saliere extends Entite
     
     void afficher()
     {
-        miniature.afficher(position_miniature.x, position_miniature.y);
+        miniature.afficher(position_miniature.x, position_miniature.y, ecran);
 
         if(activee)
-    		super.afficher();   
+    		super.afficher(ecran);   
     }
     
     
@@ -193,7 +232,7 @@ class Saliere extends Entite
                 new Vecteur(-sin(image.angle) * 5, 1),
                 new Vecteur(.8, 1.4),
                 random(position_zone.y, position_zone.y + taille_zone.y),
-                random(4, 12)                
+                random(10, 15) //random(4, 12)               
             ));
     }
  

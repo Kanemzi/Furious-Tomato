@@ -6,7 +6,7 @@
 
 String scene;
 int temps_global;
-PGraphics ecran;
+
 Transition transition;
 Tremblement tremblement;
 
@@ -59,6 +59,9 @@ void draw()
     surface.setTitle("Furious Tomato    (fps: "+(int) frameRate + ")");
 
     ecran.beginDraw();
+    
+    masque_couteaux.beginDraw();
+    masque_couteaux.clear();
 
 	tremblement.mettre_a_jour();
 
@@ -120,6 +123,11 @@ void draw()
 
     transition.mettre_a_jour();
     transition.afficher();
+	
+	//couper_masque_couteaux();
+	masque_couteaux.endDraw();
+	
+	ecran.image(masque_couteaux, 0, HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
 
     ecran.endDraw();
 

@@ -253,7 +253,7 @@ class Joueur extends Entite
         
         
         
-        super.afficher();
+        super.afficher(ecran);
     }
     
     void perdu()

@@ -46,7 +46,8 @@ void mettre_a_jour_jeu()
   	temps_partie ++;
   }
 	
-	boolean collision_sel = false;
+	joueur.ralenti = false;
+
 
   for (int i = 0; i < entites.size(); i++)
   {
@@ -54,24 +55,19 @@ void mettre_a_jour_jeu()
     e.mettre_a_jour();
     
     
-    if(e instanceof Sel && !collision_sel)
+    if(e instanceof Sel)
     {
-        if(((Sel) e).collision(joueur)) collision_sel = true;
-    }
+        ((Sel) e).collision(joueur);
+    } 
     else if(e instanceof Couteau)
     {
         ((Couteau) e).collision(joueur);
-    } 
+    }
     
     if (e.morte)
     {
       e.detruire();
     }
-  }
-  
-  if(!collision_sel)
-  {
-  	joueur.ralenti = false;   
   }
 
   //CODE TEMPORAIRE : 
@@ -83,8 +79,8 @@ void mettre_a_jour_jeu()
 
 void dessiner_jeu()
 {
-  gui.afficher(0, 0);
-  planche.afficher(0, 50);
+  gui.afficher(0, 0, ecran);
+  planche.afficher(0, 50, ecran);
   
 
   imge = lcd.generer_image( (int) temps_partie);
@@ -93,7 +89,7 @@ void dessiner_jeu()
   for (int i = 0; i < entites.size(); i++)
   {
     Entite e = entites.get(i);
-    e.afficher();
+    e.afficher((e instanceof Couteau) ? masque_couteaux : ecran);
   }
   
   saliere.afficher();

@@ -40,7 +40,7 @@ void dessiner_intro()
   ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
 
   logo.opacite = opacite_intro;
-  logo.afficher(LARGEUR_ECRAN  / 2 - logo.largeur / 2, HAUTEUR_ECRAN / 2 - logo.hauteur / 2);
+  logo.afficher(LARGEUR_ECRAN  / 2 - logo.largeur / 2, HAUTEUR_ECRAN / 2 - logo.hauteur / 2, ecran);
 }
 
 
