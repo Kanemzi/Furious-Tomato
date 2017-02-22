@@ -232,7 +232,7 @@ class Saliere extends Entite
                 new Vecteur(-sin(image.angle) * 5, 1),
                 new Vecteur(.8, 1.4),
                 random(position_zone.y, position_zone.y + taille_zone.y),
-                random(10, 15) //random(4, 12)               
+                random(4, 12)               
             ));
     }
  

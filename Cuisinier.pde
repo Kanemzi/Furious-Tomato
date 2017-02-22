@@ -17,7 +17,7 @@ class Cuisinier extends Entite
     {
         super(new Vecteur(242, 58), new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true));
         intervalleCuisinier = 10 * IMAGES_PAR_SECONDE;
-        temps = intervalleCuisinier;
+        temps = IMAGES_PAR_SECONDE;
         c = new GenerateurCouteau();
     }
     
