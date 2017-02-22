@@ -222,17 +222,19 @@ class Joueur extends Entite
         }
     }
 
-    void afficher()
+    void afficher(PGraphics g)
     {
+        if(!visible) return;
+        
         int ombre_decalage = 0;
         if(image.animation == ANIMATION_TOMATE_MORT && image.index_image > 6)
         {
         	   ombre_decalage = 1;
         }
         
-        ecran.fill(color(0, 0, 0, 30));
-        ecran.noStroke();
-        ecran.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
+        g.fill(color(0, 0, 0, 30));
+        g.noStroke();
+        g.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
         
         
         
@@ -245,11 +247,11 @@ class Joueur extends Entite
         	opacite_endurence = max(0, opacite_endurence - 10);  
         }
         
-        ecran.fill(color(100, 100, 100, opacite_endurence));
-        ecran.rect(position.x + image.largeur * (endurence_affichee / ENDURENCE_MAX), position.y - 5, image.largeur - image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        g.fill(color(100, 100, 100, opacite_endurence));
+        g.rect(position.x + image.largeur * (endurence_affichee / ENDURENCE_MAX), position.y - 5, image.largeur - image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
         
-        ecran.fill(color(100, 100, 255, opacite_endurence));
-        ecran.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        g.fill(color(100, 100, 255, opacite_endurence));
+        g.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
         
         
         
