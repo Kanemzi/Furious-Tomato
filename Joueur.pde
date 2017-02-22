@@ -7,7 +7,7 @@
 class Joueur extends Entite
 {
 	final float VIT_DEP_NORMAL = 2;
-	final float VIT_DEP_RALENTI = 0.2;
+	final float VIT_DEP_RALENTI = .8;
 	final float VIT_DEP_IMPULSION = 20;
     
     final int ENDURENCE_MAX = 100;
@@ -35,6 +35,8 @@ class Joueur extends Entite
     float opacite_endurence;
     int temps_endurence;
     boolean endurence_visible;
+    
+    boolean ralenti = false;
 
 	float axeX = 0; // dose de déplacement en X : -1 < x < 1
 	float axeY = 0; // dose de déplacement en Y : -1 < y < 1
@@ -42,7 +44,7 @@ class Joueur extends Entite
     Joueur(Vecteur pos)
     {
         super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
-        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, image.hauteur / 2), AFFICHER_COLLISIONS);
+        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, 2*image.hauteur / 3), AFFICHER_COLLISIONS);
         perdu = false;
         
         endurence = ENDURENCE_MAX / 4 * 3;
@@ -76,6 +78,10 @@ class Joueur extends Entite
                 {
                 	vit_dep = VIT_DEP_IMPULSION; 
                 }
+                else if(ralenti)
+                {
+                    vit_dep = VIT_DEP_RALENTI;
+                }
                 else
                 {
                     vit_dep = VIT_DEP_NORMAL;
@@ -83,6 +89,7 @@ class Joueur extends Entite
                 
                 angle = atan2(axeX, axeY);
             }
+
             
             vitesse.modifierAL(angle + PI/2, vit_dep);
             
@@ -206,13 +213,7 @@ class Joueur extends Entite
                 temps_endurence = -1;
             	endurence_visible = false;
             }
-
-            
-            //endurence_visible = (endurence != endurence_affichee) && (temps_global - temps_endurence) < DUREE_AFFICHAGE_ENDURENCE * IMAGES_PAR_SECONDE;
-            
-   
-            
-        }
+		}
         else if (image.animation_finie()) // si le joueur est morte et que son animation de mort est finie
         {
             x_mort = position.x;
@@ -260,17 +261,17 @@ class Joueur extends Entite
         trembler(80, 0.2, true);
         perdu = true;
         vitesse = new Vecteur(0, 0);
-        image = new Image(IMAGE_TOMATE_MORT, 12, 1, ANIMATION_TOMATE_MORT, false);
+        image = new Image(IMAGE_TOMATE_MORT, 12, 0.6, ANIMATION_TOMATE_MORT, false);
     
 		for(int i = 0; i < 50; i++)
 		{
     		boolean pepin = (int) random(7) == 0;
     		
-    		entites.add(new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y),
+    		entites.add(0, new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y),
     								  new Vecteur(random(-20, 20), random(-10, 10)),
     								  new Vecteur(random(0.2, 0.8), random(0.2, 0.8)),
     								  (pepin) ? #E28F41 : #C64617,
-    								  random(1, 2), (pepin) ? 1 : (int) random(2, 4)
+    								  random(1, 2), (pepin) ? 2 : (int) random(2, 4)
     								));
 		}
 	}

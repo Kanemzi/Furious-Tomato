@@ -30,25 +30,8 @@ void mettre_a_jour_entrees()
     touche_relachee = false;
 }
 
-/*
+
 void mousePressed()
-{
-        for(int i = 0; i < 200; i++)
-        {
-            entites.add(new Particule(new Vecteur(mouseX / ECHELLE, mouseY / ECHELLE),
-                                      new Vecteur(random(-10, 10), random(-6, 6)),
-                                      new Vecteur(random(0.1, 0.7), random(0.2, 0.8)),
-                                     #C64617,
-                                        random(2, 5), (int)random(2, 5)
-                                    ));
-        }
-        for(int i = 0; i < 100; i++)
-        {
-            entites.add(new Particule(new Vecteur(mouseX / ECHELLE, mouseY / ECHELLE),
-                                      new Vecteur(random(-20, 20), random(-6, 6)),
-                                      new Vecteur(random(0.1, 0.8), random(0.2, 0.8)),
-                                     #C64617,
-                                        random(2, 5), (int)random(1, 4)
-                                    ));
-        }
-}*/
+{   
+
+}

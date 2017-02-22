@@ -36,6 +36,16 @@ class Vecteur
 
 
 	/*
+        Multiplie les composantes de deux vecteurs
+    */
+    void multiplier(Vecteur v)
+    {
+        x *= v.x;
+        y *= v.y;
+    }
+
+
+	/*
 		Modifie le vecteur en fonction de deux composantes x et y
 	*/
 	void modifierXY(float x, float y)

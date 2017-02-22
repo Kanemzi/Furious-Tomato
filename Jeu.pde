@@ -17,6 +17,7 @@ Cuisinier cuisinier;
 AfficheurLCD lcd;
 
 Joueur joueur; // une référence vers le joueur
+Saliere saliere; // une référence vers la salière
 
 void initialiser_jeu()
 {
@@ -29,6 +30,7 @@ void initialiser_jeu()
   cuisinier = new Cuisinier();
   
   joueur = new Joueur(new Vecteur(64, 64));
+  saliere = new Saliere();
   
   entites.clear();
   entites.add(joueur);
@@ -43,25 +45,38 @@ void mettre_a_jour_jeu()
   {
   	temps_partie ++;
   }
+	
+	boolean collision_sel = false;
 
   for (int i = 0; i < entites.size(); i++)
   {
     Entite e = entites.get(i);
     e.mettre_a_jour();
     
-    if(e instanceof Couteau)
+    
+    if(e instanceof Sel && !collision_sel)
+    {
+        if(((Sel) e).collision(joueur)) collision_sel = true;
+    }
+    else if(e instanceof Couteau)
     {
         ((Couteau) e).collision(joueur);
-    }
+    } 
     
     if (e.morte)
     {
       e.detruire();
     }
   }
+  
+  if(!collision_sel)
+  {
+  	joueur.ralenti = false;   
+  }
 
   //CODE TEMPORAIRE : 
-
+  
+  saliere.mettre_a_jour();
   cuisinier.mettre_a_jour();
 }
 
@@ -81,6 +96,7 @@ void dessiner_jeu()
     e.afficher();
   }
   
+  saliere.afficher();
   cuisinier.afficher();
 }
 

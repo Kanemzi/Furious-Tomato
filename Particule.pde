@@ -24,7 +24,7 @@ class Particule extends Entite
     void mettre_a_jour()
     {
         this.position.ajouter(vitesse);
-        this.vitesse.multiplier(acceleration.x);
+        this.vitesse.multiplier(acceleration);
 
         image.mettre_a_jour();
 
@@ -43,5 +43,11 @@ class Particule extends Entite
     {
     	ecran.fill(couleur);
     	ecran.ellipse(position.x, position.y, rayon, rayon);
+    
+    	if(afficher_collision)
+        {
+        	ecran.fill(color(255, 100, 100, 160));
+            ecran.ellipse(position.x + decalage_collision.x , position.y + decalage_collision.y, rayon_collision, rayon_collision);
+        }
     }
 }

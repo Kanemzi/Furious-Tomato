@@ -7,7 +7,7 @@
 
 boolean fin_init = false;
 
-final float degrade_speed_ecran_mort = 255 / (IMAGES_PAR_SECONDE * 1);
+final float degrade_speed_ecran_mort = 255 / (IMAGES_PAR_SECONDE * 1.5);
 
 float texte_degrade_speed = 2;
 

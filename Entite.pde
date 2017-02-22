@@ -64,7 +64,7 @@ class Entite
     
     boolean collision(Entite e)
     {
-    	return dist(position.x + decalage_collision.x, position.y + decalage_collision.y, e.position.x + e.decalage_collision.x, e.position.y + e.decalage_collision.y) < rayon_collision + e.rayon_collision;
+        return dist(position.x + decalage_collision.x, position.y + decalage_collision.y, e.position.x + e.decalage_collision.x, e.position.y + e.decalage_collision.y) < (rayon_collision + e.rayon_collision) * .5;
     }
 
 
