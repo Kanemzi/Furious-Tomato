@@ -144,7 +144,13 @@ class CompteARebours
     float x_tomate = X_TOMATE_DEBUT;
     float y_tomate = Y_TOMATE_DEBUT;
     
-   	Image tomate_saut = new Image(IMAGE_TOMATE_SAUT, 3, 0, ANIMATION_TOMATE_SAUT, false);
+   	Image tomate_saut;
+   	
+   	CompteARebours()
+   	{
+    	tomate_saut = new Image(IMAGE_TOMATE_SAUT, 3, 0, ANIMATION_TOMATE_SAUT, false);
+    	tomate_saut.origine(tomate_saut.largeur / 2, tomate_saut.hauteur / 2);
+   	}
     
     void mettre_a_jour()
     {
@@ -163,15 +169,20 @@ class CompteARebours
         
         
         
-        if(a == 1 && opacite_compte_a_rebours < 245 * (DUREE_ANIMATION / IMAGES_PAR_SECONDE) )
+        if(a == 1 && opacite_compte_a_rebours <= 250 * (DUREE_ANIMATION / IMAGES_PAR_SECONDE) )
         {
             temps_animation++;
         	tomate_saut.mettre_a_jour();
+        
+        	println(temps_animation);
             
             float pourcentage_anim = temps_animation / DUREE_ANIMATION;
             
-            println(temps_animation);
-        
+            if(temps_animation <= DUREE_ANIMATION * 0.5)
+            {
+            	tomate_saut.angle(tomate_saut.angle - TWO_PI / (DUREE_ANIMATION * 0.5));   
+            }
+            
             if(temps_animation == (int) (DUREE_ANIMATION * 0.5))
             {
                 tomate_saut.index_image++;
@@ -189,13 +200,29 @@ class CompteARebours
             taille_texte = taille_texte_base + a * 10;
             
             
-            if ( a == 0 ) // fin du countdown
+            if ( a == 0 ) // fin du countdown 
             {
                 fini = true;
                 joueur.visible = true;
                 joueur.position = new Vecteur(X_TOMATE_FIN, Y_TOMATE_FIN);
             	joueur.angle = HALF_PI;
-            	trembler(20, .3, true);
+            	trembler(40, .4, true);
+            
+				for(int i = 0; i < 30; i++)
+        		{
+            		Vecteur vitesse = new Vecteur(0, 0);
+            		vitesse.modifierAL(random(0, TWO_PI), 1);
+               
+               		float acceleration = random(0.9, 0.95);
+    
+            		entites.add(0, new Particule(new Vecteur(x_tomate + tomate_saut.largeur / 2, y_tomate + tomate_saut.hauteur),
+                                      vitesse,
+                                      new Vecteur(acceleration, acceleration),
+                                      #C1ACA0,
+                                      random(1, 1.5), 
+                                      (int) random(3, 4)
+            		));
+        		}
         	}
         
         	if(a == -1) cacher = true;
@@ -224,7 +251,16 @@ class CompteARebours
     		texte = "Fuyez !!!";
     	}
 		
-		if(!fini) tomate_saut.afficher(x_tomate, y_tomate, masque_couteaux);
+		if(!fini)
+		{
+    		float pourcentage_anim = temps_animation / DUREE_ANIMATION;
+    		masque_couteaux.fill(color(0, 0, 0, 30));
+            masque_couteaux.noStroke();
+            masque_couteaux.ellipse(x_tomate + tomate_saut.largeur / 2, Y_TOMATE_FIN - HAUTEUR_BANDEAU + tomate_saut.hauteur, (tomate_saut.largeur - 7) * pourcentage_anim, (tomate_saut.hauteur / 2 - 5) * pourcentage_anim); // dessin de l'ombre
+        
+    		tomate_saut.afficher(x_tomate + tomate_saut.origine_x , y_tomate + tomate_saut.origine_y, masque_couteaux);
+		}
+
 
 		ecran.textAlign(CENTER, CENTER);
 		ecran.text(texte, LARGEUR_PLANCHE / 2 , (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) + HAUTEUR_PLANCHE / 2 - 14);

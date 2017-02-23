@@ -9,6 +9,7 @@ final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int LARGEUR_PLANCHE = 230;
 final int HAUTEUR_PLANCHE = 130;
+final int HAUTEUR_BANDEAU = HAUTEUR_ECRAN - HAUTEUR_PLANCHE;
 final int ECHELLE = 2;
 final float IMAGES_PAR_SECONDE = 60;
 

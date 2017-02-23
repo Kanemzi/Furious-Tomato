@@ -25,7 +25,7 @@ void mettre_a_jour_intro()
     degrade_speed_intro = - 255 / (IMAGES_PAR_SECONDE * 1.5);
   }
 
-  if (opacite_intro < -100 || touches[ENTER])
+  if (opacite_intro < -100 || touches[TOUCHE_VALIDER] || touches[TOUCHE_IMPULSION])
   {
     terminer_intro();
   }
