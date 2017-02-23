@@ -38,8 +38,34 @@ class Couteau extends Entite
     {
     	if(!super.collision(j)) 
     		return;
-    
-    	if(!j.impulsion && !j.perdu) j.perdu();
+    	
+    	if(!j.impulsion && !j.perdu) 
+    	{
+        	j.perdu();
+    		
+    		for(int i = 0; i < 50; i++)
+        	{
+                boolean pepin = (int) random(7) == 0;
+                
+                Vecteur v;
+                if(random(10) < 4)
+                {
+                    v = new Vecteur(random(-10, 10), random(-5, 5));
+                }
+                else
+                {
+                	v = new Vecteur(0, 0);
+                	v.modifierAL(vitesse.direction() + random(-PI/20, PI/20), random(6, 20));
+                }
+                
+                entites.add(0, new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y),
+                                          v,
+                                          new Vecteur(random(0.2, 0.8), random(0.2, 0.8)),
+                                          (pepin) ? #E28F41 : #C64617,
+                                          random(1, 2), (pepin) ? 2 : (int) random(2, 4)
+                ));
+        	}
+		}
     }
 }
 

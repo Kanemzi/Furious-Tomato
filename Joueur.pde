@@ -265,19 +265,7 @@ class Joueur extends Entite
         perdu = true;
         vitesse = new Vecteur(0, 0);
         image = new Image(IMAGE_TOMATE_MORT, 12, 0.6, ANIMATION_TOMATE_MORT, false);
-    
-		for(int i = 0; i < 50; i++)
-        {
-            boolean pepin = (int) random(7) == 0;
-            
-            entites.add(0, new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y),
-                                      new Vecteur(random(-20, 20), random(-10, 10)),
-                                      new Vecteur(random(0.2, 0.8), random(0.2, 0.8)),
-                                      (pepin) ? #E28F41 : #C64617,
-                                      random(1, 2), (pepin) ? 2 : (int) random(2, 4)
-            ));
-		}
-	}
+    }
 }
 
 class FantomeJoueur extends Entite

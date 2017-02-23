@@ -217,7 +217,7 @@ class CompteARebours
     
             		entites.add(0, new Particule(new Vecteur(x_tomate + tomate_saut.largeur / 2, y_tomate + tomate_saut.hauteur),
                                       vitesse,
-                                      new Vecteur(acceleration, acceleration),
+                                      new Vecteur(acceleration, acceleration - 0.06),
                                       #C1ACA0,
                                       random(1, 1.5), 
                                       (int) random(3, 4)
@@ -248,7 +248,7 @@ class CompteARebours
 		else
 		{
     		ecran.textSize(taille_texte - 16);
-    		texte = "Fuyez !!!";
+    		texte = "Courez !!!";
     	}
 		
 		if(!fini)

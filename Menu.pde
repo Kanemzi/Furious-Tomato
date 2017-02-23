@@ -119,6 +119,9 @@ void dessiner_menu()
 
   dessiner_tomate();
   dessiner_couperet();
+  
+  ecran.fill(0);
+  ecran.text("alpha v1.0", 4, HAUTEUR_ECRAN - 4);
 }
 
 
