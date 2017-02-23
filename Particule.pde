@@ -52,3 +52,31 @@ class Particule extends Entite
         }
     }
 }
+
+
+/* Particule utilisée quand le joueur est épuisé */
+class GoutteEau extends Particule
+{
+    GoutteEau(Vecteur pos)
+    {
+        super(pos, new Vecteur(random(-2.5, 2.5), random(-1.5, -2)), new Vecteur(0, random(0.1, 0.5)), color(100, 100, 255), random(0.1, 0.3), 2);
+    }
+    
+    void mettre_a_jour()
+    {
+        this.position.ajouter(vitesse);
+        this.vitesse.ajouter(acceleration);
+
+        image.mettre_a_jour();
+
+        if (morte)
+        {
+            entites.remove(this);
+        }
+        
+        if(temps_vie-- <= 0)
+        {
+            morte = true;   
+        }
+    }
+}

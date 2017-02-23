@@ -80,6 +80,9 @@ final int TOUCHE_VALIDER = ENTER;
 final int TOUCHE_RETOUR = RETURN;
 
 
+/* DEBUG*/
+final boolean COLLISIONS_COUTEAUX = true;
+
 /* CONSTANTES */
 final int INTRO = 0;
 final int MENU = 1;

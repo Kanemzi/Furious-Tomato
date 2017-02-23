@@ -4,6 +4,11 @@
  *                        ~ Fichier de gestion du joueur ~                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+/*
+IDEES : animation quand le joueur est immobile : yeux clignotent / reprend son souffle etc...
+
+*/
+
 class Joueur extends Entite
 {
 	final float VIT_DEP_NORMAL = 2;
@@ -36,8 +41,15 @@ class Joueur extends Entite
     float opacite_endurence;
     int temps_endurence;
     boolean endurence_visible;
+    boolean afficher_endurence; // pareil qu'endurence_visible mais en tout ou rien (ignore le fade)
+    boolean endurence_regeneration = false;
+    
+    
+    boolean immobile = false;
+    float moment_arret = 0;
     
     boolean ralenti = false;
+    boolean epuise = false;
 
 	float axeX = 0; // dose de déplacement en X : -1 < x < 1
 	float axeY = 0; // dose de déplacement en Y : -1 < y < 1
@@ -50,8 +62,8 @@ class Joueur extends Entite
         
         endurence = ENDURENCE_MAX;
         endurence_affichee = endurence;
-        opacite_endurence = 0;
-        endurence_visible = false;
+        opacite_endurence = 2;
+        endurence_visible = true;
     }
 
     void mettre_a_jour()
@@ -72,14 +84,21 @@ class Joueur extends Entite
             if (axeX == 0 && axeY == 0)
             {
                 vit_dep = 0;
+                if(!immobile)
+                {
+                	moment_arret = temps_global; 
+                	immobile = true;
+                }
             }
             else
             {
+                immobile = false;
+                
                 if(impulsion)
                 {
                 	vit_dep = VIT_DEP_IMPULSION; 
                 }
-                else if(ralenti)
+                else if(ralenti || epuise)
                 {
                     vit_dep = VIT_DEP_RALENTI;
                 }
@@ -119,8 +138,9 @@ class Joueur extends Entite
             	vitesse.y = 0;
             }
 
+			
 			// impulsion
-			if(touches[TOUCHE_IMPULSION])
+			if(touches[TOUCHE_IMPULSION]) 
 			{
     			if(impulsion)
     			{
@@ -131,7 +151,7 @@ class Joueur extends Entite
             			impulsion = false;
             		}
     			}
-    			else if(impulsion_disponible)
+    			else if(impulsion_disponible && !immobile && !epuise)
     			{
         			impulsion = true;
         			impulsion_disponible = false;
@@ -178,20 +198,43 @@ class Joueur extends Entite
                 image.changerVitesseAnimation(0.2);
             }
             
-            /*
-            if (touches[ENTER] && touche_pressee)
+            
+            
+            if(immobile && (temps_global - moment_arret) > IMAGES_PAR_SECONDE)
             {
-                endurence_visible = !endurence_visible;
+               endurence_regeneration = true; 
             }
-            */
-            if (touches[CONTROL]  && touche_pressee)
+            else
             {
-                endurence -= 20;
+            	endurence_regeneration = false;   
             }
-             if (touches[SHIFT]  && touche_pressee)
+            
+            if(endurence_regeneration && temps_global % 2 == 0)
             {
-                endurence += 20;
+            	endurence += 2;
             }
+            
+            
+            // gestion de l'épuisement du joueur
+            if(endurence <= 0)
+            {
+            	epuise = true;   
+            }
+            
+            if(epuise && endurence >= ENDURENCE_MAX / 2)
+            {
+            	epuise = false;   
+            }
+            
+            if(epuise)
+            {
+            	if(temps_global % (int) random(5, 20) == 0)
+            	{
+                    entites.add(new GoutteEau(new Vecteur(position.x + random(0, image.largeur), position.y + 5)
+                    ));   
+            	}
+            }
+            
             
             endurence = max(0, endurence);
             endurence = min(ENDURENCE_MAX, endurence);
@@ -203,7 +246,6 @@ class Joueur extends Entite
             if(endurence != endurence_affichee)
             {
             	endurence_visible = true;
-            	
             }
             else if(temps_endurence == -1 && endurence_visible)
             {
@@ -237,15 +279,39 @@ class Joueur extends Entite
         g.noStroke();
         g.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
         
+        // la jauge d'endurence clignote quand le joueur est épuisé
         
-        
-        if(endurence_visible)
+        if(epuise)
         {
-        	opacite_endurence = min(255, opacite_endurence + 10);   
+			if(temps_global % (int) (IMAGES_PAR_SECONDE / 12) == 0)
+			{
+    			afficher_endurence = !afficher_endurence;
+			}
+
+			endurence_visible = true;
         }
         else
         {
-        	opacite_endurence = max(0, opacite_endurence - 10);  
+            afficher_endurence = true;
+        }
+        
+		afficher_barre_endurence(g);   
+
+        super.afficher(ecran);
+    }
+
+    
+    void afficher_barre_endurence(PGraphics g)
+    {
+        if(!afficher_endurence) return;
+        
+        if(endurence_visible)
+        {
+            opacite_endurence = min(255, opacite_endurence + 10);   
+        }
+        else
+        {
+            opacite_endurence = max(0, opacite_endurence - 10);  
         }
         
         g.fill(color(100, 100, 100, opacite_endurence));
@@ -253,11 +319,8 @@ class Joueur extends Entite
         
         g.fill(color(100, 100, 255, opacite_endurence));
         g.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
-        
-        
-        
-        super.afficher(ecran);
     }
+    
     
     void perdu()
     {
@@ -266,6 +329,7 @@ class Joueur extends Entite
         vitesse = new Vecteur(0, 0);
         image = new Image(IMAGE_TOMATE_MORT, 12, 0.6, ANIMATION_TOMATE_MORT, false);
     }
+
 }
 
 class FantomeJoueur extends Entite

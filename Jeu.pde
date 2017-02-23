@@ -72,7 +72,7 @@ void mettre_a_jour_jeu()
     {
         ((Sel) e).collision(joueur);
     }
-    else if(e instanceof Couteau)
+    else if(COLLISIONS_COUTEAUX && e instanceof Couteau)
     {
         ((Couteau) e).collision(joueur);
     }
@@ -207,19 +207,20 @@ class CompteARebours
                 joueur.position = new Vecteur(X_TOMATE_FIN, Y_TOMATE_FIN);
             	joueur.angle = HALF_PI;
             	trembler(40, .4, true);
-            
+            	
+            	// ajout de particule pour accentuer l'effet de choc avec le sol
 				for(int i = 0; i < 30; i++)
         		{
             		Vecteur vitesse = new Vecteur(0, 0);
-            		vitesse.modifierAL(random(0, TWO_PI), 1);
+            		vitesse.modifierAL(random(0, TWO_PI), 2);
                
-               		float acceleration = random(0.9, 0.95);
+               		float acceleration = random(0.85, 0.9);
     
             		entites.add(0, new Particule(new Vecteur(x_tomate + tomate_saut.largeur / 2, y_tomate + tomate_saut.hauteur),
                                       vitesse,
                                       new Vecteur(acceleration, acceleration - 0.06),
                                       #C1ACA0,
-                                      random(1, 1.5), 
+                                      random(0.6, 0.9), 
                                       (int) random(3, 4)
             		));
         		}

@@ -67,9 +67,11 @@ class Sel extends Particule
             return false;
     	
     	vitesse.modifierAL(j.vitesse.direction(), 3 * j.vit_dep);
-        acceleration.modifierXY(random(0.5, 0.9), random(0.5, 0.9));
     
-        j.ralenti = true;
+    	float acc = random(0.5, 0.9);
+        acceleration.modifierXY(acc, acc);
+    	
+    	j.ralenti = true;
         return true;
     }
 }
