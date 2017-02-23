@@ -81,6 +81,33 @@ class Vecteur
 	{
     	return sqrt(x * x + y * y);
 	}
+
+	
+	/*
+		Retourne la version normalisée du vecteur
+	*/
+	Vecteur normalise()
+	{
+    	return new Vecteur( x / longueur(), y / longueur() );
+	}
+
+
+	/*
+		Retourne un vecteur othogonal normalisé au vecteur actuel
+	*/
+	Vecteur orthogonal()
+	{
+    	return new Vecteur(-y, x).normalise();
+	}
+
+	
+	/*
+		Retourne une copie du vecteur
+	*/
+	Vecteur copie()
+	{
+    	return new Vecteur(x, y);
+	}
 }
 
 

@@ -7,6 +7,7 @@
 class Couteau extends Entite
 {
     float vieCouteau;
+
     Couteau(Vecteur position, Vecteur positionCible)
     {
         super(position, new Image(IMAGE_COUTEAU));
@@ -15,8 +16,9 @@ class Couteau extends Entite
         image.origine(image.largeur/2, image.hauteur/2);
         image.angle(random(0, TWO_PI));
         float a = angle_entre(position.x, position.y, positionCible.x, positionCible.y);
-        vitesse.modifierAL(a, 1.8);
-        vieCouteau = 5 * IMAGES_PAR_SECONDE;
+        vitesse.modifierAL(a, 1.6);
+        
+        vieCouteau = 6 * IMAGES_PAR_SECONDE;
     }
 
     void mettre_a_jour()

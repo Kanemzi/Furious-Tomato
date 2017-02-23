@@ -83,5 +83,13 @@ class Entite
     			g.ellipse(position.x + decalage_collision.x , position.y + decalage_collision.y + decalageCouteau, rayon_collision, rayon_collision);
 			}
     	}
-    }
+    
+    	if(AFFICHER_MOUVEMENT) // affichage du vecteur vitesse et acceleration
+    	{
+    		g.stroke(#0000ff);
+        	g.line(position.x, position.y, position.x + vitesse.x * 10, position.y + vitesse.y * 10);
+        	g.stroke(#ff0000);
+            g.line(position.x, position.y, position.x + acceleration.x * 100, position.y + acceleration.y * 100);
+    	}
+	}
 }

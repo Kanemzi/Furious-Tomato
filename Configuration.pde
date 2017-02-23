@@ -82,6 +82,7 @@ final int TOUCHE_RETOUR = RETURN;
 
 /* DEBUG*/
 final boolean COLLISIONS_COUTEAUX = true;
+final boolean AFFICHER_MOUVEMENT = false;
 
 /* CONSTANTES */
 final int INTRO = 0;
