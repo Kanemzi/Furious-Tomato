@@ -12,6 +12,7 @@ class Joueur extends Entite
     
     final int ENDURENCE_MAX = 100;
     final float DUREE_AFFICHAGE_ENDURENCE = 3;
+    final float COUT_IMPULSION_ENDURENCE = ENDURENCE_MAX / 5;
     
     final float DUREE_IMPULSION = 0.05;
     
@@ -47,9 +48,9 @@ class Joueur extends Entite
         parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, 2*image.hauteur / 3), AFFICHER_COLLISIONS);
         perdu = false;
         
-        endurence = ENDURENCE_MAX / 4 * 3;
+        endurence = ENDURENCE_MAX;
         endurence_affichee = endurence;
-        opacite_endurence = 255;
+        opacite_endurence = 0;
         endurence_visible = false;
     }
 
@@ -135,7 +136,7 @@ class Joueur extends Entite
         			impulsion = true;
         			impulsion_disponible = false;
         			temps_debut_impulsion = temps_global;
-        			endurence -= 40;
+        			endurence -= COUT_IMPULSION_ENDURENCE;
         		}
 			}
 			else

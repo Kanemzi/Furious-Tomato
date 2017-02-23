@@ -228,7 +228,7 @@ class Saliere extends Entite
     void creerGrainSel()
     {
         entites.add(0, new Sel(
-                new Vecteur(position.x + random(4) * 5 * sin(image.angle), position.y + image.hauteur + random(-4, 4)),
+                new Vecteur(position.x + random(-4, 4) * 5 * sin(image.angle), position.y + 2 * (image.hauteur / 3) + random(-2, 2)),
                 new Vecteur(-sin(image.angle) * 5, 1),
                 new Vecteur(.8, 1.4),
                 random(position_zone.y, position_zone.y + taille_zone.y),
