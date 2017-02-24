@@ -6,105 +6,107 @@
 
 class Transition
 {
-  final float duree_transition = (DUREE_TRANSITION * IMAGES_PAR_SECONDE);
+    final float duree_transition = (DUREE_TRANSITION * IMAGES_PAR_SECONDE);
 
-  int temps_transition;
-  boolean visible;	
+    int temps_transition;
+    boolean visible;	
 
-  boolean demi_transition;
-  boolean fin_transition;
+    boolean demi_transition;
+    boolean fin_transition;
 
-  boolean peut_recommencer;
+    boolean peut_recommencer;
 
-  float l;
-
-
-  void lancer()
-  {
-    if (!peut_recommencer)
-      return;
-
-    visible = true;
-    demi_transition = false;
-    fin_transition = false;
-    peut_recommencer = false;
-    rembobiner();
-  }
+    float l;
 
 
-  void mettre_a_jour()
-  {
-    float pourcentage_transition = ( (float) temps_transition / duree_transition);
-
-    demi_transition = temps_transition >= duree_transition / 2;
-    fin_transition = temps_transition >= duree_transition;
-
-    if (visible && !fin_transition)
+    void lancer()
     {
-      if (!demi_transition)
-      {
-        l = f(pourcentage_transition) * LARGEUR_ECRAN;
-      } else
-      {
-        l = f( 1 - pourcentage_transition) * LARGEUR_ECRAN;
-      }
+        if (!peut_recommencer)
+            return;
 
-      temps_transition ++;
-    } else
-    {
-      fin();
+        visible = true;
+        demi_transition = false;
+        fin_transition = false;
+        peut_recommencer = false;
+        rembobiner();
     }
-  }
 
 
-  float f(float x)
-  {
-    return x * 2;
-  }
-
-
-  void afficher()
-  {
-    if (visible)
+    void mettre_a_jour()
     {
-      ecran.fill(0);
+        float pourcentage_transition = ( (float) temps_transition / duree_transition);
 
-      ecran.beginShape(QUADS);
-      ecran.vertex(0, 0);
-      ecran.vertex(0, HAUTEUR_ECRAN);
-      ecran.vertex(l - 40, HAUTEUR_ECRAN);
-      ecran.vertex(l + 40, 0);
+        demi_transition = temps_transition >= duree_transition / 2;
+        fin_transition = temps_transition >= duree_transition;
 
-      ecran.vertex(LARGEUR_ECRAN, 0);
-      ecran.vertex(LARGEUR_ECRAN, HAUTEUR_ECRAN);
-      ecran.vertex(LARGEUR_ECRAN - l - 40, HAUTEUR_ECRAN);
-      ecran.vertex(LARGEUR_ECRAN - l + 40, 0);
-      ecran.endShape();
+        if (visible && !fin_transition)
+        {
+            if (!demi_transition)
+            {
+                l = f(pourcentage_transition) * LARGEUR_ECRAN;
+            }
+            else
+            {
+                l = f( 1 - pourcentage_transition) * LARGEUR_ECRAN;
+            }
+
+            temps_transition ++;
+        }
+        else
+        {
+            fin();
+        }
     }
-  }
 
 
-  void fin()
-  {
-    visible = false;
-    peut_recommencer = true;
-  }
+    float f(float x)
+    {
+        return x * 2;
+    }
 
 
-  void rembobiner()
-  {
-    temps_transition = 0;
-  }
+    void afficher()
+    {
+        if (visible)
+        {
+            ecran.fill(0);
+
+            ecran.beginShape(QUADS);
+            ecran.vertex(0, 0);
+            ecran.vertex(0, HAUTEUR_ECRAN);
+            ecran.vertex(l - 40, HAUTEUR_ECRAN);
+            ecran.vertex(l + 40, 0);
+
+            ecran.vertex(LARGEUR_ECRAN, 0);
+            ecran.vertex(LARGEUR_ECRAN, HAUTEUR_ECRAN);
+            ecran.vertex(LARGEUR_ECRAN - l - 40, HAUTEUR_ECRAN);
+            ecran.vertex(LARGEUR_ECRAN - l + 40, 0);
+            ecran.endShape();
+        }
+    }
 
 
-  boolean finie()
-  {
-    return fin_transition;
-  }
+    void fin()
+    {
+        visible = false;
+        peut_recommencer = true;
+    }
 
 
-  boolean demi_transition_passee()
-  {
-    return demi_transition;
-  }
+    void rembobiner()
+    {
+        temps_transition = 0;
+    }
+
+
+    boolean finie()
+    {
+        return fin_transition;
+    }
+
+
+    boolean demi_transition_passee()
+    {
+        return demi_transition;
+    }
 }

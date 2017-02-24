@@ -9,53 +9,61 @@ PGraphics masque_couteaux;
 
 void initialiser_ecran()
 {
-  ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);
-  masque_couteaux = createGraphics(LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
-  
+    ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);
+    masque_couteaux = createGraphics(LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
+    
+    ecran.beginDraw();
+    ecran.noStroke();
+    ecran.noSmooth();
+    ecran.endDraw();
+    
+    masque_couteaux.beginDraw();
+    masque_couteaux.noSmooth();
+    masque_couteaux.endDraw();
 }
 
 
 
 class Tremblement
 {
-	float amplitude;
-	float duree;
-	float temps;
-	boolean decrementer;
+    float amplitude;
+    float duree;
+    float temps;
+    boolean decrementer;
 
-	float multiplieur = 1;
+    float multiplieur = 1;
 
-	Tremblement(float a, float d, boolean dec)
-	{
-    	amplitude = a;
-    	duree = d;
-    	decrementer = dec;
-    
-		temps = 0;
-    
-    	if(dec)
-    	{
-        	multiplieur = exp((log(1/a)-10)/(d * IMAGES_PAR_SECONDE));
-    	}
-	}
+    Tremblement(float a, float d, boolean dec)
+    {
+        amplitude = a;
+        duree = d;
+        decrementer = dec;
 
-	void mettre_a_jour()
-	{
-    	if(decrementer) amplitude *= multiplieur;
-    	temps++;
-		
-		if(temps < duree * IMAGES_PAR_SECONDE)
-		{
-    		float moitie_amp = amplitude / 2;
-    		translate(random(-moitie_amp, moitie_amp), random(-moitie_amp, moitie_amp));
-		}
-	}
+        temps = 0;
+
+        if (dec)
+        {
+            multiplieur = exp((log(1/a)-10)/(d * IMAGES_PAR_SECONDE));
+        }
+    }
+
+    void mettre_a_jour()
+    {
+        if (decrementer) amplitude *= multiplieur;
+        	temps++;
+
+        if (temps < duree * IMAGES_PAR_SECONDE)
+        {
+            float moitie_amp = amplitude / 2;
+            translate(random(-moitie_amp, moitie_amp), random(-moitie_amp, moitie_amp));
+        }
+    }
 }
 
 
 void trembler(float amp, float duree, boolean decrementation)
 {
-    tremblement = new Tremblement(amp, duree, decrementation); 
+    tremblement = new Tremblement(amp, duree, decrementation);
 }
 
 
@@ -67,5 +75,5 @@ void supprimer_tremblement()
 
 Tremblement initialiser_tremblement()
 {
-	return new Tremblement(0, 0, false);   
+    return new Tremblement(0, 0, false);
 }

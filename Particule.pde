@@ -23,25 +23,22 @@ class Particule extends Entite
     
     void mettre_a_jour()
     {
+        
+        
         this.position.ajouter(vitesse);
         this.vitesse.multiplier(acceleration);
 
-        image.mettre_a_jour();
-
-        if (morte)
-        {
-            entites.remove(this);
-        }
-        
-        if(temps_vie-- <= 0)
+     	if(temps_vie-- <= 0)
         {
             morte = true;   
         }
+        
+        
     }
     
     void afficher(PGraphics g)
     {
-        g.noStroke();
+        //g.noStroke();
     	g.fill(couleur);
     	g.ellipse(position.x, position.y, rayon, rayon);
     
@@ -67,13 +64,6 @@ class GoutteEau extends Particule
         this.position.ajouter(vitesse);
         this.vitesse.ajouter(acceleration);
 
-        image.mettre_a_jour();
-
-        if (morte)
-        {
-            entites.remove(this);
-        }
-        
         if(temps_vie-- <= 0)
         {
             morte = true;   

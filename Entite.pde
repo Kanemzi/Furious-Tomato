@@ -52,16 +52,16 @@ class Entite
             entites.remove(this);
         }
     }
-    
-    
+
+
     void parametrer_collision(float rayon, Vecteur decalage, boolean afficher)
     {
         rayon_collision = rayon;
         decalage_collision = decalage;
         afficher_collision = afficher;
     }
-    
-    
+
+
     boolean collision(Entite e)
     {
         return dist(position.x + decalage_collision.x, position.y + decalage_collision.y, e.position.x + e.decalage_collision.x, e.position.y + e.decalage_collision.y) < (rayon_collision + e.rayon_collision) * .5;
@@ -73,23 +73,24 @@ class Entite
         if (visible)
         {
             image.afficher(position.x, position.y, g);
-			
-			if(afficher_collision)
+
+            if (afficher_collision)
             {
                 int decalageCouteau = 0;
-                if(this instanceof Couteau) decalageCouteau = - (HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
+                if (this instanceof Couteau) decalageCouteau = -HAUTEUR_BANDEAU;
+                
                 g.noStroke();
-    			g.fill(color(255, 100, 100, 160));
-    			g.ellipse(position.x + decalage_collision.x , position.y + decalage_collision.y + decalageCouteau, rayon_collision, rayon_collision);
-			}
-    	}
-    
-    	if(AFFICHER_MOUVEMENT) // affichage du vecteur vitesse et acceleration
-    	{
-    		g.stroke(#0000ff);
-        	g.line(position.x, position.y, position.x + vitesse.x * 10, position.y + vitesse.y * 10);
-        	g.stroke(#ff0000);
-            g.line(position.x, position.y, position.x + acceleration.x * 100, position.y + acceleration.y * 100);
-    	}
-	}
+                g.fill(color(255, 100, 100, 160));
+                g.ellipse(position.x + decalage_collision.x, position.y + decalage_collision.y + decalageCouteau, rayon_collision, rayon_collision);
+            }
+
+            if (AFFICHER_MOUVEMENT) // affichage du vecteur vitesse et acceleration
+            {
+                g.stroke(#0000ff);
+                g.line(position.x, position.y, position.x + vitesse.x * 10, position.y + vitesse.y * 10);
+                g.stroke(#ff0000);
+                g.line(position.x, position.y, position.x + acceleration.x * 100, position.y + acceleration.y * 100);
+            }
+        }
+    }
 }

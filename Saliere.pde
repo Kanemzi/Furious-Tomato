@@ -43,7 +43,7 @@ class Sel extends Particule
 		}
 	
 		// destruction si en dehors de l'écran
-		if(position.x < 0 || position.x > LARGEUR_PLANCHE || position.y < (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) + 2 || position.y > HAUTEUR_ECRAN ) 
+		if(position.x < 0 || position.x > LARGEUR_PLANCHE || position.y < HAUTEUR_BANDEAU + 2 || position.y > HAUTEUR_ECRAN ) 
         {
             detruire();
         }            
@@ -51,7 +51,7 @@ class Sel extends Particule
         if(sorti)
         {
             temps_vie --; // la vie diminue deux fois plus vite
-            if(position.y == y_sortie && position.y > (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) + 2 )
+            if(position.y == y_sortie && position.y > HAUTEUR_BANDEAU + 2 )
             {
                 position.y += 6;
 			}
@@ -100,7 +100,7 @@ class Saliere extends Entite
     final float TEMPS_DESCENTE_MINIATURE = TEMPS_MONTEE_SALIERE + DUREE_MONTEE_SALIERE;
     
     final float MINIATURE_Y_MAX = 26;
-    final float SALIERE_ACTIVE_Y = (HAUTEUR_ECRAN - HAUTEUR_PLANCHE) / 2;
+    final float SALIERE_ACTIVE_Y = HAUTEUR_BANDEAU / 2;
     
     Image miniature;
     Vecteur position_miniature;
@@ -146,10 +146,10 @@ class Saliere extends Entite
     
     void mettre_a_jour()
     {
-        super.mettre_a_jour();
-        
-    	if(activee)
+        if(activee)
     	{
+        	super.mettre_a_jour();
+        
         	float pourcentage_avancement;
         
         	float duree_active = temps_global - temps_activation;
@@ -210,7 +210,7 @@ class Saliere extends Entite
         	{
             	float largeur = random(32, 96);
         		Vecteur taille = new Vecteur(largeur, AIRE / largeur);
-        		Vecteur position = new Vecteur(random(BORDURE_PLANCHE, LARGEUR_PLANCHE - taille.x - BORDURE_PLANCHE) , random(HAUTEUR_ECRAN - HAUTEUR_PLANCHE + BORDURE_PLANCHE, HAUTEUR_ECRAN - taille.y - BORDURE_PLANCHE));    
+        		Vecteur position = new Vecteur(random(BORDURE_PLANCHE, LARGEUR_PLANCHE - taille.x - BORDURE_PLANCHE) , random(HAUTEUR_BANDEAU + BORDURE_PLANCHE, HAUTEUR_ECRAN - taille.y - BORDURE_PLANCHE));    
         		activer(position, taille); 
     		}
     	}

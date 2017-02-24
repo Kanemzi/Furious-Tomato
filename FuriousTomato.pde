@@ -30,16 +30,15 @@ void settings()
         size(1280, 720);
         break;
     }
-
-    noSmooth();
+	noSmooth();
 }
 
 
 void setup()
 {
     frameRate(IMAGES_PAR_SECONDE);
-
-    temps_global = 0;
+	
+	temps_global = 0;
     scene = SCENES[INTRO];
 
     initialiser_ecran();
@@ -52,14 +51,15 @@ void setup()
 
 void draw()
 {
+    
     //surface.setLocation((int)(64 + sin((float)temps_global /( (float)IMAGES_PAR_SECONDE / 5))* 64) , (int) (64 + cos((float)temps_global / ((float)IMAGES_PAR_SECONDE / 5))* 64) ); // faire bouger l'écran lel !!! x) x) xD ptdr
 
     temps_global ++;
 
     surface.setTitle("Furious Tomato    (fps: "+(int) frameRate + ")");
 
-    ecran.beginDraw();
-    
+	ecran.beginDraw();
+	
     masque_couteaux.beginDraw();
     masque_couteaux.clear();
 
@@ -75,7 +75,7 @@ void draw()
 
         mettre_a_jour_intro();
         dessiner_intro();
-    } 
+    }
     else if (scene == SCENES[MENU])
     {
         if (!menu_init)
@@ -124,17 +124,13 @@ void draw()
     transition.mettre_a_jour();
     transition.afficher();
 	
-	//couper_masque_couteaux();
 	masque_couteaux.endDraw();
-	
-	ecran.image(masque_couteaux, 0, HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
 
-    ecran.endDraw();
+    ecran.image(masque_couteaux, 0, HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
+    
+	ecran.endDraw();
 
-    pushMatrix();
-    scale(ECHELLE, ECHELLE);
-    image(ecran, 0, 0);
-    popMatrix();
+    image(ecran, 0, 0, width, height);
 
     mettre_a_jour_entrees();
 }
