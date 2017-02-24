@@ -42,7 +42,9 @@ class AfficheurLCD
     Image generer_image(int n)
     {
         if (temps_global % (IMAGES_PAR_SECONDE / 2) != 0)
+        {
             return generation;
+		}
 
         double_points = !double_points;
 
@@ -51,7 +53,7 @@ class AfficheurLCD
 
         dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(minutes, 1) + 10), 0);
         dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(minutes, 0)+ 10), 1);
-        dessiner_chiffre_dans_image(img_score, image.index((double_points) ? 20 : 21), 2); /*(sin( (float)((temps_global * 2 * TWO_PI) / (IMAGES_PAR_SECONDE * 2))) > 0*/
+        dessiner_chiffre_dans_image(img_score, image.index((double_points) ? 20 : 21), 2);
         dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(secondes, 1)+ 10), 3);
         dessiner_chiffre_dans_image(img_score, image.index(chiffre_a_la_position(secondes, 0)+ 10), 4);
 

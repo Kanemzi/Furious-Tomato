@@ -265,22 +265,26 @@ class Joueur extends Entite
         }
     }
 
-    void afficher(PGraphics g)
+    void afficher()
     {
-        if(!visible) return;
+        if(!visible)
+        {
+            return;
+        }
         
+        // décalage de l'ombre quand le joueur est mort car le sprite est plus large
         int ombre_decalage = 0;
         if(image.animation == ANIMATION_TOMATE_MORT && image.index_image > 6)
         {
         	   ombre_decalage = 1;
         }
         
-        g.fill(color(0, 0, 0, 30));
-        g.noStroke();
-        g.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); // dessin de l'ombre
+        // affichage de l'ombre du joueur
+        ecran.fill(color(0, 0, 0, 30));
+        ecran.noStroke();
+        ecran.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage , image.largeur - 7, image.hauteur / 2 - 5); 
         
         // la jauge d'endurence clignote quand le joueur est épuisé
-        
         if(epuise)
         {
 			if(temps_global % (int) (IMAGES_PAR_SECONDE / 12) == 0)
@@ -295,13 +299,13 @@ class Joueur extends Entite
             afficher_endurence = true;
         }
         
-		afficher_barre_endurence(g);   
+		afficher_barre_endurence();   
 
-        super.afficher(ecran);
+        super.afficher();
     }
 
     
-    void afficher_barre_endurence(PGraphics g)
+    void afficher_barre_endurence()
     {
         if(!afficher_endurence) return;
         
@@ -314,11 +318,11 @@ class Joueur extends Entite
             opacite_endurence = max(0, opacite_endurence - 10);  
         }
         
-        g.fill(color(100, 100, 100, opacite_endurence));
-        g.rect(position.x + image.largeur * (endurence_affichee / ENDURENCE_MAX), position.y - 5, image.largeur - image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        ecran.fill(color(100, 100, 100, opacite_endurence));
+        ecran.rect(position.x + image.largeur * (endurence_affichee / ENDURENCE_MAX), position.y - 5, image.largeur - image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
         
-        g.fill(color(100, 100, 255, opacite_endurence));
-        g.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        ecran.fill(color(100, 100, 255, opacite_endurence));
+        ecran.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
     }
     
     

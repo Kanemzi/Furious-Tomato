@@ -52,7 +52,7 @@ void mettre_a_jour_credits()
 
 void dessiner_credits()
 {
-    fond_credits.afficher(0, 0, ecran);
+    fond_credits.afficher(0, 0);
 
     ecran.fill(#f0f0f0);
     ecran.textAlign(CENTER);
@@ -60,7 +60,7 @@ void dessiner_credits()
 
     if (credits_entrer_presse)
     {
-        bouton_entrer.afficher(10, 143, ecran);
+        bouton_entrer.afficher(10, 143);
     }
 }
 

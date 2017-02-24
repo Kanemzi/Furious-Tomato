@@ -64,13 +64,12 @@ void mettre_a_jour_fin()
 
 void dessiner_fin()
 {
-  derniere_image.afficher(0, 0, ecran);
+  derniere_image.afficher(0, 0);
 
-  ecran.noStroke();
   ecran.fill(0, opacite_ecran_mort);
   ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
 
-  img_tomate_morte.afficher(x_mort, y_mort, ecran);
+  img_tomate_morte.afficher(x_mort, y_mort);
 
   if ( opacite_ecran_mort >= 400)
   {

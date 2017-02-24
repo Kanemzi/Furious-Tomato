@@ -25,8 +25,6 @@ Saliere saliere; // une référence vers la salière
 
 void initialiser_jeu()
 {
-    
-    
     retour_active = false;
 
     temps_partie = 0;
@@ -36,14 +34,15 @@ void initialiser_jeu()
     compte_a_rebours = new CompteARebours();
 
     cuisinier = new Cuisinier();
-
-    joueur = new Joueur(new Vecteur(64, 64));
     saliere = new Saliere();
 
-    entites.clear();
-    entites.add(joueur);
-
+    joueur = new Joueur(new Vecteur(64, 64));
     joueur.visible = false;
+
+
+    entites.clear();
+    couteaux.clear();
+    sel.clear();
 
     lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
 }
@@ -75,14 +74,28 @@ void mettre_a_jour_jeu()
         {
             ((Sel) e).collision(joueur);
         }
-        else if (COLLISIONS_COUTEAUX && e instanceof Couteau)
-        {
-            ((Couteau) e).collision(joueur);
-        }
+    }
+    
+    
+    for (int i = 0; i < sel.size(); i++)
+    {
+        Sel s = sel.get(i);
+        s.mettre_a_jour();
 
-        if (e.morte)
+        s.collision(joueur);
+    }
+    
+    joueur.mettre_a_jour();
+    
+    //Mise à jour des couteaux
+    for (int i = 0; i < couteaux.size(); i++)
+    {
+        Couteau c = couteaux.get(i);
+        c.mettre_a_jour();
+
+		if (COLLISIONS_COUTEAUX)
         {
-            e.detruire();
+            c.collision(joueur);
         }
     }
 
@@ -93,11 +106,10 @@ void mettre_a_jour_jeu()
 
 void dessiner_jeu()
 {
-    gui.afficher(0, 0, ecran);
-    planche.afficher(0, 50, ecran);
+    gui.afficher(0, 0);
+    planche.afficher(0, 50);
 
-
-    imge = lcd.generer_image( (int) temps_partie);
+	imge = lcd.generer_image( (int) temps_partie);
     
     ecran.image(imge.actuelle(), 71, 10);
     
@@ -105,8 +117,26 @@ void dessiner_jeu()
     for (int i = 0; i < entites.size(); i++)
     {
         Entite e = entites.get(i);
-        e.afficher((e instanceof Couteau) ? masque_couteaux : ecran);
+        e.afficher();
     }
+    
+    // Affichage des grains de sel
+    for (int i = 0; i < sel.size(); i++)
+    {
+        Sel s = sel.get(i);
+        s.afficher();
+    }
+    
+    joueur.afficher();
+    
+    // Affichage des couteaux
+    ecran.clip(0, HAUTEUR_BANDEAU, LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
+    for (int i = 0; i < couteaux.size(); i++)
+    {
+    	Couteau c = couteaux.get(i);
+        c.afficher();   
+    }
+    ecran.noClip();
 		
 	saliere.afficher();
     cuisinier.afficher();
@@ -124,12 +154,15 @@ void terminer_jeu()
 
 
 
+/*
+	Compte à rebours de début de partie et animation de l'arrivée du joueur dans l'écran
+*/
 class CompteARebours
 {
     final float taille_texte_base = 64;
 
-    boolean fini = false;
-    boolean cacher = false;
+    boolean fini = false; // = true quand le compte à rebours est terminé (au moment de l'affichage du "courez !!!")
+    boolean cacher = false; // = true quand le compte à rebours est caché
     float opacite_compte_a_rebours = 255;
     float vitesse_degrade_compte_a_rebours = 255 / IMAGES_PAR_SECONDE;
     int a = 3;
@@ -225,7 +258,7 @@ class CompteARebours
                         #C1ACA0, 
                         random(0.6, 0.9), 
                         (int) random(3, 4)
-                        ));
+                    ));
                 }
             }
 
@@ -235,19 +268,18 @@ class CompteARebours
 
     void dessiner()
     {   
-
-        if (cacher)
+		if (cacher)
         {
             return;
         }
 
         ecran.textSize(taille_texte);
-        ecran.fill(255, opacite_compte_a_rebours);
-
-        if (a > 0)
+        
+		if (a > 0)
         {
             texte = "" + a;
-        } else
+        }
+        else
         {
             ecran.textSize(taille_texte - 16);
             texte = "Courez !!!";
@@ -256,18 +288,28 @@ class CompteARebours
         if (!fini)
         {
             float pourcentage_anim = temps_animation / DUREE_ANIMATION;
-            masque_couteaux.fill(color(0, 0, 0, 30));
-            masque_couteaux.noStroke();
-            masque_couteaux.ellipse(x_tomate + tomate_saut.largeur / 2, Y_TOMATE_FIN - HAUTEUR_BANDEAU + tomate_saut.hauteur, (tomate_saut.largeur - 7) * pourcentage_anim, (tomate_saut.hauteur / 2 - 5) * pourcentage_anim); // dessin de l'ombre
-
-            tomate_saut.afficher(x_tomate + tomate_saut.origine_x, y_tomate + tomate_saut.origine_y, masque_couteaux);
+            
+            ecran.clip(0, HAUTEUR_BANDEAU, LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
+            
+            // affichage de l'ombre du joueur
+            ecran.fill(color(0, 0, 0, 30));
+            ecran.noStroke();
+            ecran.ellipse(x_tomate + tomate_saut.largeur / 2, Y_TOMATE_FIN + tomate_saut.hauteur, (tomate_saut.largeur - 7) * pourcentage_anim, (tomate_saut.hauteur / 2 - 5) * pourcentage_anim); // dessin de l'ombre
+			
+			tomate_saut.afficher(x_tomate + tomate_saut.origine_x, y_tomate + tomate_saut.origine_y);
+            
+            ecran.noClip();
         }
-
-
+		
+		ecran.fill(255, opacite_compte_a_rebours);
         ecran.textAlign(CENTER, CENTER);
         ecran.text(texte, LARGEUR_PLANCHE / 2, HAUTEUR_BANDEAU + HAUTEUR_PLANCHE / 2 - 14);
     }
 
+
+	/*
+		Equation de la trajectoire du saut du joueur en début de partie
+	*/
     float fonction_saut(float x)
     {
         return pow(x, 3)+(1-sqrt(x))/2;

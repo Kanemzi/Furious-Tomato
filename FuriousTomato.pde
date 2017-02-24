@@ -30,6 +30,7 @@ void settings()
         size(1280, 720);
         break;
     }
+    
 	noSmooth();
 }
 
@@ -59,9 +60,6 @@ void draw()
     surface.setTitle("Furious Tomato    (fps: "+(int) frameRate + ")");
 
 	ecran.beginDraw();
-	
-    masque_couteaux.beginDraw();
-    masque_couteaux.clear();
 
 	tremblement.mettre_a_jour();
 
@@ -123,11 +121,7 @@ void draw()
 
     transition.mettre_a_jour();
     transition.afficher();
-	
-	masque_couteaux.endDraw();
 
-    ecran.image(masque_couteaux, 0, HAUTEUR_ECRAN - HAUTEUR_PLANCHE);
-    
 	ecran.endDraw();
 
     image(ecran, 0, 0, width, height);

@@ -5,21 +5,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 PGraphics ecran;
-PGraphics masque_couteaux;
 
 void initialiser_ecran()
 {
     ecran = createGraphics(LARGEUR_ECRAN, HAUTEUR_ECRAN);
-    masque_couteaux = createGraphics(LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
-    
-    ecran.beginDraw();
+	ecran.beginDraw();
     ecran.noStroke();
     ecran.noSmooth();
     ecran.endDraw();
-    
-    masque_couteaux.beginDraw();
-    masque_couteaux.noSmooth();
-    masque_couteaux.endDraw();
 }
 
 

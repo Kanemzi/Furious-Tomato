@@ -4,6 +4,8 @@
  *                      ~ Fichier de gestion des couteaux ~                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+ArrayList<Couteau> couteaux = new ArrayList<Couteau>(); // liste des couteaux affichés à l'écran
+
 class Couteau extends Entite
 {
     float vieCouteau;
@@ -21,6 +23,7 @@ class Couteau extends Entite
         vieCouteau = 6 * IMAGES_PAR_SECONDE;
     }
 
+
     void mettre_a_jour()
     {
         super.mettre_a_jour();
@@ -33,6 +36,12 @@ class Couteau extends Entite
         {
             morte = true;
         }
+    }
+    
+    
+    void detruire()
+    {
+        couteaux.remove(this);
     }
 
 
@@ -65,7 +74,7 @@ class Couteau extends Entite
                     new Vecteur(random(0.2, 0.8), random(0.2, 0.8)), 
                     (pepin) ? #E28F41 : #C64617, 
                     random(1, 2), (pepin) ? 2 : (int) random(2, 4)
-                    ));
+                ));
             }
         }
     }
@@ -77,21 +86,24 @@ class GenerateurCouteau
     float intervalleCouteau;
     float temps;
 
+
     GenerateurCouteau()
     {
         intervalleCouteau = 1.5 * IMAGES_PAR_SECONDE;
         temps = intervalleCouteau;
     }
 
+
     void mettre_a_jour()
     {
         temps--;
         if ( temps <= 0)
         {
-            entites.add(new Couteau(genererPosition(), genererCible()));
+            couteaux.add(new Couteau(genererPosition(), genererCible()));
             temps = intervalleCouteau;
         }
     }
+
 
     Vecteur genererPosition()
     {
@@ -124,6 +136,7 @@ class GenerateurCouteau
         }
         return v;
     }
+
 
     Vecteur genererCible()
     {

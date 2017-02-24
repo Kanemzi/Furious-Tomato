@@ -111,7 +111,7 @@ void dessiner_menu()
 {
   //if (amplitude_choc_couperet < AMPLITUDE_CHOC_COUPERET) ecran.translate(random(-amplitude_choc_couperet, amplitude_choc_couperet), random(-amplitude_choc_couperet, amplitude_choc_couperet));
 
-  image_menu.afficher(0, 0, ecran);
+  image_menu.afficher(0, 0);
 
   menu.bjouer.afficher();
   menu.bcredits.afficher();
@@ -152,13 +152,13 @@ void dessiner_couperet()
       amplitude_choc_couperet = 0;
     }
 */
-    explosion_tomate.afficher(0, 47, ecran);
+    explosion_tomate.afficher(0, 47);
     explosion_tomate.mettre_a_jour();
   }
 
   ecran.translate(couperet_x, couperet_y);
   ecran.rotate(couperet_angle);
-  couperet.afficher(-40, -20, ecran);
+  couperet.afficher(-40, -20);
 
   ecran.popMatrix();
 }
@@ -170,7 +170,7 @@ void dessiner_tomate()
   {
     tomate_x = TOMATE_X_DEBUT + temps_menu * (TOMATE_X_FIN - TOMATE_X_DEBUT) / (IMAGES_PAR_SECONDE  * DUREE_ANIMATION_TOMATE);
 
-    tomate.afficher(tomate_x, 74, ecran);
+    tomate.afficher(tomate_x, 74);
     tomate.mettre_a_jour();
   }
 }
@@ -290,11 +290,11 @@ class Bouton
   {
     if (select == true)
     {
-      imageCurseur.afficher(posx + 3, posy, ecran);        //Dessiner curseur
-      imageBouton.afficher(posx + 20, posy, ecran);      //Dessiner bouton décalé
+      imageCurseur.afficher(posx + 3, posy);        //Dessiner curseur
+      imageBouton.afficher(posx + 20, posy);      //Dessiner bouton décalé
     } else
     {
-      imageBouton.afficher(posx, posy, ecran);    //Dessiner bouton
+      imageBouton.afficher(posx, posy);    //Dessiner bouton
     }
   }
 }

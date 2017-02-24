@@ -3,7 +3,9 @@
  *                                                                             *
  *                         ~ Fichier de gestion du sel ~                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+
+ArrayList<Sel> sel = new ArrayList<Sel>(); // liste des grains de sel affichés à l'écran
+
 class Sel extends Particule
 {
     float y_cible;
@@ -57,6 +59,13 @@ class Sel extends Particule
 			}
 		}
 	}
+
+
+	void detruire()
+    {
+        sel.remove(this);
+	}
+
 
 	boolean collision(Joueur j)
     {
@@ -211,17 +220,17 @@ class Saliere extends Entite
             	float largeur = random(32, 96);
         		Vecteur taille = new Vecteur(largeur, AIRE / largeur);
         		Vecteur position = new Vecteur(random(BORDURE_PLANCHE, LARGEUR_PLANCHE - taille.x - BORDURE_PLANCHE) , random(HAUTEUR_BANDEAU + BORDURE_PLANCHE, HAUTEUR_ECRAN - taille.y - BORDURE_PLANCHE));    
-        		activer(position, taille); 
+        		activer(position, taille);
     		}
     	}
     }
     
     void afficher()
     {
-        miniature.afficher(position_miniature.x, position_miniature.y, ecran);
+        miniature.afficher(position_miniature.x, position_miniature.y);
 
         if(activee)
-    		super.afficher(ecran);   
+    		super.afficher();   
     }
     
     
@@ -229,7 +238,7 @@ class Saliere extends Entite
     
     void creerGrainSel()
     {
-        entites.add(0, new Sel(
+        sel.add(0, new Sel(
                 new Vecteur(position.x + random(-4, 4) * 5 * sin(image.angle), position.y + 2 * (image.hauteur / 3) + random(-2, 2)),
                 new Vecteur(-sin(image.angle) * 5, 1),
                 new Vecteur(.8, 1.4),

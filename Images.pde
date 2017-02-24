@@ -141,39 +141,24 @@ class Image
     /*
 		Affiche l'image aux coordonnées x et y indiquées
      	*/
-    void afficher(float x, float y, PGraphics g)
+    void afficher(float x, float y)
     {   
         
-        g.pushMatrix();
+        ecran.pushMatrix();
 
-        if (g == masque_couteaux) g.translate(0, -HAUTEUR_BANDEAU);
-
-        g.translate(x, y);
-        g.rotate(angle);
-        
-/* possible optimisation
-        if (miroir_x)
-        {
-            g.scale(-1, 1);
-            //g.translate(- largeur, 0);
-        }
-
-        if (miroir_y)
-        {
-            g.scale(1, -1);
-            //g.translate(0, - hauteur);
-        }
-*/
+        ecran.translate(x, y);
+        ecran.rotate(angle);
+		
 		if(miroir_x || miroir_y)
 		{
-        	g.scale((miroir_x) ? -1 : 1, (miroir_y) ? -1 : 1);
-        	g.translate(((miroir_x) ? -largeur : 0), ((miroir_y) ? -hauteur : 0));
+        	ecran.scale((miroir_x) ? -1 : 1, (miroir_y) ? -1 : 1);
+        	ecran.translate(((miroir_x) ? -largeur : 0), ((miroir_y) ? -hauteur : 0));
 		}		
 
-        g.tint(255, opacite);
-        g.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
+        ecran.tint(255, opacite);
+        ecran.image(actuelle(), ((miroir_x) ? 1 : -1) * origine_x, ((miroir_y) ? 1 : -1) * origine_y);
 
-        g.popMatrix();    
+        ecran.popMatrix();    
     }
 
 
@@ -188,7 +173,7 @@ class Image
 
     /*
         Retourne une sous-image à un index précis
-     */
+    */
     PImage index(int index)
     {	
         if (index >= images.length)
