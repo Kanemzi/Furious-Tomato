@@ -56,7 +56,7 @@ void mettre_a_jour_jeu()
     {
         return;
     }
-
+    
     if (temps_global % IMAGES_PAR_SECONDE == 0)
     {
         temps_partie ++;

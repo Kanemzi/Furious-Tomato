@@ -6,9 +6,15 @@
 
 class Cuisinier extends Entite
 {
-    final Pattern[] patterns = {
-        new Pattern(PATTERN_CROIX_DROITE),
-      	new Pattern(PATTERN_TEST)
+    final Pattern[] patterns = 
+    {
+        //new Pattern(0, PATTERN_EN_COURS)
+        new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
+      	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
+      	new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
+      	new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
+      	new Pattern(0, PATTERN_CROIX_4_COUTEAUX),
+      	new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
     };
     
     Pattern pattern;
@@ -16,8 +22,8 @@ class Cuisinier extends Entite
 	final int nb_patterns = patterns.length;
     
     
-    final float DUREE_ENERVE = 1;
-    final float TEMPS_REACTION = DUREE_ENERVE / 2;
+    final float DUREE_ENERVE = 0;
+    final float TEMPS_REACTION = 0.5;
     float duree_lancement_pattern;
 
     GenerateurCouteau gc;
@@ -30,7 +36,7 @@ class Cuisinier extends Entite
     {
         super(new Vecteur(242, 58), new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true));
         intervallePattern = 10 * IMAGES_PAR_SECONDE;
-        temps = IMAGES_PAR_SECONDE;
+        temps = 4;
         choisir_pattern();
         gc = new GenerateurCouteau();
     }
@@ -48,7 +54,7 @@ class Cuisinier extends Entite
                 image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             }
 			
-			if ( temps == (- TEMPS_REACTION ) * IMAGES_PAR_SECONDE)	// lancement du pattern
+			if ( temps == - TEMPS_REACTION  * IMAGES_PAR_SECONDE)	// lancement du pattern
             {
                 choisir_pattern();
                 pattern.initialiser(new Vecteur(0, 0));
@@ -85,8 +91,8 @@ class Cuisinier extends Entite
 		pattern = patterns[i];
 
 		duree_pat_actuel = pattern.duree();
-        duree_pat_actuel += dist(0, 0, LARGEUR_PLANCHE, HAUTEUR_PLANCHE) / pattern.cts[pattern.cts.length-1].vitesse.longueur();
-        duree_lancement_pattern = DUREE_ENERVE * IMAGES_PAR_SECONDE + duree_pat_actuel;
+        
+        duree_lancement_pattern = (TEMPS_REACTION + DUREE_ENERVE) * IMAGES_PAR_SECONDE + duree_pat_actuel;
     }
 
 
@@ -109,6 +115,8 @@ class Pattern
 {
 	int temps; // le temps depuis le lançement du pattern
 	int avancement; // le nombre de couteaux du pattern déjà lancés
+	int difficulte; // entre 1 et 5
+
 	boolean en_cours; // le pattern est en train d'être lancé (mis à jour)
 	
 	Couteau[] cts;
@@ -124,10 +132,11 @@ class Pattern
     	- Les délais correspondent aux moment ou les couteaux sont lancés à partir du lançement du pattern (en ticks)
     	- Les délais doivent être indiqués par ordre croissant;
     */
-    Pattern(float[][] p)
+   	Pattern(int diff, float[][] p)
 	{
     	delais = new int[p.length];
 	    cts = new Couteau[p.length];
+		difficulte = diff;
     
     	for(int i = 0; i < p.length; i++)
     	{
@@ -193,6 +202,6 @@ class Pattern
     
     int duree()
     {
-    	return delais[delais.length-1];   
+    	return delais[delais.length-1] + (int)( LARGEUR_PLANCHE / cts[cts.length-1].vitesse.longueur());   
     }
 }

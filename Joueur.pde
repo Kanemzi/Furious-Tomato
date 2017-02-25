@@ -17,7 +17,7 @@ class Joueur extends Entite
     
     final int ENDURENCE_MAX = 100;
     final float DUREE_AFFICHAGE_ENDURENCE = 3;
-    final float COUT_IMPULSION_ENDURENCE = ENDURENCE_MAX / 5;
+    final float COUT_IMPULSION_ENDURENCE = ENDURENCE_MAX / 4;
     
     final float DUREE_IMPULSION = 0.05;
     
@@ -54,10 +54,12 @@ class Joueur extends Entite
 	float axeX = 0; // dose de déplacement en X : -1 < x < 1
 	float axeY = 0; // dose de déplacement en Y : -1 < y < 1
 
+	final float VITESSE_ANIMATION_COURIR = 0.3;
+
     Joueur(Vecteur pos)
     {
-        super(pos, new Image(IMAGE_TOMATE, 20, 0.2, ANIMATION_TOMATE_PROFIL_FACE, true));
-        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, 2*image.hauteur / 3), AFFICHER_COLLISIONS);
+        super(pos, new Image(IMAGE_TOMATE, 20, 0.4, ANIMATION_TOMATE_PROFIL_FACE, true));
+        parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, 2 * image.hauteur / 3), AFFICHER_COLLISIONS);
         perdu = false;
         
         endurence = ENDURENCE_MAX;
@@ -173,19 +175,19 @@ class Joueur extends Entite
 
             if (angle == 0) // le personnage va vers le bas
             {
-                image.changerAnimation(ANIMATION_TOMATE_FACE, 0.2, false, false, true);
+                image.changerAnimation(ANIMATION_TOMATE_FACE, VITESSE_ANIMATION_COURIR, false, false, true);
             }
             else if (angle == -PI/2 || angle == -PI/4 || angle == PI/2 || angle == PI/4)  // le personnage va vers le bas en diagonale
             {
-                image.changerAnimation(ANIMATION_TOMATE_PROFIL_FACE, 0.2, false, false, true);
+                image.changerAnimation(ANIMATION_TOMATE_PROFIL_FACE, VITESSE_ANIMATION_COURIR, false, false, true);
             }
             else if (angle == PI)  // le personnage va vers le haut 
             {
-                image.changerAnimation(ANIMATION_TOMATE_DOS, 0.2, false, false, true);
+                image.changerAnimation(ANIMATION_TOMATE_DOS, VITESSE_ANIMATION_COURIR, false, false, true);
             }
             else if (angle == -3*PI/4 || angle == 3*PI/4)  // le personnage va vers le haut en diagonale
             {
-                image.changerAnimation(ANIMATION_TOMATE_PROFIL_DOS, 0.2, false, false, true);
+                image.changerAnimation(ANIMATION_TOMATE_PROFIL_DOS, VITESSE_ANIMATION_COURIR, false, false, true);
             }
             
             if (vitesse.longueur() == 0)
@@ -195,7 +197,7 @@ class Joueur extends Entite
             }
             else 
             {
-                image.changerVitesseAnimation(0.2);
+                image.changerVitesseAnimation(VITESSE_ANIMATION_COURIR);
             }
             
             

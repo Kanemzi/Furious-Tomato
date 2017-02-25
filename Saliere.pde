@@ -89,7 +89,7 @@ class Sel extends Particule
 class Saliere extends Entite
 {
     final float BORDURE_PLANCHE = 10;
-    final float AIRE = 32 * 48;
+    final float AIRE = 64 * 48;
                 
     
 	final float DUREE_SALIERE_ACTIVE = IMAGES_PAR_SECONDE * 5;
@@ -189,8 +189,8 @@ class Saliere extends Entite
                 
                 image.angle = fonctionInclinerSaliere(pourcentage_avancement, PI/8);
                 
-                if(position.y > MINIATURE_Y_MAX + 9) for(int g = 0; g < 5; g++) creerGrainSel(); // 5
-                if(temps_global % 8 == 0) creerGrainSel(); // 2
+                if(position.y > MINIATURE_Y_MAX + 9) for(int g = 0; g < 8; g++) creerGrainSel(); // 5
+                if(temps_global % 4 == 0) creerGrainSel(); // 2
             }
             else if(duree_active > TEMPS_DESCENTE_SALIERE)
             {

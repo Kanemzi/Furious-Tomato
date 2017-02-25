@@ -14,10 +14,10 @@ class Couteau extends Entite
     Couteau(Vecteur position, Vecteur positionCible)
     {
         super(position, new Image(IMAGE_COUTEAU));
-        parametrer_collision(image.hauteur * 1.4, new Vecteur(0, 0), AFFICHER_COLLISIONS);
+        parametrer_collision(image.hauteur * 1.5, new Vecteur(0, 0), AFFICHER_COLLISIONS);
 
         image.origine(image.largeur/2, image.hauteur/2);
-        //image.angle(random(0, TWO_PI));
+        image.angle(random(0, TWO_PI));
         float a = angle_entre(position.x, position.y, positionCible.x, positionCible.y);
         vitesse.modifierAL(a, 1.6);
 
@@ -94,8 +94,8 @@ class GenerateurCouteau
     
     GenerateurCouteau()
     {
-        intervalleCouteau = 1.5 * IMAGES_PAR_SECONDE;
-        temps = intervalleCouteau;
+        intervalleCouteau = 0.8 * IMAGES_PAR_SECONDE;
+        temps = intervalleCouteau / 2;
     }
 
 
@@ -147,10 +147,10 @@ class GenerateurCouteau
     Vecteur genererCible()
     {
         Vecteur v = new Vecteur(0, 0);
-        if ( (int) random(4) == 0)
+        if ( (int) random(2) == 0)
         {
-            v.x = joueur.position.x + joueur.decalage_collision.x;
-            v.y = joueur.position.y + joueur.decalage_collision.y;
+            v.x = joueur.position.x + joueur.decalage_collision.x + random(-64, 64);
+            v.y = joueur.position.y + joueur.decalage_collision.y + random(-64, 64);
         }
         else
         {
