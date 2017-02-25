@@ -66,6 +66,19 @@ class Entite
     {
         return dist(position.x + decalage_collision.x, position.y + decalage_collision.y, e.position.x + e.decalage_collision.x, e.position.y + e.decalage_collision.y) < (rayon_collision + e.rayon_collision) * .5;
     }
+    
+    
+    void modifierAcceleration(float x, float y)
+    {
+   		acceleration.x = x;
+   		acceleration.y = y;
+    }
+    
+    
+    void modifierVitesse(float v)
+    {
+    	vitesse.modifierAL(vitesse.direction(), v);
+    }
 
 
     void afficher()

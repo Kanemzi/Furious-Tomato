@@ -6,50 +6,87 @@
 
 class Cuisinier extends Entite
 {
-    final float DUREE_ENERVE = 3;
+    final Pattern[] patterns = {
+        new Pattern(PATTERN_CROIX_DROITE),
+      	new Pattern(PATTERN_TEST)
+    };
+    
+    Pattern pattern;
+    
+	final int nb_patterns = patterns.length;
+    
+    
+    final float DUREE_ENERVE = 1;
+    final float TEMPS_REACTION = DUREE_ENERVE / 2;
+    float duree_lancement_pattern;
 
-    GenerateurCouteau c;
+    GenerateurCouteau gc;
 
-    float intervalleCuisinier;
+    float intervallePattern;
+    float duree_pat_actuel;
     float temps;
 
     Cuisinier()
     {
         super(new Vecteur(242, 58), new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true));
-        intervalleCuisinier = 10 * IMAGES_PAR_SECONDE;
+        intervallePattern = 10 * IMAGES_PAR_SECONDE;
         temps = IMAGES_PAR_SECONDE;
-        c = new GenerateurCouteau();
+        choisir_pattern();
+        gc = new GenerateurCouteau();
     }
 
     void mettre_a_jour()
     {
         super.mettre_a_jour();
-        c.mettre_a_jour();
-
+        
         temps--;
-        if ( temps <= 0)
+        if ( temps <= 0) // délais entre les attaques atteint
         {
-            if (temps == 0)
+            if (temps == 0) // première frame de l'animation d'attaque
             {
                 trembler(2, DUREE_ENERVE, false);
+                image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             }
-
-            image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
-
-			if ( temps == (- DUREE_ENERVE / 5 ) * IMAGES_PAR_SECONDE)
+			
+			if ( temps == (- TEMPS_REACTION ) * IMAGES_PAR_SECONDE)	// lancement du pattern
             {
-                for ( int i = 0; i < 5; i++ )
+                choisir_pattern();
+                pattern.initialiser(new Vecteur(0, 0));
+        
+                println("duree " + duree_pat_actuel);
+                /*for ( int i = 0; i < 5; i++ )
                 {
                     couteaux.add(new Couteau(c.genererPosition(), c.genererCible()));
-                }
+                }*/
             }
-
-            if ( temps <= - DUREE_ENERVE * IMAGES_PAR_SECONDE )
+            
+            if(pattern.en_cours)
             {
-                temps = intervalleCuisinier;
+            	pattern.mettre_a_jour();   
+            }
+			
+			if (temps < -duree_lancement_pattern)
+            {
+                temps = intervallePattern;
                 image.changerAnimation(ANIMATION_CUISINIER_NORMAL, 0.01, false, true, true);
             }
         }
+        else
+        {
+    	    gc.mettre_a_jour();
+        }
+    }
+    
+    
+    void choisir_pattern()
+    {
+    	int i = (int) random(nb_patterns);
+        //println(i);
+		pattern = patterns[i];
+
+		duree_pat_actuel = pattern.duree();
+        duree_pat_actuel += dist(0, 0, LARGEUR_PLANCHE, HAUTEUR_PLANCHE) / pattern.cts[pattern.cts.length-1].vitesse.longueur();
+        duree_lancement_pattern = DUREE_ENERVE * IMAGES_PAR_SECONDE + duree_pat_actuel;
     }
 
 
@@ -59,8 +96,103 @@ class Cuisinier extends Entite
 
         if ( temps <= 0)
         {
-            ecran.fill(255, 0, 0, 16 * sin((temps * TWO_PI) / (DUREE_ENERVE * 20)) + 16);
-            ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
+            float opacite = sin((temps * TWO_PI) / ((duree_lancement_pattern / IMAGES_PAR_SECONDE) * 20));
+            ecran.fill(255, 0, 0, 24 * opacite);
+        //    ecran.rect(0, 0, LARGEUR_ECRAN, HAUTEUR_ECRAN);
+            ecran.rect(0, HAUTEUR_BANDEAU, LARGEUR_PLANCHE, HAUTEUR_PLANCHE);
     	}
+    }
+}
+
+
+class Pattern
+{
+	int temps; // le temps depuis le lançement du pattern
+	int avancement; // le nombre de couteaux du pattern déjà lancés
+	boolean en_cours; // le pattern est en train d'être lancé (mis à jour)
+	
+	Couteau[] cts;
+    int[] delais;
+    Vecteur decalage;
+    
+    Couteau c;
+    
+    /*
+    	Crée un pattern
+    
+    	- Les deux tableaux doivent avoir la même taille
+    	- Les délais correspondent aux moment ou les couteaux sont lancés à partir du lançement du pattern (en ticks)
+    	- Les délais doivent être indiqués par ordre croissant;
+    */
+    Pattern(float[][] p)
+	{
+    	delais = new int[p.length];
+	    cts = new Couteau[p.length];
+    
+    	for(int i = 0; i < p.length; i++)
+    	{
+        	delais[i] = (int) p[i][0];
+    		c = new Couteau(new Vecteur(16.5 + p[i][1] * 33, HAUTEUR_BANDEAU + 16.5 + p[i][2] * 33), new Vecteur(16.5 + p[i][3] * 33, HAUTEUR_BANDEAU + 16.5 + p[i][4] * 33));
+    	    c.modifierAcceleration(p[i][5], p[i][6]);
+    		c.modifierVitesse(p[i][7]);
+    		cts[i] = c;
+    	}
+	}
+
+
+	void initialiser(Vecteur decalage)
+	{
+    	this.decalage = decalage;
+    	temps = 0;
+    	avancement = 0;
+    	en_cours = true;
+	}
+
+	
+	void mettre_a_jour()
+	{
+    	while(delais[avancement] <= temps)
+    	{
+        	creer_couteau(cloner_couteau(cts[avancement++]));
+        
+        	if(avancement >= delais.length)
+            {
+                stopper();
+                return;
+            }
+        }
+    
+    	temps++;
+	}
+
+
+	void stopper()
+	{
+		en_cours = false;
+	}
+
+
+	void creer_couteau(Couteau c)
+	{
+    	this.c = c;
+    	couteaux.add(c);
+	}
+
+    
+    /*
+    	Retourne une copie d'un objet couteau (/!\ Fonction lente à utiliser le moins souvent possible)
+    */
+    Couteau cloner_couteau(Couteau c)
+    {
+        Couteau cl = new Couteau(new Vecteur(c.position.x, c.position.y), new Vecteur(c.position_cible.x, c.position_cible.y));
+        cl.modifierAcceleration(c.acceleration.x, c.acceleration.y);
+        cl.modifierVitesse(c.vitesse.longueur());
+        return cl;
+    }
+    
+    
+    int duree()
+    {
+    	return delais[delais.length-1];   
     }
 }

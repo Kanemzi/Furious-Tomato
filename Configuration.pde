@@ -63,7 +63,6 @@ final float REDUCTION_CHOC_COUPERET = 1.2;
 
 
 /* Autres */
-final boolean AFFICHER_COLLISIONS = false;
 final float DUREE_TRANSITION = 0.5;
 
 final String POLICE = "fonts/Gibberesque.ttf";
@@ -81,7 +80,8 @@ final int TOUCHE_RETOUR = RETURN;
 
 
 /* DEBUG*/
-final boolean COLLISIONS_COUTEAUX = true;
+final boolean AFFICHER_COLLISIONS = false;
+final boolean COLLISIONS_COUTEAUX = false;
 final boolean AFFICHER_MOUVEMENT = false;
 
 /* CONSTANTES */

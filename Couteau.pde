@@ -9,18 +9,21 @@ ArrayList<Couteau> couteaux = new ArrayList<Couteau>(); // liste des couteaux af
 class Couteau extends Entite
 {
     float vieCouteau;
+	Vecteur position_cible; // sauvegarde de la position cible (pour le clonage)	
 
     Couteau(Vecteur position, Vecteur positionCible)
     {
         super(position, new Image(IMAGE_COUTEAU));
-        parametrer_collision(image.hauteur, new Vecteur(0, 0), AFFICHER_COLLISIONS);
+        parametrer_collision(image.hauteur * 1.4, new Vecteur(0, 0), AFFICHER_COLLISIONS);
 
         image.origine(image.largeur/2, image.hauteur/2);
-        image.angle(random(0, TWO_PI));
+        //image.angle(random(0, TWO_PI));
         float a = angle_entre(position.x, position.y, positionCible.x, positionCible.y);
         vitesse.modifierAL(a, 1.6);
 
-        vieCouteau = 6 * IMAGES_PAR_SECONDE;
+        vieCouteau = 10 * IMAGES_PAR_SECONDE;
+        
+        position_cible = positionCible;
     }
 
 
@@ -32,7 +35,10 @@ class Couteau extends Entite
         decalage_collision.y = -sin(image.angle) * (image.largeur / 4);
 
         vieCouteau --;
-        if ( vieCouteau <= 0 )
+        
+        boolean sortie_ecran = (position.x < -64) || (position.x > LARGEUR_PLANCHE + 64) || (position.y < HAUTEUR_BANDEAU - 64 ) || (position.y > HAUTEUR_ECRAN + 64);
+        
+        if ( vieCouteau <= 0 || sortie_ecran)
         {
             morte = true;
         }
@@ -61,12 +67,12 @@ class Couteau extends Entite
                 Vecteur v;
                 if (random(10) < 4)
                 {
-                    v = new Vecteur(random(-10, 10), random(-5, 5));
+                    v = new Vecteur(random(-6, 6), random(-3, 3));
                 }
                 else
                 {
                     v = new Vecteur(0, 0);
-                    v.modifierAL(vitesse.direction() + random(-PI/20, PI/20), random(6, 20));
+                    v.modifierAL(vitesse.direction() + random(-PI/20, PI/20), vitesse.longueur() + random(4, 20));
                 }
 
                 entites.add(0, new Particule(new Vecteur(position.x + decalage_collision.x, position.y + decalage_collision.y), 
@@ -85,8 +91,7 @@ class GenerateurCouteau
 {
     float intervalleCouteau;
     float temps;
-
-
+    
     GenerateurCouteau()
     {
         intervalleCouteau = 1.5 * IMAGES_PAR_SECONDE;
@@ -97,7 +102,8 @@ class GenerateurCouteau
     void mettre_a_jour()
     {
         temps--;
-        if ( temps <= 0)
+        
+        if (temps <= 0)
         {
             couteaux.add(new Couteau(genererPosition(), genererCible()));
             temps = intervalleCouteau;

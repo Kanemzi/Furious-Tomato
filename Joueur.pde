@@ -228,7 +228,7 @@ class Joueur extends Entite
             
             if(epuise)
             {
-            	if(temps_global % (int) random(5, 20) == 0)
+            	if(temps_global % (int)(IMAGES_PAR_SECONDE / random(1, 5)) == 0)
             	{
                     entites.add(new GoutteEau(new Vecteur(position.x + random(0, image.largeur), position.y + 5)
                     ));   
@@ -349,6 +349,14 @@ class FantomeJoueur extends Entite
     {
         image.opacite(image.opacite - 20);
     
-    	if (image.opacite < 0 || position.x < 0 || position.x > 218 - image.largeur / 2 || position.y > HAUTEUR_ECRAN - image.hauteur - 10 || position.y < 37) morte = true;
+    	if (image.opacite < 0) detruire();
+    }
+    
+    void afficher()
+    {
+    	if(!(position.x < 0 || position.x > 218 - image.largeur / 2 || position.y > HAUTEUR_ECRAN - image.hauteur - 10 || position.y < 37))
+    	{
+        	super.afficher();
+    	}
     }
 }

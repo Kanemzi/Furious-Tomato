@@ -210,8 +210,6 @@ class CompteARebours
             temps_animation++;
             tomate_saut.mettre_a_jour();
 
-            println(temps_animation);
-
             float pourcentage_anim = temps_animation / DUREE_ANIMATION;
 
             if (temps_animation <= DUREE_ANIMATION * 0.5)

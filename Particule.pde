@@ -54,7 +54,7 @@ class GoutteEau extends Particule
 {
     GoutteEau(Vecteur pos)
     {
-        super(pos, new Vecteur(random(-2.5, 2.5), random(-1.5, -2)), new Vecteur(0, random(0.1, 0.5)), color(100, 100, 255), random(0.1, 0.3), 2);
+        super(pos, new Vecteur(random(-1.5, 1.5), random(-1.5, -2)), new Vecteur(0, random(0.1, 0.5)), color(100, 100, 255), random(0.1, 0.3), 2);
     }
     
     void mettre_a_jour()
@@ -64,7 +64,7 @@ class GoutteEau extends Particule
 
         if(temps_vie-- <= 0)
         {
-            morte = true;   
+            detruire();
         }
     }
 }

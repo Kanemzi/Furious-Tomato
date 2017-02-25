@@ -123,7 +123,7 @@ class Saliere extends Entite
     
 	Saliere()
 	{
-    	super(new Vecteur(0, 0), new Image(IMAGE_SALIERE));
+    	super(new Vecteur(-100, -100), new Image(IMAGE_SALIERE));
     	image.origine(image.largeur/2, image.hauteur/3);
     	activee = false;
     	temps_activation = -1;
