@@ -35,7 +35,7 @@ class Cuisinier extends Entite
     
     Pattern pattern;
     
-    int patterns_difficulte = 1;
+    int patterns_difficulte = 2;
 	
     final float DUREE_ENERVE_SUPPLEMENTAIRE = 0;
     final float TEMPS_REACTION = 0.8;

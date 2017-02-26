@@ -4,8 +4,9 @@
  *                ~ Fichier de gestion de la difficulté du jeu ~               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
  
- /*
+
 final String[] PALLIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
+final float DELAIS_ENTRE_PALLIERS = 10;
 
 int pallier_actuel;
 
@@ -40,4 +41,4 @@ void initialiser_difficulte()
 void mettre_a_jour_difficulte()
 {
     
-}*/
+}
