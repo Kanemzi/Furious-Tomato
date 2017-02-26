@@ -17,7 +17,6 @@ class Joueur extends Entite
     
     final int ENDURENCE_MAX = 100;
     final float DUREE_AFFICHAGE_ENDURENCE = 3;
-    final float COUT_IMPULSION_ENDURENCE = ENDURENCE_MAX / 4;
     
     final float DUREE_IMPULSION = 0.05;
     
@@ -158,7 +157,7 @@ class Joueur extends Entite
         			impulsion = true;
         			impulsion_disponible = false;
         			temps_debut_impulsion = temps_global;
-        			endurence -= COUT_IMPULSION_ENDURENCE;
+        			endurence -= DIFF_cout_endurence_impulsion;
         		}
 			}
 			else

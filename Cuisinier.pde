@@ -34,8 +34,6 @@ class Cuisinier extends Entite
     };
     
     Pattern pattern;
-    
-    int patterns_difficulte = 2;
 	
     final float DUREE_ENERVE_SUPPLEMENTAIRE = 0;
     final float TEMPS_REACTION = 0.8;
@@ -43,14 +41,12 @@ class Cuisinier extends Entite
 
     GenerateurCouteau gc;
 
-    float intervallePattern;
     float duree_pat_actuel;
     float temps;
 
     Cuisinier()
     {
         super(new Vecteur(242, 58), new Image(IMAGE_CUISINIER, 5, 0.01, ANIMATION_CUISINIER_NORMAL, true));
-        intervallePattern = 10 * IMAGES_PAR_SECONDE;
         temps = 4;
         choisir_pattern();
         gc = new GenerateurCouteau();
@@ -87,7 +83,7 @@ class Cuisinier extends Entite
 			
 			if (temps < -duree_lancement_pattern)
             {
-                temps = intervallePattern;
+                temps = DIFF_delais_patterns * IMAGES_PAR_SECONDE;
                 image.changerAnimation(ANIMATION_CUISINIER_NORMAL, 0.01, false, true, true);
             }
         }
@@ -100,8 +96,8 @@ class Cuisinier extends Entite
     
     void choisir_pattern()
     {
-    	int i = (int) random(PATTERNS[patterns_difficulte].length);
-        pattern = PATTERNS[patterns_difficulte][i];
+    	int i = (int) random(PATTERNS[DIFF_niveau_patterns].length);
+        pattern = PATTERNS[DIFF_niveau_patterns][i];
 
 		duree_pat_actuel = pattern.duree();
         

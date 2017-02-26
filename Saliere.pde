@@ -89,8 +89,6 @@ class Sel extends Particule
 class Saliere extends Entite
 {
     final float BORDURE_PLANCHE = 10;
-    final float AIRE = 64 * 48;
-                
     
 	final float DUREE_SALIERE_ACTIVE = IMAGES_PAR_SECONDE * 5;
 
@@ -150,7 +148,7 @@ class Saliere extends Entite
     {
         activee = false;
         temps_activation = -1;
-        delais_activation = (int)IMAGES_PAR_SECONDE * (int)random(9, 16);
+        delais_activation = (int) (IMAGES_PAR_SECONDE * DIFF_delais_sel);
 	}
     
     void mettre_a_jour()
@@ -218,7 +216,7 @@ class Saliere extends Entite
         	if(--delais_activation == 0) 
         	{
             	float largeur = random(32, 96);
-        		Vecteur taille = new Vecteur(largeur, AIRE / largeur);
+        		Vecteur taille = new Vecteur(largeur, DIFF_surface_sel / largeur);
         		Vecteur position = new Vecteur(random(BORDURE_PLANCHE, LARGEUR_PLANCHE - taille.x - BORDURE_PLANCHE) , random(HAUTEUR_BANDEAU + BORDURE_PLANCHE, HAUTEUR_ECRAN - taille.y - BORDURE_PLANCHE));    
         		activer(position, taille);
     		}
@@ -243,7 +241,7 @@ class Saliere extends Entite
                 new Vecteur(-sin(image.angle) * 5, 1),
                 new Vecteur(.8, 1.4),
                 random(position_zone.y, position_zone.y + taille_zone.y),
-                random(4, 12)               
+                DIFF_duree_vie_sel + random(-1, 1)
             ));
     }
  
