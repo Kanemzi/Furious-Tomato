@@ -29,3 +29,8 @@ void mettre_a_jour_entrees()
     touche_pressee = false;
     touche_relachee = false;
 }
+
+void mousePressed()
+{
+	if(cuisinier != null) cuisinier.temps = 2;   
+}

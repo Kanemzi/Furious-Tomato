@@ -94,7 +94,7 @@ class GenerateurCouteau
     
     GenerateurCouteau()
     {
-        intervalleCouteau = 0.8 * IMAGES_PAR_SECONDE;
+        intervalleCouteau = 1.6 * IMAGES_PAR_SECONDE;
         temps = intervalleCouteau / 2;
     }
 

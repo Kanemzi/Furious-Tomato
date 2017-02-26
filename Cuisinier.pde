@@ -6,24 +6,30 @@
 
 class Cuisinier extends Entite
 {
-    final Pattern[] patterns = 
+    final Pattern[][] patterns = 
     {
-        //new Pattern(0, PATTERN_EN_COURS)
-        new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
-      	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
-      	new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
-      	new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
-      	new Pattern(0, PATTERN_CROIX_4_COUTEAUX),
-      	new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
-    };
+        {//new Pattern(0, PATTERN_EN_COURS)
+            new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
+          	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
+          	new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
+          	new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
+          	new Pattern(0, PATTERN_CROIX_4_COUTEAUX),
+          	new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
+          	new Pattern(0, PATTERN_VAGUES_DIAGONALES_3_PHASES),
+          	new Pattern(0, PATTERN_GRILLE_3_PHASES_3_COUTEAUX)
+    	},
+    	{
+        	new Pattern(0, PATTERN_EN_COURS),
+    	}
+	};
     
     Pattern pattern;
     
-	final int nb_patterns = patterns.length;
-    
+    int patterns_difficulte = 0;
+	int nb_patterns = patterns[patterns_difficulte].length;
     
     final float DUREE_ENERVE = 0;
-    final float TEMPS_REACTION = 0.5;
+    final float TEMPS_REACTION = 0.8;
     float duree_lancement_pattern;
 
     GenerateurCouteau gc;
@@ -88,7 +94,7 @@ class Cuisinier extends Entite
     {
     	int i = (int) random(nb_patterns);
         //println(i);
-		pattern = patterns[i];
+		pattern = patterns[patterns_difficulte][i];
 
 		duree_pat_actuel = pattern.duree();
         
