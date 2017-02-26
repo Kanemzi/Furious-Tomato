@@ -166,31 +166,3 @@ final float[][] PATTERN_BOOMERANG_DESCENTE_4_3 =
     {0, 4, 4, 4, -1, 0, 0, 2.6},
     {0, 6, 4, 6, -1, 0, 0, 2.6},
 };
-
-
-final Pattern[][] PATTERNS = 
-{
-    {
-   		new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
-    	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
-        new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
-        new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
-        new Pattern(1, PATTERN_CROIX_4_COUTEAUX),
-        new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
-        new Pattern(1, PATTERN_VAGUES_DIAGONALES_3_PHASES),
-        new Pattern(1, PATTERN_GRILLE_3_PHASES_3_COUTEAUX)
-    },
-    {
-        new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
-        new Pattern(1, PATTERN_VAGUES_DIAGONALES_3_PHASES),
-        new Pattern(1, PATTERN_CROIX_4_COUTEAUX),
-        new Pattern(1, PATTERN_CROIX_4_COUTEAUX_CENTRE_LIBRE),
-        new Pattern(1, PATTERN_GRILLE_3_PHASES_3_COUTEAUX),
-        new Pattern(0, PATTERN_4_COUTEAUX_MONTEE),
-        new Pattern(0, PATTERN_4_COUTEAUX_DESCENTE),
-        new Pattern(1, PATTERN_BOOMERANG_DESCENTE_4_3)
-    },
-    {
-        new Pattern(0, PATTERN_EN_COURS),
-    }
-};

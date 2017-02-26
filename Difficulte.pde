@@ -4,6 +4,7 @@
  *                ~ Fichier de gestion de la difficulté du jeu ~               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
  
+ /*
 final String[] PALLIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
 
 int pallier_actuel;
@@ -24,10 +25,9 @@ float DIFF_cout_endurence_impulsion;
 
 final float[][] STATS_PALLIERS =
 {
-	/* pallier 1 :*/{/*delais patterns*/, /*niveau patterns*/, /* etc... pour toutes les variables*/},
 	{},
 	{},
-	// à faire 8 fois
+	{},
 };
 
 
@@ -40,4 +40,4 @@ void initialiser_difficulte()
 void mettre_a_jour_difficulte()
 {
     
-}
+}*/
