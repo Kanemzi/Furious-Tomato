@@ -50,17 +50,17 @@ final float[][] PATTERN_CROIX_DROITE =
 };
 
 
+
 final float[][] PATTERN_EN_COURS =
 {
-    {0, 0, -1, 0, 0, 0, 0, 1.125},
-    {0, -1, 0, 0, 0, 0, 0, 2},
+    {0, 0, -1, 0, 4, 0, 0, 2.4},
+    {0, 2, -1, 2, 4, 0, 0, 2.4},
+    {0, 4, -1, 4, 4, 0, 0, 2.4},
+    {0, 6, -1, 6, 4, 0, 0, 2.4},
     
-    {60, 3, -1, 3, 0, 0, 0, 1.125},
-    {60, -1, 1.5, 0, 1.5, 0, 0, 2},
-    
-
-	{120, 6, -1, 6, 0, 0, 0, 1.125},
-    {120, -1, 3, 0, 3, 0, 0, 2},  
+    {60, 1, 4, 1, 3, 0, 0, 2.4},
+    {60, 3, 4, 3, 3, 0, 0, 2.4},
+    {60, 5, 4, 5, 3, 0, 0, 2.4},
 };
 
 
@@ -132,4 +132,65 @@ final float[][] PATTERN_GRILLE_3_PHASES_3_COUTEAUX =
     {60, -1, 1.5, 0, 1.5, 0, 0, 2},
     {120, 6, -1, 6, 0, 0, 0, 1.125},
     {120, -1, 3, 0, 3, 0, 0, 2}, 
+};
+
+
+final float[][] PATTERN_CROIX_4_COUTEAUX_CENTRE_LIBRE =
+{
+    {0, -1, -1, 1, 1, 0, 0, 2.4},
+    {0, 7, -1, 5, 1, 0, 0, 2.4},
+    {0, -1, 4, 1, 2, 0, 0, 2.4},
+    {0, 7, 4, 5, 2, 0, 0, 2.4},
+};
+
+final float[][] PATTERN_4_COUTEAUX_DESCENTE =
+{
+	{0, 0, -1, 0, 4, 0, 0, 2.6},
+    {0, 2, -1, 2, 4, 0, 0, 2.6},
+    {0, 4, -1, 4, 4, 0, 0, 2.6},
+    {0, 6, -1, 6, 4, 0, 0, 2.6},
+};
+
+final float[][] PATTERN_4_COUTEAUX_MONTEE =
+{
+    {0, 0, 4, 0, -1, 0, 0, 2.6},
+    {0, 2, 4, 2, -1, 0, 0, 2.6},
+    {0, 4, 4, 4, -1, 0, 0, 2.6},
+    {0, 6, 4, 6, -1, 0, 0, 2.6},
+};
+
+final float[][] PATTERN_BOOMERANG_DESCENTE_4_3 =
+{
+    {0, 0, 4, 0, -1, 0, 0, 2.6},
+    {0, 2, 4, 2, -1, 0, 0, 2.6},
+    {0, 4, 4, 4, -1, 0, 0, 2.6},
+    {0, 6, 4, 6, -1, 0, 0, 2.6},
+};
+
+
+final Pattern[][] PATTERNS = 
+{
+    {
+   		new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
+    	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
+        new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
+        new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
+        new Pattern(1, PATTERN_CROIX_4_COUTEAUX),
+        new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
+        new Pattern(1, PATTERN_VAGUES_DIAGONALES_3_PHASES),
+        new Pattern(1, PATTERN_GRILLE_3_PHASES_3_COUTEAUX)
+    },
+    {
+        new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
+        new Pattern(1, PATTERN_VAGUES_DIAGONALES_3_PHASES),
+        new Pattern(1, PATTERN_CROIX_4_COUTEAUX),
+        new Pattern(1, PATTERN_CROIX_4_COUTEAUX_CENTRE_LIBRE),
+        new Pattern(1, PATTERN_GRILLE_3_PHASES_3_COUTEAUX),
+        new Pattern(0, PATTERN_4_COUTEAUX_MONTEE),
+        new Pattern(0, PATTERN_4_COUTEAUX_DESCENTE),
+        new Pattern(1, PATTERN_BOOMERANG_DESCENTE_4_3)
+    },
+    {
+        new Pattern(0, PATTERN_EN_COURS),
+    }
 };

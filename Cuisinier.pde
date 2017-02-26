@@ -6,29 +6,11 @@
 
 class Cuisinier extends Entite
 {
-    final Pattern[][] patterns = 
-    {
-        {//new Pattern(0, PATTERN_EN_COURS)
-            new Pattern(0, PATTERN_3_COUTEAUX_DESCENTE),
-          	new Pattern(0, PATTERN_3_COUTEAUX_MONTEE),
-          	new Pattern(0, PATTERN_3_COUTEAUX_GAUCHE),
-          	new Pattern(0, PATTERN_3_COUTEAUX_DROITE),
-          	new Pattern(0, PATTERN_CROIX_4_COUTEAUX),
-          	new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
-          	new Pattern(0, PATTERN_VAGUES_DIAGONALES_3_PHASES),
-          	new Pattern(0, PATTERN_GRILLE_3_PHASES_3_COUTEAUX)
-    	},
-    	{
-        	new Pattern(0, PATTERN_EN_COURS),
-    	}
-	};
-    
     Pattern pattern;
     
-    int patterns_difficulte = 0;
-	int nb_patterns = patterns[patterns_difficulte].length;
-    
-    final float DUREE_ENERVE = 0;
+    int patterns_difficulte = 1;
+	
+    final float DUREE_ENERVE_SUPPLEMENTAIRE = 0;
     final float TEMPS_REACTION = 0.8;
     float duree_lancement_pattern;
 
@@ -56,7 +38,7 @@ class Cuisinier extends Entite
         {
             if (temps == 0) // première frame de l'animation d'attaque
             {
-                trembler(2, DUREE_ENERVE, false);
+                trembler(2, DUREE_ENERVE_SUPPLEMENTAIRE, false);
                 image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             }
 			
@@ -65,7 +47,6 @@ class Cuisinier extends Entite
                 choisir_pattern();
                 pattern.initialiser(new Vecteur(0, 0));
         
-                println("duree " + duree_pat_actuel);
                 /*for ( int i = 0; i < 5; i++ )
                 {
                     couteaux.add(new Couteau(c.genererPosition(), c.genererCible()));
@@ -92,13 +73,12 @@ class Cuisinier extends Entite
     
     void choisir_pattern()
     {
-    	int i = (int) random(nb_patterns);
-        //println(i);
-		pattern = patterns[patterns_difficulte][i];
+    	int i = (int) random(PATTERNS[patterns_difficulte].length);
+        pattern = PATTERNS[patterns_difficulte][i];
 
 		duree_pat_actuel = pattern.duree();
         
-        duree_lancement_pattern = (TEMPS_REACTION + DUREE_ENERVE) * IMAGES_PAR_SECONDE + duree_pat_actuel;
+        duree_lancement_pattern = (TEMPS_REACTION + DUREE_ENERVE_SUPPLEMENTAIRE) * IMAGES_PAR_SECONDE + duree_pat_actuel;
     }
 
 
@@ -121,7 +101,7 @@ class Pattern
 {
 	int temps; // le temps depuis le lançement du pattern
 	int avancement; // le nombre de couteaux du pattern déjà lancés
-	int difficulte; // entre 1 et 5
+	int difficulte; // entre 1 et 2
 
 	boolean en_cours; // le pattern est en train d'être lancé (mis à jour)
 	
