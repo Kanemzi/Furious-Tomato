@@ -133,7 +133,7 @@ class Saliere extends Entite
     	taille_zone = new Vecteur(0, 0);
     
     	//desactiver();
-		delais_activation = (int)IMAGES_PAR_SECONDE * 1;
+		delais_activation = (int) (IMAGES_PAR_SECONDE * TEMPS_PALIERS[0]);
 	}
     
     void activer(Vecteur position_zone, Vecteur taille_zone)
@@ -187,8 +187,8 @@ class Saliere extends Entite
                 
                 image.angle = fonctionInclinerSaliere(pourcentage_avancement, PI/8);
                 
-                if(position.y > MINIATURE_Y_MAX + 9) for(int g = 0; g < 8; g++) creerGrainSel(); // 5
-                if(temps_global % 4 == 0) creerGrainSel(); // 2
+                if(position.y > MINIATURE_Y_MAX + 9) for(int g = 0; g < (DIFF_quantite_sel * 16); g++) creerGrainSel(); // 5
+                if(temps_global % ((int) max(1, DIFF_quantite_sel * 8)) == 0) creerGrainSel(); // 2
             }
             else if(duree_active > TEMPS_DESCENTE_SALIERE)
             {

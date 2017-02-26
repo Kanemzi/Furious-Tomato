@@ -45,6 +45,8 @@ void initialiser_jeu()
     sel.clear();
 
     lcd = new AfficheurLCD(new Vecteur(3, 4), 0);
+    
+    initialiser_difficulte();
 }
 
 
@@ -61,6 +63,8 @@ void mettre_a_jour_jeu()
     {
         temps_partie ++;
     }
+	
+	mettre_a_jour_difficulte();
 
     joueur.ralenti = false;
 

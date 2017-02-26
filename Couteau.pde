@@ -19,11 +19,27 @@ class Couteau extends Entite
         image.origine(image.largeur/2, image.hauteur/2);
         image.angle(random(0, TWO_PI));
         float a = angle_entre(position.x, position.y, positionCible.x, positionCible.y);
-        vitesse.modifierAL(a, 1.6);
+        vitesse.modifierAL(a, DIFF_vitesse_couteaux);
 
         vieCouteau = 10 * IMAGES_PAR_SECONDE;
         
         position_cible = positionCible;
+        
+        if(DIFF_couteaux_derives)
+        {
+			Vecteur ac = vitesse.copie().normalise();
+
+			if(random(10) < 5)
+            {
+				ac.modifierAL(ac.direction() + PI / 3, ac.longueur() * 0.1);
+            }
+            else
+            {
+                ac.modifierAL(ac.direction() - PI / 3, ac.longueur() * 0.1);
+            }
+			
+			acceleration = ac;
+        }
     }
 
 
@@ -94,8 +110,7 @@ class GenerateurCouteau
     
     GenerateurCouteau()
     {
-        intervalleCouteau = 1.6 * IMAGES_PAR_SECONDE;
-        temps = intervalleCouteau / 2;
+        temps = 6;
     }
 
 
@@ -106,7 +121,7 @@ class GenerateurCouteau
         if (temps <= 0)
         {
             couteaux.add(new Couteau(genererPosition(), genererCible()));
-            temps = intervalleCouteau;
+            temps = DIFF_delais_couteaux * IMAGES_PAR_SECONDE;
         }
     }
 
@@ -147,16 +162,31 @@ class GenerateurCouteau
     Vecteur genererCible()
     {
         Vecteur v = new Vecteur(0, 0);
-        if ( (int) random(2) == 0)
+        if ( (int) random(3) == 0)
         {
-            v.x = joueur.position.x + joueur.decalage_collision.x + random(-64, 64);
-            v.y = joueur.position.y + joueur.decalage_collision.y + random(-64, 64);
+            v.x = joueur.position.x + joueur.decalage_collision.x + random(-32, 32);
+            v.y = joueur.position.y + joueur.decalage_collision.y + random(-32, 32);
         }
         else
         {
-            v.x = random(LARGEUR_PLANCHE);
-            v.y = random(HAUTEUR_BANDEAU, HAUTEUR_ECRAN);
-        }
+            if(DIFF_couteaux_derives)
+            {
+                float reduction = 0.1;
+                float tx = LARGEUR_PLANCHE * reduction;
+                float decx = (LARGEUR_PLANCHE * (1 - reduction)) * 0.5;
+                
+                float ty = HAUTEUR_PLANCHE * reduction;
+                float decy = (HAUTEUR_PLANCHE * (1 - reduction)) * 0.5;
+                
+            	v.x = random(decx, decx + tx);
+            	v.y = random(HAUTEUR_BANDEAU + decy, HAUTEUR_BANDEAU + decy + ty);
+        	}
+        	else
+        	{
+            	v.x = random(LARGEUR_PLANCHE);
+                v.y = random(HAUTEUR_BANDEAU, HAUTEUR_ECRAN);            
+        	}
+    	}
 
         return v;
     }

@@ -98,7 +98,7 @@ class Entite
                 ecran.stroke(#0000ff);
                 ecran.line(position.x, position.y, position.x + vitesse.x * 10, position.y + vitesse.y * 10);
                 ecran.stroke(#ff0000);
-                ecran.line(position.x, position.y, position.x + acceleration.x * 100, position.y + acceleration.y * 100);
+                ecran.line(position.x, position.y, position.x + acceleration.x * 200, position.y + acceleration.y * 200);
                 ecran.noStroke();
             }
         }

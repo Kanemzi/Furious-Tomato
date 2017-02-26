@@ -29,6 +29,16 @@ class Cuisinier extends Entite
             new Pattern(1, PATTERN_BOOMERANG_DESCENTE_4_3)
         },
         {
+            new Pattern(1, PATTERN_CROIX_4_COUTEAUX),
+            new Pattern(1, PATTERN_CROIX_4_COUTEAUX_CENTRE_LIBRE),
+            new Pattern(0, PATTERN_BORDS_8_COUTEAUX),
+            new Pattern(0, PATTERN_HELICE_4_COUTEAUX),
+            new Pattern(1, PATTERN_MIGRATEURS_GAUCHE_5_COUTEAUX),
+            new Pattern(1, PATTERN_MIGRATEURS_DROITE_5_COUTEAUX),
+            new Pattern(1, PATTERN_MIGRATEURS_DEUXCOTES_5_COUTEAUX),
+            new Pattern(1, PATTERN_DOUBLE_REBONDS)
+        },
+        {
             new Pattern(0, PATTERN_EN_COURS),
         }
     };
