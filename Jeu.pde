@@ -16,6 +16,8 @@ Image imge;
 
 CompteARebours compte_a_rebours;
 
+AffichagePalier ap;
+
 Cuisinier cuisinier;
 
 AfficheurLCD lcd;
@@ -32,7 +34,8 @@ void initialiser_jeu()
     planche = new Image(IMAGE_PLANCHE);
 
     compte_a_rebours = new CompteARebours();
-
+    ap = new AffichagePalier();
+  
     cuisinier = new Cuisinier();
     saliere = new Saliere();
 
@@ -64,7 +67,8 @@ void mettre_a_jour_jeu()
         temps_partie ++;
     }
 	
-	mettre_a_jour_difficulte();
+	  mettre_a_jour_difficulte();
+    ap.mettre_a_jour();
 
     joueur.ralenti = false;
 
@@ -113,7 +117,7 @@ void dessiner_jeu()
     gui.afficher(0, 0);
     planche.afficher(0, 50);
 
-	imge = lcd.generer_image( (int) temps_partie);
+	  imge = lcd.generer_image( (int) temps_partie);
     
     ecran.image(imge.actuelle(), 71, 10);
     
@@ -146,6 +150,7 @@ void dessiner_jeu()
     cuisinier.afficher();
 	
     compte_a_rebours.dessiner();
+    ap.dessiner();
 }
 
 
