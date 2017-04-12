@@ -29,14 +29,6 @@ class Couteau extends Entite
         {
 			Vecteur ac = vitesse.copie().normalise();
 
-			/*if(random(10) < 5)
-            {
-				ac.modifierAL(ac.direction() + PI / 3, ac.longueur() * 0.1);
-            }
-            else
-            {
-                ac.modifierAL(ac.direction() - PI / 3, ac.longueur() * 0.1);
-            }*/
 			ac.modifierAL(ac.direction() +random(- PI / 2, PI / 2), ac.longueur() * 0.08);
 			acceleration = ac;
         }

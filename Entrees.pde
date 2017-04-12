@@ -2,9 +2,9 @@
  *   Furious Tomato - Par Benjamin Strabach, Valentin Galerne et Simon Rozec   *
  *                                                                             *
  *                   ~ Fichier de gestion des entrées clavier ~                *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
-boolean[] touches = new boolean[256];
+boolean[] touches = new boolean[600];
 
 boolean touche_pressee = false;
 boolean touche_relachee = false;
@@ -12,25 +12,20 @@ boolean touche_relachee = false;
 
 void keyPressed()
 {
-	touches[keyCode] = true;
-    touche_pressee = true;
+  touches[keyCode] = true;
+  touche_pressee = true;
 }
 
 
 void keyReleased()
 {
-    touches[keyCode] = false;
-    touche_relachee = true;
+  touches[keyCode] = false;
+  touche_relachee = true;
 }
 
 
 void mettre_a_jour_entrees()
 {
-    touche_pressee = false;
-    touche_relachee = false;
-}
-
-void mousePressed()
-{
-	if(cuisinier != null) cuisinier.temps = 2;   
-}
+  touche_pressee = false;
+  touche_relachee = false;
+} 

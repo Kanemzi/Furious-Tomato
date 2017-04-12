@@ -122,7 +122,7 @@ void dessiner_menu()
   
   ecran.fill(0);
   ecran.textAlign(CENTER, BOTTOM);
-  ecran.text("alpha v1.0", 4 + textWidth("alpha v1.0") / 2, HAUTEUR_ECRAN - 2);
+  ecran.text("beta v2.0", 4 + textWidth("beta v2.0") / 2, HAUTEUR_ECRAN - 2);
 }
 
 
@@ -200,12 +200,15 @@ class MenuPrincipal
         {
           bjouer.select = false;
           bquitter.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[DOWN] == true)
         {
           bjouer.select = false;
           bcredits.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[ENTER] == true)
         {
+          son_bouton_valider.trigger();
           demande_jeu = true;
           transition.lancer();
         }
@@ -215,12 +218,15 @@ class MenuPrincipal
         {
           bcredits.select = false;
           bjouer.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[DOWN] == true)
         {
           bcredits.select = false;
           bquitter.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[ENTER] == true)
         {
+          son_bouton_valider.trigger();
           demande_credits = true;
           transition.lancer();
         }
@@ -230,10 +236,12 @@ class MenuPrincipal
         {
           bquitter.select = false;
           bcredits.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[DOWN] == true)
         {
           bquitter.select = false;
           bjouer.select = true;
+          son_changer_bouton.trigger();
         } else if (touches[ENTER] == true)
         {
           demande_quitter = true;

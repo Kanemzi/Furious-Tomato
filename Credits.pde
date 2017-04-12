@@ -33,7 +33,8 @@ void mettre_a_jour_credits()
         if (credits_entrer_presse && !demande_menu) // si on relâche après avoir sélectionné le bouton de retour
         {
             demande_menu = true; // on lance la transition pour retourner au menu
-            transition.lancer();
+            son_bouton_retour.trigger();
+    		transition.lancer();
         }
     }
 

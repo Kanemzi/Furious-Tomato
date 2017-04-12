@@ -2,7 +2,7 @@
  *   Furious Tomato - Par Benjamin Strabach, Valentin Galerne et Simon Rozec   *
  *                                                                             *
  *                        ~ Transition entre les écrans ~                      *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 class Transition
 {

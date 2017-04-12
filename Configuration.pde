@@ -2,7 +2,7 @@
  *   Furious Tomato - Par Benjamin Strabach, Valentin Galerne et Simon Rozec   *
  *                                                                             *
  *                          ~ Fichier de configuration ~                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 /* Informations globales */
 final int LARGEUR_ECRAN = 320;
@@ -10,7 +10,7 @@ final int HAUTEUR_ECRAN = 180;
 final int LARGEUR_PLANCHE = 230;
 final int HAUTEUR_PLANCHE = 130;
 final int HAUTEUR_BANDEAU = HAUTEUR_ECRAN - HAUTEUR_PLANCHE;
-final int ECHELLE = 3;
+final int ECHELLE = 3; // taille des pixels
 final float IMAGES_PAR_SECONDE = 60;
 
 
@@ -40,13 +40,11 @@ final String IMAGE_SALIERE_MINI = "saliere_mini.png";
 final String IMAGE_CHIFFRES = "chiffres.png";
 
 
+/* Animation des images (enchaînement des sous-images) */
 final int[] ANIMATION_NON = {0};
-
 final int[] ANIMATION_EXPLOSION_TOMATE = {0, 1, 2, 3};
-
 final int[] ANIMATION_CUISINIER_NORMAL = {0, 1, 0, 2};
 final int[] ANIMATION_CUISINIER_ENERVE = {3, 4};
-
 final int[] ANIMATION_TOMATE_PROFIL_FACE = {0, 1, 2, 1, 0, 3, 4, 3};
 final int[] ANIMATION_TOMATE_PROFIL_DOS = {5, 6, 7, 6, 5, 8, 9, 8};
 final int[] ANIMATION_TOMATE_FACE = {10, 11, 12, 11, 10, 13, 14, 13};
@@ -69,7 +67,7 @@ final String POLICE = "fonts/Gibberesque.ttf";
 final float TAILLE_POLICE = 16;
 
 
-/* Touches */
+/* Contrôles du jeu */
 final int TOUCHE_HAUT = UP;
 final int TOUCHE_BAS = DOWN;
 final int TOUCHE_DROITE = RIGHT;
@@ -79,10 +77,11 @@ final int TOUCHE_VALIDER = ENTER;
 final int TOUCHE_RETOUR = RETURN;
 
 
-/* DEBUG*/
+/* DEBUG */
 final boolean AFFICHER_COLLISIONS = false;
 final boolean COLLISIONS_COUTEAUX = true;
 final boolean AFFICHER_MOUVEMENT = false;
+
 
 /* CONSTANTES */
 final int INTRO = 0;

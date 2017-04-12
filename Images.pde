@@ -2,34 +2,37 @@
  *   Furious Tomato - Par Benjamin Strabach, Valentin Galerne et Simon Rozec   *
  *                                                                             *
  *                       ~ Fichier de gestion des images ~                     *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 /*
     Cette classe correspond à une image destinée à être affichée dans le jeu. Cette image peut être animée
  */
 class Image
 {
-    PImage[] images;
-    int[] animation;
+    PImage[] images; // sous images
+    int[] animation; // enchaînement des sous images (index)
 
-    boolean animee;
+    boolean animee; // défilement des sous images activé
     boolean boucler_animation;
     boolean miroir_x = false;
     boolean miroir_y = false;
 
-    int index_image;
+    int index_image; // l'index de la sous image actuelle
 
-    float vitesse_animation;
-    float opacite = 255;
+    float vitesse_animation; // pourcentage de vitesse de changement des images (1 = 1 frame par tick)
+    float opacite = 255; // opacité de l'image
+    
+    // point d'origine de l'image
     float origine_x = 0;
     float origine_y = 0;
-    float angle = 0;    
+    float angle = 0; // rotation de l'image
 
+    // taille de l'image et de l'animation
     int largeur;
     int hauteur;
     int longueur_animation;
 
-    boolean animation_finie;
+    boolean animation_finie; // si l'animation ne boucle pas et qu'elle est finie, = true
 
 
     /*
@@ -37,16 +40,17 @@ class Image
      */
     Image(String fichier, int nb_images, float vitesse_animation, int[] animation, boolean boucler_animation)
     {
-        PImage image = loadImage("images/" + fichier);
+        PImage image = loadImage("images/" + fichier); // chargement de l'image globale
 
-        images = new PImage[nb_images];
+        images = new PImage[nb_images]; // création d'un tableau de sous images
 
+        // définition de la taille des sous images
         int case_h = image.height;
         int case_l = image.width / nb_images;
 
-        for (int i = 0; i < nb_images; i++)
+        for (int i = 0; i < nb_images; i++) // on boucle autant de fois qu'il doit y avoir de sous images
         {
-            PImage sous_image = createImage(case_l, case_h, ARGB);
+            PImage sous_image = createImage(case_l, case_h, ARGB); // création d'une sous image vide
 
             for (int y = 0; y < case_h; y++)
             {
@@ -78,7 +82,7 @@ class Image
      */
     Image(String fichier)
     {
-        PImage image = loadImage("images/" + fichier);
+        PImage image = loadImage("images/" + fichier); // chargement de l'image
 
         images = new PImage[1];
         images[0] = image;
@@ -140,7 +144,7 @@ class Image
 
     /*
 		Affiche l'image aux coordonnées x et y indiquées
-     	*/
+    */
     void afficher(float x, float y)
     {   
         

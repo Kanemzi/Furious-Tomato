@@ -7,6 +7,7 @@
 
 final String[] PALIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
 final float[] TEMPS_PALIERS = {30, 60, 90, 130, 170 ,210, 270};
+//final float[] TEMPS_PALIERS = {2, 4, 5, 10, 12 ,13, 15};
 
 int palier_actuel;
 
@@ -46,7 +47,7 @@ void initialiser_difficulte()
 
 void mettre_a_jour_difficulte()
 {
-    if(temps_partie >= TEMPS_PALIERS[palier_actuel]) {
+    if(palier_actuel < 7 && temps_partie >= TEMPS_PALIERS[palier_actuel]) {
         palier_actuel += 1;
         modifier_stats_difficulte();
         ap.montrer_palier();
