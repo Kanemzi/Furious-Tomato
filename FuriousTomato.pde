@@ -42,7 +42,7 @@ void setup()
   temps_global = 0;
   scene = SCENES[INTRO];
 
-  //initialiser_son();
+  initialiser_son();
   initialiser_ecran();
   initialiser_police();
 
@@ -54,7 +54,7 @@ void setup()
 void draw()
 {
 
-  surface.setLocation((int)(128 + sin((float)temps_global /( (float)IMAGES_PAR_SECONDE / 18))* 128) , (int) (128 + cos((float)temps_global / (2*(float)IMAGES_PAR_SECONDE / 20))* 128) ); // faire bouger l'écran lel !!! x) x) xD ptdr
+  //surface.setLocation((int)(128 + sin((float)temps_global /( (float)IMAGES_PAR_SECONDE / 18))* 128) , (int) (128 + cos((float)temps_global / (2*(float)IMAGES_PAR_SECONDE / 20))* 128) ); // faire bouger l'écran lel !!! x) x) xD ptdr
 
   temps_global ++;
 

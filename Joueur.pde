@@ -333,6 +333,7 @@ class Joueur extends Entite
         perdu = true;
         vitesse = new Vecteur(0, 0);
         image = new Image(IMAGE_TOMATE_MORT, 12, 0.6, ANIMATION_TOMATE_MORT, false);
+        son_game_over.trigger();
     }
 
 }
