@@ -4,11 +4,6 @@
  *                        ~ Fichier de gestion du joueur ~                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/*
-IDEES : animation quand le joueur est immobile : yeux clignotent / reprend son souffle etc...
- 
- */
-
 class Joueur extends Entite
 {
     final float VIT_DEP_NORMAL = 2;

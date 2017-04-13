@@ -57,6 +57,8 @@ void initialiser_jeu()
     charger_score();
     
     mscore = mslcd.generer_image(Integer.parseInt(meilleur_score));
+    
+    musique_partie.loop();
 }
 
 

@@ -42,11 +42,17 @@ void initialiser_fin()
     delais_prochain_feu = 0;
 
     test_meilleur_score();
+    musique_partie.setGain(-25);
 }
 
 
 void mettre_a_jour_fin()
 {
+    if(musique_partie.getGain() > -25)
+    {
+        musique_partie.setGain(musique_partie.getGain() - 0.05);
+    }
+    
     if (opacite_texte >= 255)
     {
         texte_degrade_speed =  - 255 / (IMAGES_PAR_SECONDE * 1);
@@ -63,6 +69,10 @@ void mettre_a_jour_fin()
     if (touches[ENTER] && touche_pressee && opacite_ecran_mort >= 400)
     {
         demande_menu = true;
+        
+        musique_partie.pause();
+        musique_partie.rewind();
+        musique_partie.setGain(SON_MOYEN);
         son_bouton_retour.trigger();
 
         transition.lancer();

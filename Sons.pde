@@ -24,6 +24,8 @@ AudioSample son_sprouitch;
 AudioSample son_feu_artifice_1;
 AudioSample son_feu_artifice_2;
 
+AudioPlayer musique_partie;
+
 
 
 void initialiser_son()
@@ -40,4 +42,6 @@ void initialiser_son()
 	son_sprouitch = minim.loadSample("/sons/sprouitch.mp3", 512); son_sprouitch.setGain(SON_FORT);
 	son_feu_artifice_1 = minim.loadSample("/sons/feu_artifice_1.wav", 512); son_feu_artifice_1.setGain(SON_FAIBLE);
 	son_feu_artifice_2 = minim.loadSample("/sons/feu_artifice_2.wav", 512); son_feu_artifice_2.setGain(SON_FAIBLE);
+	
+	musique_partie = minim.loadFile("/sons/ingame_theme.wav", 512); musique_partie.setGain(SON_MOYEN);
 }
