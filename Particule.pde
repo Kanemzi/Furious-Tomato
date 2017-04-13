@@ -68,3 +68,66 @@ class GoutteEau extends Particule
         }
     }
 }
+
+
+class Etincelle extends Particule
+{
+    boolean eteinte = false;
+    
+    Etincelle(Vecteur pos, int col, float vie)
+    {
+        super(pos, new Vecteur(0, 0), new Vecteur(random(0.5, 0.8), 0), col, vie + random(1), (int) random(1, 3));
+        vitesse.modifierAL(random(TWO_PI), 10);
+    }
+    
+    void mettre_a_jour()
+    {
+        this.position.ajouter(vitesse);
+        this.vitesse.multiplier(acceleration.x);
+		
+		acceleration.x += 0.04;
+		if(acceleration.x >= 1) acceleration.x = 1;
+
+        if(temps_vie-- <= 0)
+        {
+            eteinte = true;
+        }
+    }
+}
+
+class FeuArtifice
+{
+    final int[] couleurs = {#e74c3c, #e67e22, #ffc40f, #2ecc71, #1abc9c, #3498db, #9b59b6};
+    
+    ArrayList<Etincelle> ets;
+    
+    Vecteur pos;
+    
+	int nbParts;
+	
+ 	FeuArtifice(Vecteur pos, float taille, int nbParts)
+ 	{
+    	int cindex = (int) random(7);
+    	
+    	this.nbParts = nbParts;
+    
+    	ets = new ArrayList<Etincelle>();
+    	for(int i = 0; i < nbParts; i++)
+    	{
+        	int ind = cindex + (int) random(0, 2);
+        	if(ind > 6) ind = 0;
+        
+        	ets.add(new Etincelle(pos.copie(), couleurs[ind], taille));
+        	
+    	}
+ 	}
+ 
+ 	void afficher()
+	{
+    	for(Etincelle e : ets)
+    	{
+        	e.mettre_a_jour();
+        	if(!e.eteinte) e.afficher();
+        }
+	}
+}
