@@ -158,6 +158,7 @@ class Joueur extends Entite
         			impulsion_disponible = false;
         			temps_debut_impulsion = temps_global;
         			endurence -= DIFF_cout_endurence_impulsion;
+        			son_impulsion.trigger();
         		}
 			}
 			else
@@ -333,6 +334,7 @@ class Joueur extends Entite
         perdu = true;
         vitesse = new Vecteur(0, 0);
         image = new Image(IMAGE_TOMATE_MORT, 12, 0.6, ANIMATION_TOMATE_MORT, false);
+        son_sprouitch.trigger();
         son_game_over.trigger();
     }
 

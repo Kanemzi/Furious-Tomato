@@ -6,7 +6,7 @@
  
 
 final String[] PALIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
-final float[] TEMPS_PALIERS = {30, 60, 90, 130, 170 ,210, 270};
+final float[] TEMPS_PALIERS = {5, 60, 90, 130, 170 ,210, 270};
 //final float[] TEMPS_PALIERS = {2, 4, 5, 10, 12 ,13, 15};
 
 int palier_actuel;
@@ -27,7 +27,7 @@ float DIFF_cout_endurence_impulsion = 100 / 4;
 
 final float[][] STATS_PALIERS =                    // VALEURS A MODIFIER
 {
-    {12,    0,        1.8,    1.5,    0,        0,       48*48,    8,        0,        100/2},        //1- ...
+    {12,    7,        1.8,    1.5,    0,        0,       48*48,    8,        0,        100/2},        //1- ...
     {10,    1,        1.8,    1.5,    0,        10,       48*48,    8,        0.5,        100/3},        //2- Salty
     {10,    2,        1.7,    1.7,    0,        10,       52*52,    8,        0.5,        100/4},        //3- Nervous
     {8,     2,        1.4,    2,      0,        8,        52*52,    12,        0.6,        100/5},        //4- Angry
