@@ -98,9 +98,9 @@ void dessiner_fin()
         ecran.fill(120, 120, 120, opacite_texte);
         ecran.text("Presser [Entrer] pour retourner au menu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 80);
 
-        if (score_battu == true && opacite_ecran_mort >= 550) // affichage du meilleur score
+        if (score_battu == true && opacite_ecran_mort >= 490) // affichage du meilleur score
         {
-            if(opacite_ecran_mort <= 560 && arts.size() < 4) // si première frame ou le "meilleur score" apparaît, faire spawn plein de feu d'artifice
+            if(opacite_ecran_mort <= 500 && arts.size() < 4) // si première frame ou le "meilleur score" apparaît, faire spawn plein de feu d'artifice
             {
             	for(int i = 0; i < 3; i++)
             	{

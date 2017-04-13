@@ -25,7 +25,7 @@ class Couteau extends Entite
         
         position_cible = positionCible;
         
-        if(DIFF_couteaux_derives)
+        if(DIFF_couteaux_derives && (int) random(2) == 0)
         {
 			Vecteur ac = vitesse.copie().normalise();
 
