@@ -30,6 +30,8 @@ void initialiser_fin()
   img_tomate_morte = new Image(IMAGE_TOMATE_MORT, 12, 0, ANIMATION_TOMATE_MORT, false);
   img_tomate_morte.index_image = 11;
   img_tomate_morte.opacite(100);
+  
+  test_meilleur_score();
 }
 
 
@@ -83,6 +85,13 @@ void dessiner_fin()
     ecran.textSize(TAILLE_POLICE-1);
     ecran.fill(120, 120, 120, opacite_texte);
     ecran.text("Presser [Entrer] pour retourner au menu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 80);
+    
+    if (score_battu == true && opacite_ecran_mort >= 600)
+    {
+        ecran.textSize(18);
+        ecran.fill(255, 255, 0);
+        ecran.text("MEILLEUR SCORE !", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 40);
+    }
   }
 }
 
@@ -91,4 +100,5 @@ void terminer_fin()
 {
   scene = SCENES[MENU];
   fin_init = false;
+  score_battu = false;
 }
