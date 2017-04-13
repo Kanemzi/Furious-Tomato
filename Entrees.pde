@@ -4,10 +4,10 @@
  *                   ~ Fichier de gestion des entrées clavier ~                *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
-boolean[] touches = new boolean[600];
+boolean[] touches = new boolean[600]; // tableau contenant les états des touches
 
-boolean touche_pressee = false;
-boolean touche_relachee = false;
+boolean touche_pressee = false; // = true si une touche est pressée pendant la frame
+boolean touche_relachee = false; // = true si une touche est relâchée pendant la frame
 
 
 void keyPressed()

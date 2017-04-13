@@ -76,8 +76,8 @@ class Etincelle extends Particule
     
     Etincelle(Vecteur pos, int col, float vie)
     {
-        super(pos, new Vecteur(0, 0), new Vecteur(random(0.5, 0.8), 0), col, vie + random(1), (int) random(1, 3));
-        vitesse.modifierAL(random(TWO_PI), 10);
+        super(pos, new Vecteur(0, 0), new Vecteur(random(0.65, 0.8), 0), col, vie + random(1), (int) random(1, 3));
+        vitesse.modifierAL(random(TWO_PI), 7);
     }
     
     void mettre_a_jour()

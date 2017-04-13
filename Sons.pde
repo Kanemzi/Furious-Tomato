@@ -18,8 +18,13 @@ AudioSample son_bouton_valider;
 AudioSample son_game_over;
 AudioSample son_sel_tombe_debut;
 AudioSample son_sel_tombe_fin;
+AudioSample son_sel_pas;
 AudioSample son_impulsion;
 AudioSample son_sprouitch;
+AudioSample son_feu_artifice_1;
+AudioSample son_feu_artifice_2;
+
+
 
 void initialiser_son()
 {
@@ -30,6 +35,9 @@ void initialiser_son()
 	son_game_over = minim.loadSample("/sons/game_over.wav", 512); son_game_over.setGain(SON_FAIBLE);
 	son_sel_tombe_debut = minim.loadSample("/sons/sel_debut.mp3", 512); son_sel_tombe_debut.setGain(SON_MOYEN);
 	son_sel_tombe_fin = minim.loadSample("/sons/sel_fin.mp3", 512); son_sel_tombe_fin.setGain(SON_MOYEN);
+	son_sel_pas = minim.loadSample("/sons/sel_debut.mp3", 512); son_sel_pas.setGain(SON_FAIBLE);
 	son_impulsion = minim.loadSample("/sons/dash.mp3", 512); son_impulsion.setGain(SON_FORT);
 	son_sprouitch = minim.loadSample("/sons/sprouitch.mp3", 512); son_sprouitch.setGain(SON_FORT);
+	son_feu_artifice_1 = minim.loadSample("/sons/feu_artifice_1.wav", 512); son_feu_artifice_1.setGain(SON_FAIBLE);
+	son_feu_artifice_2 = minim.loadSample("/sons/feu_artifice_2.wav", 512); son_feu_artifice_2.setGain(SON_FAIBLE);
 }

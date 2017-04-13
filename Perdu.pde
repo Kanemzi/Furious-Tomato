@@ -24,7 +24,6 @@ int curseur_hola_ms;
 
 
 // feu d'artifices meilleur score :
-int nb_feu_restant;
 int delais_prochain_feu;
 ArrayList<FeuArtifice> arts = new ArrayList<FeuArtifice>();
 
@@ -40,7 +39,6 @@ void initialiser_fin()
     img_tomate_morte.opacite(100);
 
     curseur_hola_ms = 0;
-    nb_feu_restant = (int) random(3, 200);
     delais_prochain_feu = 0;
 
     test_meilleur_score();
@@ -100,8 +98,17 @@ void dessiner_fin()
         ecran.fill(120, 120, 120, opacite_texte);
         ecran.text("Presser [Entrer] pour retourner au menu", LARGEUR_ECRAN/2, HAUTEUR_ECRAN/2 + 80);
 
-        if (score_battu == true && opacite_ecran_mort >= 500) // affichage du meilleur score
+        if (score_battu == true && opacite_ecran_mort >= 550) // affichage du meilleur score
         {
+            if(opacite_ecran_mort <= 560 && arts.size() < 4) // si première frame ou le "meilleur score" apparaît, faire spawn plein de feu d'artifice
+            {
+            	for(int i = 0; i < 3; i++)
+            	{
+                	arts.add(new FeuArtifice(new Vecteur(random(LARGEUR_ECRAN), random(HAUTEUR_ECRAN)), 0.2, (int) random(20, 100)));
+                	((int) random(2) == 0 ? son_feu_artifice_1 : son_feu_artifice_2).trigger();
+            	}
+            }
+            
             ecran.textSize(18);
             ecran.fill(255, 255, 255);
 
@@ -124,14 +131,12 @@ void dessiner_fin()
             	fa.afficher();
             }
             
-            if(delais_prochain_feu <= 0 && nb_feu_restant > 0)
+            if(delais_prochain_feu <= 0)
             {
                 delais_prochain_feu = (int) (random(0.2, 2) * IMAGES_PAR_SECONDE);
-                arts.add(new FeuArtifice(new Vecteur(random(LARGEUR_ECRAN), random(HAUTEUR_ECRAN)), 0.2, (int) random(20, 70)));
-            	
-            	nb_feu_restant--;
-            	println("creation feu");
-        	}
+                arts.add(new FeuArtifice(new Vecteur(random(LARGEUR_ECRAN), random(HAUTEUR_ECRAN)), 0.2, (int) random(20, 100)));
+                ((int) random(2) == 0 ? son_feu_artifice_1 : son_feu_artifice_2).trigger();
+            }
             else
             {
             	delais_prochain_feu --;   

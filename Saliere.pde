@@ -81,6 +81,7 @@ class Sel extends Particule
         acceleration.modifierXY(acc, acc);
 
         j.ralenti = true;
+        
         return true;
     }
 }

@@ -139,10 +139,11 @@ void dessiner_couperet()
   {
     tomate_morte = true;
 	
-	if(!couperet_tombe)
+	if(!couperet_tombe) // le couperet vient de toucher la table
 	{
     	couperet_tombe = true;
     	trembler(AMPLITUDE_CHOC_COUPERET, 2, true);
+    	son_sprouitch.trigger();
 	}
 
     //amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
