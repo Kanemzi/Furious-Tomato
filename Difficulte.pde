@@ -6,7 +6,7 @@
  
 
 final String[] PALIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
-final float[] TEMPS_PALIERS = {5, 60, 90, 130, 170 ,210, 270};
+final float[] TEMPS_PALIERS = {14, 32, 50, 80, 170 ,210, 270};
 //final float[] TEMPS_PALIERS = {2, 4, 5, 10, 12 ,13, 15};
 
 int palier_actuel;
@@ -51,7 +51,6 @@ void mettre_a_jour_difficulte()
         palier_actuel += 1;
         modifier_stats_difficulte();
         ap.montrer_palier();
-        println(PALIERS[palier_actuel]);
     }
 }
 

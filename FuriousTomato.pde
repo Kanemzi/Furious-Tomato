@@ -15,7 +15,7 @@ void settings()
   switch(ECHELLE)
   {
   case 1:
-    size(320, 180);
+    size(320, 180, FX2D);
     break;
 
   case 2:

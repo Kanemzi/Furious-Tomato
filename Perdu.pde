@@ -22,7 +22,6 @@ Image derniere_image;
 String ms = "MEILLEUR SCORE !";
 int curseur_hola_ms;
 
-
 // feu d'artifices meilleur score :
 int delais_prochain_feu;
 ArrayList<FeuArtifice> arts = new ArrayList<FeuArtifice>();
@@ -42,15 +41,14 @@ void initialiser_fin()
     delais_prochain_feu = 0;
 
     test_meilleur_score();
-    musique_partie.setGain(-25);
 }
 
 
 void mettre_a_jour_fin()
 {
-    if(musique_partie.getGain() > -25)
+    if(musique_partie.getGain() > SON_TRES_TRES_FAIBLE) // le volume du son diminue progressivement lors de la mort du joueur jusqu'à devenir très faible
     {
-        musique_partie.setGain(musique_partie.getGain() - 0.05);
+        musique_partie.setGain(musique_partie.getGain() - (SON_TRES_FAIBLE - SON_TRES_TRES_FAIBLE) / IMAGES_PAR_SECONDE); // durée du fade -> 1 seconde
     }
     
     if (opacite_texte >= 255)
@@ -72,7 +70,7 @@ void mettre_a_jour_fin()
         
         musique_partie.pause();
         musique_partie.rewind();
-        musique_partie.setGain(SON_MOYEN);
+        musique_partie.setGain(SON_TRES_FAIBLE);
         son_bouton_retour.trigger();
 
         transition.lancer();
