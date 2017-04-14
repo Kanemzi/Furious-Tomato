@@ -9,6 +9,8 @@ boolean intro_init = false;
 float opacite_intro = -100;
 float degrade_speed_intro = 255 / (IMAGES_PAR_SECONDE);
 
+boolean son_joue = false; // le son de l'intro a été joué
+
 Image logo;
 
 
@@ -23,6 +25,12 @@ void mettre_a_jour_intro()
     if (opacite_intro > 400)
     {
         degrade_speed_intro = - 255 / (IMAGES_PAR_SECONDE * 1.5);
+        
+        if(!son_joue)
+        {
+            son_intro.trigger();
+        	son_joue = true;	   
+        }
     }
 
     if (opacite_intro < -100 || touches[TOUCHE_VALIDER] || touches[TOUCHE_IMPULSION])

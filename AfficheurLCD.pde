@@ -29,14 +29,6 @@ class AfficheurLCD
     }
 
 
-    void mettre_a_jour()
-    {
-        if (type == LCD_TYPE_SCORE)
-        {
-        }
-    }
-
-
     Image generer_image(int n)
     {
 
