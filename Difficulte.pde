@@ -6,8 +6,9 @@
  
 
 final String[] PALIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
-final float[] TEMPS_PALIERS = {14, 32, 50, 80, 170 ,210, 270};
-//final float[] TEMPS_PALIERS = {2, 4, 5, 10, 12 ,13, 15};
+final float[] TEMPS_PALIERS = {5, 10, 15, 20, 25 ,30, 35};
+
+//final float[] TEMPS_PALIERS = {14, 32, 50, 80, 170 ,210, 270};
 
 int palier_actuel;
 
@@ -103,5 +104,6 @@ class AffichagePalier
        opacite = 255;
        taille_texte = 64;
        nom_palier = PALIERS[palier_actuel];
+       (voix_paliers[palier_actuel - 1]).trigger();
     }
 }
