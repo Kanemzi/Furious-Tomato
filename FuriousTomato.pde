@@ -29,6 +29,14 @@ void settings()
   case 4:
     size(1280, 720);
     break;
+    
+  case 5:
+  	size(1600,900);
+  	break;
+  
+  case 6:
+  	fullScreen();
+  	break;
   }
 
   noSmooth();
@@ -123,4 +131,7 @@ void draw()
 
   image(ecran, 0, 0, width, height);
   mettre_a_jour_entrees();
+  
+  // capture d'écran
+  if(touches[CONTROL]) saveFrame();
 }

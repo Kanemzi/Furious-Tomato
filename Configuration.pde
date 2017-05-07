@@ -5,6 +5,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 /* Informations globales */
+final String VERSION = "release v1.0";
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int LARGEUR_PLANCHE = 230;
@@ -38,6 +39,7 @@ final String IMAGE_PLANCHE = "planche.png";
 final String IMAGE_INTERFACE = "interface.png";
 final String IMAGE_SALIERE_MINI = "saliere_mini.png";
 final String IMAGE_CHIFFRES = "chiffres.png";
+final String IMAGE_TUTORIEL = "tutoriel.png";
 
 
 /* Animation des images (enchaînement des sous-images) */

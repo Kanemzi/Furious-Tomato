@@ -86,6 +86,9 @@ void initialiser_menu()
 	couperet_tombe = false;
   
   temps_menu = 0;
+  
+  musique_menu.pause();
+  musique_menu.rewind();
 }
 
 
@@ -122,7 +125,7 @@ void dessiner_menu()
   
   ecran.fill(0);
   ecran.textAlign(CENTER, BOTTOM);
-  ecran.text("beta v2.0", 4 + textWidth("beta v2.0") / 2, HAUTEUR_ECRAN - 2);
+  ecran.text(VERSION, 4 + textWidth(VERSION) / 2, HAUTEUR_ECRAN - 2);
 }
 
 
@@ -144,6 +147,7 @@ void dessiner_couperet()
     	couperet_tombe = true;
     	trembler(AMPLITUDE_CHOC_COUPERET, 2, true);
     	son_sprouitch.trigger();
+    	musique_menu.loop();
 	}
 
     //amplitude_choc_couperet /= REDUCTION_CHOC_COUPERET;
@@ -209,6 +213,8 @@ class MenuPrincipal
           son_changer_bouton.trigger();
         } else if (touches[ENTER] == true)
         {
+          musique_menu.pause();
+          musique_menu.rewind();
           son_bouton_valider.trigger();
           demande_jeu = true;
           transition.lancer();

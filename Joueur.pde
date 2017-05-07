@@ -30,13 +30,13 @@ class Joueur extends Entite
     float delais_recuperation;
     float temps_inactif;
 
-    float endurence;
-    float endurence_affichee;
-    float opacite_endurence;
-    int temps_endurence;
-    boolean endurence_visible;
-    boolean afficher_endurence; // pareil qu'endurence_visible mais en tout ou rien (ignore le fade)
-    boolean endurence_regeneration = false;
+    float endurance;
+    float endurance_affichee;
+    float opacite_endurance;
+    int temps_endurance;
+    boolean endurance_visible;
+    boolean afficher_endurance; // pareil qu'endurance_visible mais en tout ou rien (ignore le fade)
+    boolean endurance_regeneration = false;
 
 
     boolean immobile = false;
@@ -56,10 +56,10 @@ class Joueur extends Entite
         parametrer_collision(image.largeur / 1.8, new Vecteur(image.largeur / 2, 2 * image.hauteur / 3), AFFICHER_COLLISIONS);
         perdu = false;
 
-        endurence = ENDURENCE_MAX;
-        endurence_affichee = endurence;
-        opacite_endurence = 2;
-        endurence_visible = true;
+        endurance = ENDURENCE_MAX;
+        endurance_affichee = endurance;
+        opacite_endurance = 2;
+        endurance_visible = true;
     }
 
     void mettre_a_jour()
@@ -148,7 +148,7 @@ class Joueur extends Entite
                     impulsion = true;
                     impulsion_disponible = false;
                     temps_debut_impulsion = temps_global;
-                    endurence -= DIFF_cout_endurence_impulsion;
+                    endurance -= DIFF_cout_endurance_impulsion;
                     son_impulsion.trigger();
                 }
             } else
@@ -198,25 +198,25 @@ class Joueur extends Entite
 
             if (immobile && (temps_global - moment_arret) > IMAGES_PAR_SECONDE)
             {
-                endurence_regeneration = true;
+                endurance_regeneration = true;
             } else
             {
-                endurence_regeneration = false;
+                endurance_regeneration = false;
             }
 
-            if (endurence_regeneration && temps_global % 2 == 0)
+            if (endurance_regeneration && temps_global % 2 == 0)
             {
-                endurence += 2;
+                endurance += 2;
             }
 
 
             // gestion de l'épuisement du joueur
-            if (endurence <= 0)
+            if (endurance <= 0)
             {
                 epuise = true;
             }
 
-            if (epuise && endurence >= ENDURENCE_MAX / 2)
+            if (epuise && endurance >= ENDURENCE_MAX / 2)
             {
                 epuise = false;
             }
@@ -231,23 +231,26 @@ class Joueur extends Entite
             }
 
 
-            endurence = max(0, endurence);
-            endurence = min(ENDURENCE_MAX, endurence);
+            endurance = max(0, endurance);
+            endurance = min(ENDURENCE_MAX, endurance);
+            
+            // variation progressive de l'endurance affichée
+            if (endurance_affichee < endurance) endurance_affichee ++;
+            if (endurance_affichee > endurance) endurance_affichee --;
 
-            if (endurence_affichee < endurence) endurence_affichee ++;
-            if (endurence_affichee > endurence) endurence_affichee --;
-
-
-            if (endurence != endurence_affichee)
+            if (endurance != endurance_affichee)
             {
-                endurence_visible = true;
-            } else if (temps_endurence == -1 && endurence_visible)
+                endurance_visible = true;
+            }
+            else if (temps_endurance == -1 && endurance_visible)
             {
-                temps_endurence = temps_global;
-            } else if ((temps_global - temps_endurence > DUREE_AFFICHAGE_ENDURENCE * IMAGES_PAR_SECONDE) && endurence_visible)
+                temps_endurance = temps_global;
+            }
+            else if ((temps_global - temps_endurance > DUREE_AFFICHAGE_ENDURENCE * IMAGES_PAR_SECONDE) 
+                         && endurance_visible)
             {
-                temps_endurence = -1;
-                endurence_visible = false;
+                temps_endurance = -1;
+                endurance_visible = false;
             }
         } else if (image.animation_finie()) // si le joueur est morte et que son animation de mort est finie
         {
@@ -276,43 +279,51 @@ class Joueur extends Entite
         ecran.noStroke();
         ecran.ellipse(position.x + image.largeur / 2 - ombre_decalage, position.y + image.hauteur - ombre_decalage, image.largeur - 7, image.hauteur / 2 - 5); 
 
-        // la jauge d'endurence clignote quand le joueur est épuisé
+        // la jauge d'endurance clignote quand le joueur est épuisé
         if (epuise)
         {
             if (temps_global % (int) (IMAGES_PAR_SECONDE / 12) == 0)
             {
-                afficher_endurence = !afficher_endurence;
+                afficher_endurance = !afficher_endurance;
             }
 
-            endurence_visible = true;
+            endurance_visible = true;
         } else
         {
-            afficher_endurence = true;
+            afficher_endurance = true;
         }
 
-        afficher_barre_endurence();   
+        afficher_barre_endurance();   
 
         super.afficher();
     }
 
 
-    void afficher_barre_endurence()
+    void afficher_barre_endurance()
     {
-        if (!afficher_endurence) return;
+        if (!afficher_endurance) return;
 
-        if (endurence_visible)
+        if (endurance_visible)
         {
-            opacite_endurence = min(255, opacite_endurence + 10);
+            opacite_endurance = min(255, opacite_endurance + 10);
         } else
         {
-            opacite_endurence = max(0, opacite_endurence - 10);
+            opacite_endurance = max(0, opacite_endurance - 10);
         }
 
-        ecran.fill(color(100, 100, 100, opacite_endurence));
-        ecran.rect(position.x + image.largeur * (endurence_affichee / ENDURENCE_MAX), position.y - 5, image.largeur - image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        ecran.fill(color(100, 100, 100, opacite_endurance));
+        ecran.rect(position.x + image.largeur * (endurance_affichee / ENDURENCE_MAX), 
+                   position.y - 5, 
+                   image.largeur - image.largeur * (endurance_affichee / ENDURENCE_MAX), 
+                   3
+                  );
 
-        ecran.fill(color(100, 100, 255, opacite_endurence));
-        ecran.rect(position.x, position.y - 5, image.largeur * (endurence_affichee / ENDURENCE_MAX), 3);
+        ecran.fill(color(100, 100, 255, opacite_endurance));
+        ecran.rect(position.x, 
+                   position.y - 5, 
+                   image.largeur * (endurance_affichee / ENDURENCE_MAX),
+                   3
+                  );
     }
 
 

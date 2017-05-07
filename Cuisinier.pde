@@ -18,7 +18,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_VAGUES_DIAGONALES_3_PHASES), 
             new Pattern(PATTERN_GRILLE_3_PHASES_3_COUTEAUX)
         }, 
-        {
+        { // salty
             new Pattern(PATTERN_BORDS_8_COUTEAUX), 
             new Pattern(PATTERN_VAGUES_DIAGONALES_3_PHASES), 
             new Pattern(PATTERN_CROIX_4_COUTEAUX), 
@@ -28,7 +28,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_4_COUTEAUX_DESCENTE), 
             new Pattern(PATTERN_BOOMERANG_DESCENTE_4_3)
         }, 
-        {
+        { // nervous
             new Pattern(PATTERN_CROIX_4_COUTEAUX), 
             new Pattern(PATTERN_CROIX_4_COUTEAUX_CENTRE_LIBRE), 
             new Pattern(PATTERN_BORDS_8_COUTEAUX), 
@@ -38,7 +38,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_MIGRATEURS_DEUXCOTES_5_COUTEAUX), 
             new Pattern(PATTERN_DOUBLE_REBONDS)
         }, 
-        {
+        { // angry
             new Pattern(PATTERN_MIGRATEURS_DEUXCOTES_5_COUTEAUX), 
             new Pattern(PATTERN_DELUGE_LAMES_HAUT_BASIQUE), 
             new Pattern(PATTERN_DELUGE_LAMES_BAS_BASIQUE), 
@@ -48,7 +48,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_MIGRATEURS_GAUCHE_5_COUTEAUX), 
             new Pattern(PATTERN_MIGRATEURS_DROITE_5_COUTEAUX)
         }, 
-        {
+        { // ireful
             new Pattern(PATTERN_DELUGE_LAMES_HAUT_BASIQUE), 
             new Pattern(PATTERN_DELUGE_LAMES_BAS_BASIQUE), 
             new Pattern(PATTERN_ROUTE_DEUX_SENS_INVERSE), 
@@ -58,7 +58,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_HOLA_GAUCHE),
             new Pattern(PATTERN_HOLA_DROITE)
         },
-        {
+        { // mad
             new Pattern(PATTERN_DELUGE_LAMES_HAUT_BASIQUE), 
             new Pattern(PATTERN_DELUGE_LAMES_BAS_BASIQUE), 
             new Pattern(PATTERN_ROUTE_DEUX_SENS_INVERSE), 
@@ -68,7 +68,7 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_HOLA_DROITE),
             new Pattern(PATTERN_DOUBLE_HOLA)
         },
-        {
+        { // unleashed
             new Pattern(PATTERN_ROUTE_DEUX_SENS_INVERSE), 
             new Pattern(PATTERN_ROUTE_DEUX_SENS), 
             new Pattern(PATTERN_MURS_DEUX_COTES),
@@ -78,8 +78,16 @@ class Cuisinier extends Entite
             new Pattern(PATTERN_CROIX_RAPIDE),
             new Pattern(PATTERN_DOUBLE_EVENTAIL)
         },
-        {
-            new Pattern(PATTERN_DOUBLE_EVENTAIL)
+        { // furious
+            
+            new Pattern(PATTERN_BOOMERANG_RAPIDE_4_3),
+            new Pattern(PATTERN_MIGRATEURS_DEUXCOTES_5_COUTEAUX),
+            new Pattern(PATTERN_CASCADE_COUTEAUX_SEPARATION),
+            new Pattern(PATTERN_CROIX_RAPIDE),
+            new Pattern(PATTERN_DOUBLE_HOLA),
+            new Pattern(PATTERN_MURS_DEUX_COTES),
+            new Pattern(PATTERN_DOUBLE_EVENTAIL),
+            new Pattern(PATTERN_BOOMERANG_RAPIDE_4_3),
         }
     };
 

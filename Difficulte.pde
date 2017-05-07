@@ -6,9 +6,9 @@
  
 
 final String[] PALIERS = {"...", "Salty", "Nervous", "Angry", "Ireful", "Mad", "Unleashed", "Furious !!!"};
-final float[] TEMPS_PALIERS = {5, 10, 15, 20, 25 ,30, 35};
+//final float[] TEMPS_PALIERS = {5, 10, 15, 20, 25 ,30, 35};
 
-//final float[] TEMPS_PALIERS = {14, 32, 50, 80, 170 ,210, 270};
+final float[] TEMPS_PALIERS = {11.5, 31.5, 51, 79, 108 ,145, 184.5};
 
 int palier_actuel;
 
@@ -24,7 +24,7 @@ float DIFF_surface_sel = 64 * 48;
 float DIFF_duree_vie_sel = 6;
 float DIFF_quantite_sel;
 
-float DIFF_cout_endurence_impulsion = 100 / 4;
+float DIFF_cout_endurance_impulsion = 100 / 4;
 
 final float[][] STATS_PALIERS =                    // VALEURS A MODIFIER
 {
@@ -35,7 +35,7 @@ final float[][] STATS_PALIERS =                    // VALEURS A MODIFIER
     {8,     4,        1,      2.3,    1,        8,        56*56,    12,        0.6,        100/6},        //5- Ireful
     {6,     5,        0.6,    2.3,    1,        6,        60*60,    12,        0.6,        100/7},        //6- Mad
     {6,     6,        0.5,    2.5,    1,        6,        60*60,    13,        0.8,        100/8},        //7- Unleashed
-    {4,     6,        0.4,    2.6,    1,        4,        64*64,    14,        1,        100/9},        //8- Furious !!!
+    {4,     7,        0.4,    2.6,    1,        4,        64*64,    14,        1,        100/9},        //8- Furious !!!
 };
 
 
@@ -66,7 +66,7 @@ void modifier_stats_difficulte()
     DIFF_surface_sel = STATS_PALIERS[palier_actuel][6];
     DIFF_duree_vie_sel = STATS_PALIERS[palier_actuel][7];
     DIFF_quantite_sel = STATS_PALIERS[palier_actuel][8];
-    DIFF_cout_endurence_impulsion = STATS_PALIERS[palier_actuel][9];
+    DIFF_cout_endurance_impulsion = STATS_PALIERS[palier_actuel][9];
 }
 
 class AffichagePalier

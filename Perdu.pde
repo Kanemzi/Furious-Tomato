@@ -157,6 +157,7 @@ void dessiner_fin()
 void terminer_fin()
 {
     scene = SCENES[MENU];
+    musique_partie.setGain(SON_FAIBLE);
     fin_init = false;
     score_battu = false;
     arts.clear();

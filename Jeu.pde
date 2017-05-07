@@ -29,6 +29,7 @@ Saliere saliere; // une référence vers la salière
 
 void initialiser_jeu()
 {
+    
     retour_active = false;
 
     temps_partie = 0;
@@ -58,6 +59,8 @@ void initialiser_jeu()
     
     mscore = mslcd.generer_image(Integer.parseInt(meilleur_score));
     
+    musique_menu.pause();
+    musique_menu.rewind();
     musique_partie.loop();
 }
 
@@ -200,12 +203,16 @@ class CompteARebours
     float y_tomate = Y_TOMATE_DEBUT;
 
     Image tomate_saut;
+	Image tutoriel;
 
     CompteARebours()
     {
         tomate_saut = new Image(IMAGE_TOMATE_SAUT, 3, 0, ANIMATION_TOMATE_SAUT, false);
         tomate_saut.origine(tomate_saut.largeur / 2, tomate_saut.hauteur / 2);
-    }
+    	
+    	tutoriel = new Image(IMAGE_TUTORIEL);
+    	tutoriel.origine(tutoriel.largeur / 2, tutoriel.hauteur / 2);
+	}
 
     void mettre_a_jour()
     {
@@ -319,7 +326,18 @@ class CompteARebours
 
         ecran.fill(255, opacite_compte_a_rebours);
         ecran.textAlign(CENTER, CENTER);
-        ecran.text(texte, LARGEUR_PLANCHE / 2, HAUTEUR_BANDEAU + HAUTEUR_PLANCHE / 2 - 14);
+        ecran.text(texte, LARGEUR_PLANCHE / 2, HAUTEUR_BANDEAU + HAUTEUR_PLANCHE / 2 - 32); // 14
+        
+        if(texte == "Courez !!!")
+        {
+        	tutoriel.opacite = opacite_compte_a_rebours;
+        }
+        else
+        {
+        	tutoriel.opacite = 255;   
+        }
+        
+        tutoriel.afficher(LARGEUR_PLANCHE / 2, HAUTEUR_BANDEAU + HAUTEUR_PLANCHE / 2 + 24);
     }
 
 

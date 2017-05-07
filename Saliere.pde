@@ -192,7 +192,7 @@ class Saliere extends Entite
                 {
                     for (int g = 0; g < (DIFF_quantite_sel * 16); g++)
                     {
-                        creerGrainSel(); // 5
+                        creerGrainSel();
                     }		
 
                     if (!sel_pose) 
@@ -213,7 +213,8 @@ class Saliere extends Entite
                 	}
                 }
 
-                if (temps_global % ((int) max(1, DIFF_quantite_sel * 8)) == 0) creerGrainSel(); // 2
+                if (temps_global % ((int) max(1, DIFF_quantite_sel * 8)) == 0) creerGrainSel();
+                
             } else if (duree_active > TEMPS_DESCENTE_SALIERE)
             {
                 pourcentage_avancement = (duree_active - TEMPS_DESCENTE_SALIERE) / DUREE_DESCENTE_SALIERE;
@@ -258,7 +259,8 @@ class Saliere extends Entite
     void creerGrainSel()
     {
         sel.add(0, new Sel(
-            new Vecteur(position.x + random(-4, 4) * 5 * sin(image.angle), position.y + 2 * (image.hauteur / 3) + random(-2, 2)), 
+            new Vecteur(position.x + random(-4, 4) * 5 * sin(image.angle), 
+                        position.y + 2 * (image.hauteur / 3) + random(-2, 2)), 
             new Vecteur(-sin(image.angle) * 5, 1), 
             new Vecteur(.8, 1.4), 
             random(position_zone.y, position_zone.y + taille_zone.y), 
