@@ -5,7 +5,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 /* Informations globales */
-final String VERSION = "release v1.0";
+final String VERSION = "release v1.2";
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int LARGEUR_PLANCHE = 230;

@@ -56,8 +56,8 @@ void initialiser_son()
 	voix_paliers[2] = minim.loadSample("/sons/angry.wav", 512); voix_paliers[2].setGain(SON_MOYEN);
 	voix_paliers[3] = minim.loadSample("/sons/ireful.wav", 512); voix_paliers[3].setGain(SON_MOYEN);
 	voix_paliers[4] = minim.loadSample("/sons/mad.wav", 512); voix_paliers[4].setGain(SON_MOYEN);
-	voix_paliers[5] = minim.loadSample("/sons/mad.wav", 512); voix_paliers[5].setGain(SON_MOYEN); // SON A FAIRE
-	voix_paliers[6] = minim.loadSample("/sons/mad.wav", 512); voix_paliers[6].setGain(SON_MOYEN); // SON A FAIRE
+	voix_paliers[5] = minim.loadSample("/sons/unleashed.wav", 512); voix_paliers[5].setGain(SON_MOYEN); // SON A FAIRE
+	voix_paliers[6] = minim.loadSample("/sons/furious.wav", 512); voix_paliers[6].setGain(SON_MOYEN); // SON A FAIRE
 
 	musique_partie = minim.loadFile("/sons/ingame_theme.mp3", 512); musique_partie.setGain(SON_FAIBLE);
 	musique_menu = minim.loadFile("/sons/menu_theme.mp3", 512); musique_menu.setGain(SON_FAIBLE);
