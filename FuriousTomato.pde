@@ -46,6 +46,7 @@ void settings()
 void setup()
 {
   frameRate(IMAGES_PAR_SECONDE);
+  surface.setIcon(loadImage("images/icone.png"));
 
   temps_global = 0;
   scene = SCENES[INTRO];

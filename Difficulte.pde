@@ -26,7 +26,7 @@ float DIFF_quantite_sel;
 
 float DIFF_cout_endurance_impulsion = 100 / 4;
 
-final float[][] STATS_PALIERS =                    // VALEURS A MODIFIER
+final float[][] STATS_PALIERS =
 {
     {12,    0,        1.8,    1.5,    0,        0,        48*48,    8,        0,        100/2},        //1- ...
     {10,    1,        1.8,    1.5,    0,        10,       48*48,    8,        0.5,        100/3},        //2- Salty

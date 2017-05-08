@@ -154,6 +154,7 @@ class Cuisinier extends Entite
     void choisir_pattern()
     {
         int i = (int) random(PATTERNS[DIFF_niveau_patterns].length);
+        
         pattern = PATTERNS[DIFF_niveau_patterns][i];
 
         duree_pat_actuel = pattern.duree();
