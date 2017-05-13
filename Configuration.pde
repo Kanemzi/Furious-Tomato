@@ -5,13 +5,13 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 /* Informations globales */
-final String VERSION = "release v1.2";
+final String VERSION = "VERSION DEMO v1.3";
 final int LARGEUR_ECRAN = 320;
 final int HAUTEUR_ECRAN = 180;
 final int LARGEUR_PLANCHE = 230;
 final int HAUTEUR_PLANCHE = 130;
 final int HAUTEUR_BANDEAU = HAUTEUR_ECRAN - HAUTEUR_PLANCHE;
-final int ECHELLE = 2; // taille des pixels
+final int ECHELLE = 3; // taille des pixels
 final float IMAGES_PAR_SECONDE = 60;
 
 
@@ -81,7 +81,7 @@ final int TOUCHE_RETOUR = RETURN;
 
 /* DEBUG */
 final boolean AFFICHER_COLLISIONS = false;
-final boolean COLLISIONS_COUTEAUX = true;
+boolean COLLISIONS_COUTEAUX = true;
 final boolean AFFICHER_MOUVEMENT = false;
 
 

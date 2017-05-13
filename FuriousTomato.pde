@@ -131,8 +131,20 @@ void draw()
   ecran.endDraw();
 
   image(ecran, 0, 0, width, height);
-  mettre_a_jour_entrees();
+  
+  //invincibilité
+  if(touches[SHIFT] && touche_pressee) COLLISIONS_COUTEAUX = !COLLISIONS_COUTEAUX;
+  if(scene == SCENES[JEU]) 
+  {
+      fill(#000000);
+      text("godmod = " + !COLLISIONS_COUTEAUX, 16, height - 24);
+  }
   
   // capture d'écran
-  if(touches[CONTROL]) saveFrame();
+  if(touches[CONTROL] && touche_pressee == true) saveFrame();
+  
+  mettre_a_jour_entrees();
+  
+  
+  
 }

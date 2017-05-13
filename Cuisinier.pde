@@ -119,13 +119,13 @@ class Cuisinier extends Entite
         {
             if (temps == 0) // première frame de l'animation d'attaque
             {
-                trembler(2, DUREE_ENERVE_SUPPLEMENTAIRE, false);
+                choisir_pattern();
+                trembler(2, (float) pattern.duree() / (float) IMAGES_PAR_SECONDE, false);
                 image.changerAnimation(ANIMATION_CUISINIER_ENERVE, 0.3, false, true, true);
             }
 
             if ( temps == - TEMPS_REACTION  * IMAGES_PAR_SECONDE)	// lancement du pattern
             {
-                choisir_pattern();
                 pattern.initialiser(new Vecteur(0, 0));
 
                 /*for ( int i = 0; i < 5; i++ )
